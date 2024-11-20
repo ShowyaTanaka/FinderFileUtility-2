@@ -1,0 +1,554 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		537711DC2CEDECDD00F40E3B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 537711C22CEDECDC00F40E3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 537711C92CEDECDC00F40E3B;
+			remoteInfo = "FinderFileUtility 2";
+		};
+		537711E62CEDECDD00F40E3B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 537711C22CEDECDC00F40E3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 537711C92CEDECDC00F40E3B;
+			remoteInfo = "FinderFileUtility 2";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		537711CA2CEDECDC00F40E3B /* FinderFileUtility 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FinderFileUtility 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		537711DB2CEDECDD00F40E3B /* FinderFileUtility 2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FinderFileUtility 2Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		537711E52CEDECDD00F40E3B /* FinderFileUtility 2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FinderFileUtility 2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		537711CC2CEDECDC00F40E3B /* FinderFileUtility 2 */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "FinderFileUtility 2";
+			sourceTree = "<group>";
+		};
+		537711DE2CEDECDD00F40E3B /* FinderFileUtility 2Tests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "FinderFileUtility 2Tests";
+			sourceTree = "<group>";
+		};
+		537711E82CEDECDD00F40E3B /* FinderFileUtility 2UITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "FinderFileUtility 2UITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		537711C72CEDECDC00F40E3B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		537711D82CEDECDD00F40E3B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		537711E22CEDECDD00F40E3B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		537711C12CEDECDB00F40E3B = {
+			isa = PBXGroup;
+			children = (
+				537711CC2CEDECDC00F40E3B /* FinderFileUtility 2 */,
+				537711DE2CEDECDD00F40E3B /* FinderFileUtility 2Tests */,
+				537711E82CEDECDD00F40E3B /* FinderFileUtility 2UITests */,
+				537711CB2CEDECDC00F40E3B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		537711CB2CEDECDC00F40E3B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				537711CA2CEDECDC00F40E3B /* FinderFileUtility 2.app */,
+				537711DB2CEDECDD00F40E3B /* FinderFileUtility 2Tests.xctest */,
+				537711E52CEDECDD00F40E3B /* FinderFileUtility 2UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		537711C92CEDECDC00F40E3B /* FinderFileUtility 2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 537711EF2CEDECDD00F40E3B /* Build configuration list for PBXNativeTarget "FinderFileUtility 2" */;
+			buildPhases = (
+				537711C62CEDECDC00F40E3B /* Sources */,
+				537711C72CEDECDC00F40E3B /* Frameworks */,
+				537711C82CEDECDC00F40E3B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				537711CC2CEDECDC00F40E3B /* FinderFileUtility 2 */,
+			);
+			name = "FinderFileUtility 2";
+			packageProductDependencies = (
+			);
+			productName = "FinderFileUtility 2";
+			productReference = 537711CA2CEDECDC00F40E3B /* FinderFileUtility 2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		537711DA2CEDECDD00F40E3B /* FinderFileUtility 2Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 537711F22CEDECDD00F40E3B /* Build configuration list for PBXNativeTarget "FinderFileUtility 2Tests" */;
+			buildPhases = (
+				537711D72CEDECDD00F40E3B /* Sources */,
+				537711D82CEDECDD00F40E3B /* Frameworks */,
+				537711D92CEDECDD00F40E3B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				537711DD2CEDECDD00F40E3B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				537711DE2CEDECDD00F40E3B /* FinderFileUtility 2Tests */,
+			);
+			name = "FinderFileUtility 2Tests";
+			packageProductDependencies = (
+			);
+			productName = "FinderFileUtility 2Tests";
+			productReference = 537711DB2CEDECDD00F40E3B /* FinderFileUtility 2Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		537711E42CEDECDD00F40E3B /* FinderFileUtility 2UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 537711F52CEDECDD00F40E3B /* Build configuration list for PBXNativeTarget "FinderFileUtility 2UITests" */;
+			buildPhases = (
+				537711E12CEDECDD00F40E3B /* Sources */,
+				537711E22CEDECDD00F40E3B /* Frameworks */,
+				537711E32CEDECDD00F40E3B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				537711E72CEDECDD00F40E3B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				537711E82CEDECDD00F40E3B /* FinderFileUtility 2UITests */,
+			);
+			name = "FinderFileUtility 2UITests";
+			packageProductDependencies = (
+			);
+			productName = "FinderFileUtility 2UITests";
+			productReference = 537711E52CEDECDD00F40E3B /* FinderFileUtility 2UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		537711C22CEDECDC00F40E3B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1610;
+				LastUpgradeCheck = 1610;
+				TargetAttributes = {
+					537711C92CEDECDC00F40E3B = {
+						CreatedOnToolsVersion = 16.1;
+					};
+					537711DA2CEDECDD00F40E3B = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 537711C92CEDECDC00F40E3B;
+					};
+					537711E42CEDECDD00F40E3B = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 537711C92CEDECDC00F40E3B;
+					};
+				};
+			};
+			buildConfigurationList = 537711C52CEDECDC00F40E3B /* Build configuration list for PBXProject "FinderFileUtility 2" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 537711C12CEDECDB00F40E3B;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 537711CB2CEDECDC00F40E3B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				537711C92CEDECDC00F40E3B /* FinderFileUtility 2 */,
+				537711DA2CEDECDD00F40E3B /* FinderFileUtility 2Tests */,
+				537711E42CEDECDD00F40E3B /* FinderFileUtility 2UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		537711C82CEDECDC00F40E3B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		537711D92CEDECDD00F40E3B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		537711E32CEDECDD00F40E3B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		537711C62CEDECDC00F40E3B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		537711D72CEDECDD00F40E3B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		537711E12CEDECDD00F40E3B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		537711DD2CEDECDD00F40E3B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 537711C92CEDECDC00F40E3B /* FinderFileUtility 2 */;
+			targetProxy = 537711DC2CEDECDD00F40E3B /* PBXContainerItemProxy */;
+		};
+		537711E72CEDECDD00F40E3B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 537711C92CEDECDC00F40E3B /* FinderFileUtility 2 */;
+			targetProxy = 537711E62CEDECDD00F40E3B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		537711ED2CEDECDD00F40E3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		537711EE2CEDECDD00F40E3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		537711F02CEDECDD00F40E3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "FinderFileUtility 2/FinderFileUtility_2.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FinderFileUtility 2/Preview Content\"";
+				DEVELOPMENT_TEAM = HWETRKW89U;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ShowyaTanaka.FinderFileUtility-2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		537711F12CEDECDD00F40E3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "FinderFileUtility 2/FinderFileUtility_2.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"FinderFileUtility 2/Preview Content\"";
+				DEVELOPMENT_TEAM = HWETRKW89U;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ShowyaTanaka.FinderFileUtility-2";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		537711F32CEDECDD00F40E3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HWETRKW89U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ShowyaTanaka.FinderFileUtility-2Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FinderFileUtility 2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FinderFileUtility 2";
+			};
+			name = Debug;
+		};
+		537711F42CEDECDD00F40E3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HWETRKW89U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ShowyaTanaka.FinderFileUtility-2Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FinderFileUtility 2.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FinderFileUtility 2";
+			};
+			name = Release;
+		};
+		537711F62CEDECDD00F40E3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HWETRKW89U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ShowyaTanaka.FinderFileUtility-2UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "FinderFileUtility 2";
+			};
+			name = Debug;
+		};
+		537711F72CEDECDD00F40E3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HWETRKW89U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ShowyaTanaka.FinderFileUtility-2UITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "FinderFileUtility 2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		537711C52CEDECDC00F40E3B /* Build configuration list for PBXProject "FinderFileUtility 2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				537711ED2CEDECDD00F40E3B /* Debug */,
+				537711EE2CEDECDD00F40E3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		537711EF2CEDECDD00F40E3B /* Build configuration list for PBXNativeTarget "FinderFileUtility 2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				537711F02CEDECDD00F40E3B /* Debug */,
+				537711F12CEDECDD00F40E3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		537711F22CEDECDD00F40E3B /* Build configuration list for PBXNativeTarget "FinderFileUtility 2Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				537711F32CEDECDD00F40E3B /* Debug */,
+				537711F42CEDECDD00F40E3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		537711F52CEDECDD00F40E3B /* Build configuration list for PBXNativeTarget "FinderFileUtility 2UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				537711F62CEDECDD00F40E3B /* Debug */,
+				537711F72CEDECDD00F40E3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 537711C22CEDECDC00F40E3B /* Project object */;
+}
