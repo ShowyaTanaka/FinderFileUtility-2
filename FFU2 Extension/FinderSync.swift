@@ -72,6 +72,10 @@ class FinderSync: FIFinderSync {
     @IBAction func sampleAction(_ sender: AnyObject?) {
         let target = FIFinderSyncController.default().targetedURL()
         let items = FIFinderSyncController.default().selectedItemURLs()
+        let center = DistributedNotificationCenter.default()
+        center.post(name: Notification.Name("com.ShowyaTanaka.FFU2"),
+                    object: nil,
+                    userInfo: ["info": "Something happened"])
 
         let item = sender as! NSMenuItem
         NSLog("sampleAction: menu item: %@, target = %@, items = ", item.title as NSString, target!.path as NSString)
