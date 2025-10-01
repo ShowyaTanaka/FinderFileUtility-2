@@ -7,6 +7,7 @@
 
 import Cocoa
 import FinderSync
+import SwiftUI
 // TODO: XPCを用いてアプリ側にターゲットディレクトリの情報を送り、アプリ側からそこに読み書きする形へ。
 
 class FinderSync: FIFinderSync {
@@ -72,15 +73,99 @@ class FinderSync: FIFinderSync {
     @IBAction func sampleAction(_ sender: AnyObject?) {
         let target = FIFinderSyncController.default().targetedURL()
         let items = FIFinderSyncController.default().selectedItemURLs()
-        let center = DistributedNotificationCenter.default()
-        center.post(name: Notification.Name("com.ShowyaTanaka.FFU2"),
-                    object: nil,
-                    userInfo: ["info": "Something happened"])
-
+        guard let targetURL = target else {return}
         let item = sender as! NSMenuItem
+        let selectedExt = item.title
+        /*
+        let editFileNameViewModel = EditFileNameViewModel(currentDirURL: targetURL, selectedExt: item.title)
+        let editFileNameView = EditFileNameView(viewModel: editFileNameViewModel)
+        NSLog("AAAA")
+        DispatchQueue.main.async{
+            let controller = MyViewController(
+                rootView: editFileNameView,
+            
+            )
+
+            let win = NSWindow(
+                contentViewController: controller
+            )
+            win.title = "新規ファイル作成"
+            win.styleMask = [.titled, .closable, .resizable] // 必要に応じて
+            win.center()
+
+            // ウィンドウレベルを「常に前面」に設定
+            win.level = .floating
+
+            // アプリを最前面にアクティブ化
+            NSApp.activate(ignoringOtherApps: true)
+            // フォーカスを持たせる（KeyWindow にする）
+            win.makeKeyAndOrderFront(nil)
+            win.becomeMain()   // メインウィンドウにする
+            win.makeFirstResponder(win.contentView) // TextField などに入力できるように
+        }
+         */
+        func sendNotification(path: String, ext: String) {
+            let connection = NSXPCConnection(serviceName: "ShowyaTanaka.FinderFileUtility-2")
+            connection.remoteObjectInterface = NSXPCInterface(with: EditFileXPCProtocol.self)
+            connection.activate()
+            guard let proxy = connection.remoteObjectProxy as? EditFileXPCProtocol else {return}
+                proxy.editFileNotification(path: path, ext: ext)  {reply in
+                    if reply == true {
+                        NSLog("Success!")
+                    }
+                    
+                }
+
+           // connection.invalidate()
+        }
+        
         NSLog("sampleAction: menu item: %@, target = %@, items = ", item.title as NSString, target!.path as NSString)
         for obj in items! {
             NSLog("    %@", obj.path as NSString)
         }
+        /*let center = CFNotificationCenterGetDarwinNotifyCenter()
+        let userInfo: [CFString: Any] = [
+            "path" as CFString: target!.path as CFString,
+            "target_ext" as CFString: item.title as CFString
+        ]
+        let notify_name = CFNotificationName("com.FFU2.EditFile" as CFString)
+        CFNotificationCenterPostNotification(
+            center,
+            notify_name,
+            nil,
+            userInfo as CFDictionary,
+            true
+        )*/
+        sendNotification(path: target!.path, ext: item.title)
+        let portName = "com.ShoyaTanaka.FFU2.port" as CFString
+        let message = "hoge"
+        
+        // 2. CFMessagePortCreateRemoteでリモートポート（送信先）への参照を取得
+        guard let remotePort = CFMessagePortCreateRemote(nil, portName) else {
+            print("送信エラー: ポートに接続できません。受信側のアプリは起動していますか？")
+            return
+        }
+        
+        // 3. 送信するデータをCFDataに変換する
+        guard let data = message.data(using: .utf8) as CFData? else {
+            print("送信エラー: データの変換に失敗しました。")
+            return
+        }
+        
+        print("メッセージを送信します: \(message)")
+        
+        // 4. CFMessagePortSendRequestでメッセージを送信
+        let timeout: TimeInterval = 5.0 // タイムアウト時間（秒）
+        var returnData: Unmanaged<CFData>? = nil // 応答データを受け取るためのポインタ
+
+        let status = CFMessagePortSendRequest(
+            remotePort,      // 送信先ポート
+            0,               // Message ID (任意)
+            data,            // 送信するデータ
+            timeout,         // 送信タイムアウト
+            timeout,         // 応答受信タイムアウト
+            nil,             // 応答データを受け取るためのRunLoopモード (今回は応答を待たないためnil)
+            &returnData
+        )
     }
 }

@@ -14,7 +14,7 @@ struct ConfigMenuView: View {
             VStack {
                 PermissionSettings()
                 FileName()
-                
+                Text(SecureBookMarkModel.getSecureBookMarkStringFullPath() ?? "none")
             }
         }
     }

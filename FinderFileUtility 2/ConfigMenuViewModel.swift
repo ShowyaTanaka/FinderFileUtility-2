@@ -14,7 +14,7 @@ import Observation
     
     init() {
         self.isEnableFinderExtension = FIFinderSyncController.isExtensionEnabled
-        self.allowedDirectory = SecureBookMarkModel.getSecureBookMarkStringUrl()
+        self.allowedDirectory = SecureBookMarkModel.getSecureBookMarkStringFullPath()
     }
     
     private func showAlert(title: String, message: String){
@@ -55,12 +55,12 @@ import Observation
          Finder拡張の新規ファイル作成機能にて、ファイルの書き込みに必要な権限を取得するための関数。
          
          */
-        let result: SaveSecureBookMarkResult = await SecureBookMarkModel.createSecureBookMarkForHomeDirectory()
+        let result: SaveSecureBookMarkResult = await SecureBookmarkPanelService.createSecureBookMarkForHomeDirectory()
 
         switch result.status {
             case .ok:
-                if SecureBookMarkModel.saveSecureBookMark(bookmarkResult: result) {
-                    self.allowedDirectory = SecureBookMarkModel.getSecureBookMarkStringUrl()
+            if SecureBookMarkModel.saveSecureBookMark(bookmark: result.bookmark) {
+                    self.allowedDirectory = SecureBookMarkModel.getSecureBookMarkStringFullPath()
                 }
                 else {
                     self.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")
@@ -71,8 +71,8 @@ import Observation
             case .smaller_permission_for_home_directory:
                 let userResult = self.showAlertWithUserSelect(title: "権限が小さいです", message: "ホームディレクトリより下のフォルダが指定されました。一部のフォルダでは正常に動作しない可能性があります。よろしいですか？")
                 if userResult {
-                    if SecureBookMarkModel.saveSecureBookMark(bookmarkResult: result) {
-                        self.allowedDirectory = SecureBookMarkModel.getSecureBookMarkStringUrl()
+                    if SecureBookMarkModel.saveSecureBookMark(bookmark: result.bookmark) {
+                        self.allowedDirectory = SecureBookMarkModel.getSecureBookMarkStringFullPath()
                     }
                     else {
                         self.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")

@@ -1,12 +1,11 @@
 //
-//  ConfigMenuModel.swift
+//  SecureBookmarkPanelService.swift
 //  FinderFileUtility 2
 //
-//  Created by ShowyaTanaka on 2024/11/19.
+//  Created by Noel Light on 2025/09/23.
 //
-
+import Foundation
 import FinderSync
-
 enum SaveSecureBookMarkStatus {
     // ConfigMenuModelのsaveSecureBookMarkForHomeDirectoryの結果を示す
     case ok
@@ -20,49 +19,9 @@ struct SaveSecureBookMarkResult {
     var status: SaveSecureBookMarkStatus = .failed
 }
 
-struct SecureBookMarkModel {
-    private static let keyForSecureBookmark = "secureBookMark"
-    private static let keyForAvailableDirectory = "availableDirectory"
-
-    static func getSecureBookMarkStringUrl() -> String? {
-        // secureBookMarkがそもそもない場合はnilを返す。
-        guard let userDefaults = UserDefaults(suiteName: "com.ShoyaTanaka.FFU2") else {return nil}
-       // userDefaults.set(nil, forKey: self.keyForSecureBookmark)
-        guard let bookmark = userDefaults.data(forKey: self.keyForSecureBookmark) else { return nil }
-        // 一部フォルダにのみ限定して許可し、その後リネームしてしまった場合、正常にトークンが利用できなくなるためそれに備えて
-        var folderNameChanged = false
-        // URL取得に失敗したら結局意味ないのでnilをリターン
-        guard let url = try? URL(resolvingBookmarkData: bookmark, options: .withSecurityScope, bookmarkDataIsStale: &folderNameChanged) else { return nil }
-
-        // 正常にトークンが利用できる場合のみpathを返す
-        return !folderNameChanged ? url.path() : nil
-    }
+struct SecureBookmarkPanelService {
+    // 現実問題として,SecurebookMarkは1つでよいので,事実上HomeDirのNSPanelを呼び出している。
     
-    static func saveSecureBookMark(bookmarkResult: SaveSecureBookMarkResult) -> Bool {
-        /*
-         UserDefaultsに検証して保存する。
-         生成したsecurity-scoped-bookmarkはアプリ再起動時にそのままでは消えてしまうため、UserDefaultsに保存している。
-         成功した場合のみtrueを返し、何らかの要因でしくじってる場合はfalseを返す。
-         NOTE: UserDefaultsにこのまま保存することに関して、現段階ではセキュリティ上の懸念がない
-         (そもそもこの情報が他のアプリから見える状況になってしまっている時点でこの情報は必要ないため)と考えるが、
-         追加の懸念点が発生した場合はKeyChainを用いた実装に切り替える。
-         */
-        
-        // ブックマークが存在するかをまず確認する。
-        guard let bookmarkData = bookmarkResult.bookmark else {return false}
-        guard let userDefaults = UserDefaults(suiteName: "com.ShoyaTanaka.FFU2") else {return false}
-        // 一部フォルダにのみ限定して許可し、その後リネームしてしまった場合、正常にトークンが利用できなくなるためそれに備えて
-        var folderNameChanged = false
-        guard let url = try? URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, bookmarkDataIsStale: &folderNameChanged) else {return false}
-        // フォルダ名が何らかの要因で変えられていた場合は保存しない。
-        guard folderNameChanged != true else {return false}
-        userDefaults.set(bookmarkData, forKey: self.keyForSecureBookmark)
-        userDefaults.set(url.path(), forKey: self.keyForAvailableDirectory)
-        // 正常に保管できているかどうかを結果として返す。
-        guard self.getSecureBookMarkStringUrl() == url.path() else {return false}
-        return bookmarkData == userDefaults.data(forKey: self.keyForSecureBookmark)
-    }
-
     @MainActor //UI関係は主スレッドで実行しなければならないため、主スレッドで指定する。(ここではNSOpenPanel)
     static func createSecureBookMarkForHomeDirectory() async -> SaveSecureBookMarkResult {
         /*

@@ -13,7 +13,7 @@ import SwiftUI
     var beforeEditingFileName: String = ""
     
     init(){
-        let current_default_name_data: String = FileNameModel.getDefaultFileNameData()
+        let current_default_name_data: String = FileNameConfigService.getDefaultFileNameData()
         self.fileNameForDisplay = current_default_name_data
         self.beforeEditingFileName = current_default_name_data
     }
@@ -23,7 +23,7 @@ import SwiftUI
     }
     
     func updateDefaultFileNameData(fileName: String){
-        FileNameModel.writeDefaultFileNameData(newFileName: fileName)
+        FileNameConfigService.writeDefaultFileNameData(newFileName: fileName)
         self.beforeEditingFileName = fileName
     }
     
