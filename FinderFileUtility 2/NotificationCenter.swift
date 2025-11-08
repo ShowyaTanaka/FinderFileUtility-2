@@ -8,4 +8,5 @@ import Foundation
 
 extension Notification.Name {
     static let notifyEditFileName = Notification.Name("notifyEditFileName")
+    static let blankName = Notification.Name("blankName")
 }

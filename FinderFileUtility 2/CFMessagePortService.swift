@@ -7,47 +7,74 @@
 
 import Foundation
 
-protocol CFMessagePortHandlerProtocol: AnyObject {
-    var portName: String {get}
-    var CFMessageHandler: CFMessagePortCallBack {get}
-    var cfMessagePortThread: Thread? {get set}
+// Global C-compatible callback that does not capture Swift context
+func CFMessagePortCallback(_ port: CFMessagePort?, _ msgid: Int32, _ data: CFData?, _ info: UnsafeMutableRawPointer?) -> Unmanaged<CFData>? {
+    print("メッセージを受信しました！")
+    print("Message ID: \(msgid)")
+    guard let info else { return nil }
+    guard let cfdata = data as Data? else {return nil}
+    guard let receivedString = String(data: cfdata, encoding: .utf8) else {return nil}
+    
+    let notificationPipelineInformation = Unmanaged<PipeLineInfo>.fromOpaque(info).takeUnretainedValue()
+    print("受信データ: \(receivedString)")
+    let message: [String: String] = ["message": "珍棒"]
+    print(notificationPipelineInformation.notificationName)
+    NotificationCenter.default.post(name: notificationPipelineInformation.notificationName, object: message)
+    
+    print("送信しました！")
+
+    return nil
 }
-
-class CFMessageTestHandler: CFMessagePortHandlerProtocol {
-    let portName: String = "com.ShoyaTanaka.FFU2.port"
-    var viewModel = EditFileNameViewModel()
-    lazy var CFMessageHandler: CFMessagePortCallBack = { (port, msgid, data, info) -> Unmanaged<CFData>? in
-        print("メッセージを受信しました！")
-        print("Message ID: \(msgid)")
-
-        // 受信したデータをStringに変換して表示
-        if let cfdata = data {
-            let nsdata = cfdata as Data
-            if let receivedString = String(data: nsdata, encoding: .utf8) {
-                print("受信データ: \(receivedString)")
-            }
-        }
-        self.viewModel
-        
-        return nil // 応答を返さない場合
+private class PipeLineInfo {
+    var portName: CFString
+    var notificationName: Notification.Name
+    init(portName: CFString, notificationName: Notification.Name) {
+        self.portName = portName
+        self.notificationName = notificationName
     }
-    var cfMessagePortThread: Thread?
 }
 
+protocol CFMessagePortToNotificationPipelineInformationProtocol {
+    var portName: CFString {get set}
+    var notificationName: Notification.Name {get set}
+}
+
+struct CFMessagePortEditFilePipelineInformation: CFMessagePortToNotificationPipelineInformationProtocol{
+    var notificationName: Notification.Name = .notifyEditFileName
+    var portName = "group.com.ShoyaTanaka.FFU2.editfile" as CFString
+}
+func retainCallback(_ info: UnsafeRawPointer?) -> UnsafeRawPointer? {
+    guard let info = info else { print("ERR"); return nil }
+    let unmanaged = Unmanaged<PipeLineInfo>.fromOpaque(info)
+    _ = unmanaged.retain() // retain カウント +1
+    return UnsafeRawPointer(unmanaged.toOpaque())
+}
+
+func releaseCallback(_ info: UnsafeRawPointer?) {
+    guard let info = info else { return }
+    Unmanaged<PipeLineInfo>.fromOpaque(info).release() // retain カウント -1
+}
 // Note: Call this function with `&handler` to allow mutating the parameter.
-func launchMessagePort(cfMessagePortHandler: CFMessagePortHandlerProtocol) {
+func launchMessagePort(pipeLineInfo: CFMessagePortEditFilePipelineInformation) -> Thread {
+    let portName = pipeLineInfo.portName
+    let pipeLineInfoClass = PipeLineInfo(portName: pipeLineInfo.portName , notificationName: pipeLineInfo.notificationName)
+    let infoPtr = Unmanaged.passRetained(pipeLineInfoClass).toOpaque()
     // メッセージポートの名前
     let thread = Thread {
-        let portName = cfMessagePortHandler.portName as CFString
-
-        var context = CFMessagePortContext(version: 0, info: nil, retain: nil, release: nil, copyDescription: nil)
+        var context = CFMessagePortContext(
+            version: 0,
+            info: infoPtr,
+            retain: retainCallback,
+            release: releaseCallback,
+            copyDescription: nil
+        )
         var shouldFreeInfo: DarwinBoolean = false
 
         // 2. CFMessagePortCreateLocalでローカルポートを作成
         guard let localPort = CFMessagePortCreateLocal(
             kCFAllocatorDefault,
             portName,
-            cfMessagePortHandler.CFMessageHandler, // コールバック関数
+            CFMessagePortCallback, // コールバック関数（C関数ポインタ）
             &context, // コンテキスト情報（今回はnil）
             &shouldFreeInfo
         ) else {
@@ -63,6 +90,6 @@ func launchMessagePort(cfMessagePortHandler: CFMessagePortHandlerProtocol) {
         CFRunLoopRun()
     }
     thread.name="cfMessagePort_"
-    cfMessagePortHandler.cfMessagePortThread = thread
-    cfMessagePortHandler.cfMessagePortThread!.start()
+    thread.start()
+    return thread
 }

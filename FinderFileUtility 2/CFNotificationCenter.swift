@@ -24,14 +24,14 @@ class EditFileNameCFNotificationCenterService: CFNotificationCenterService {
         let callBack: CFNotificationCallback = { center, observer, name, object, userInfo in
             //guard let observer = observer else { return }
             print("notify")
-            print(userInfo)
-            guard let info = userInfo as? [String: Any] else {
+            /*guard let info = userInfo as? [String: Any] else {
                 print("OUT")
                 return
-            }
+            }*/
+            let userInfo:[String:String] = ["message": "珍棒"]
             
-            // Notificationに変換して通知する。
-            NotificationCenter.default.post(name: .notifyEditFileName, object: info)
+            NotificationCenter.default.post(name: .notifyEditFileName,object: nil, userInfo: userInfo)
+            print("送信しました！")
         }
         CFNotificationCenterAddObserver(
             center,

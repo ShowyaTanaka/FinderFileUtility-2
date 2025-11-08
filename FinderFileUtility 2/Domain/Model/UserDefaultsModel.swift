@@ -7,7 +7,7 @@
 import Foundation
 
 struct UserDefaultsModel {
-    static var suiteName = "com.ShoyaTanaka.FFU2"
+    static var suiteName = "group.com.ShoyaTanaka.FFU2"
     
     @discardableResult
     static func setValue(value: Any, forKey: String) -> Bool {

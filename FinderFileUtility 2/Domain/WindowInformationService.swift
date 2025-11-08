@@ -50,10 +50,17 @@ class EditFileViewWindowInformationService: NSObject, WindowManagementProtocol{
             self.isShowWindow.toggle()
         }
     }
+    @objc private func fileNameNotificationCallBack(notification: Notification) {
+        guard let object = notification.object as? [String:Any] else {return}
+        guard let message = object["message"] as? String else {return}
+        print("EditFileViewWindowInformationService:\(message)")
+        
+    }
     init(isShowWindow: Bool, viewModel: EditFileNameViewModel) {
         self.isShowWindow = isShowWindow
         self.viewModel = viewModel
-        //   NotificationCenter.default.addObserver(self, selector: #selector(CFNotificationCallback(userInfo: )), name: .notifyEditFileName, object: nil)
+        super.init()
+        NotificationCenter.default.addObserver(self, selector: #selector(fileNameNotificationCallBack), name: .notifyEditFileName, object: nil)
     }
 
 }
@@ -67,7 +74,7 @@ class EditFileViewWindowInformationListener:NSObject, EditFileXPCProtocol, NSXPC
         // パスを検証し,保存できるディレクトリであれば保存を行う.
     }
     func listener(_ listener: NSXPCListener,
-                  shouldAcceptNewConnection connection: NSXPCConnection) -> Bool {
+        shouldAcceptNewConnection connection: NSXPCConnection) -> Bool {
         connection.exportedInterface = NSXPCInterface(with: EditFileXPCProtocol.self)
         connection.exportedObject = self
         connection.resume()

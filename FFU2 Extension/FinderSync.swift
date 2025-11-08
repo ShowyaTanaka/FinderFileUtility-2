@@ -13,8 +13,9 @@ import SwiftUI
 class FinderSync: FIFinderSync {
     private let keyForAvailableDirectory = "availableDirectory"
     var myFolderURL = URL(fileURLWithPath: "")
+    
     override init() {
-        if let userDefaults = UserDefaults(suiteName: "com.ShoyaTanaka.FFU2") {
+        if let userDefaults = UserDefaults(suiteName: "group.com.ShoyaTanaka.FFU2") {
             if let directoryPath = userDefaults.string(forKey: self.keyForAvailableDirectory) {
                 self.myFolderURL = URL(fileURLWithPath: directoryPath)
             }
@@ -137,12 +138,12 @@ class FinderSync: FIFinderSync {
             true
         )*/
         sendNotification(path: target!.path, ext: item.title)
-        let portName = "com.ShoyaTanaka.FFU2.port" as CFString
+        let portName = "group.com.ShoyaTanaka.FFU2.editfile" as CFString
         let message = "hoge"
         
         // 2. CFMessagePortCreateRemoteでリモートポート（送信先）への参照を取得
         guard let remotePort = CFMessagePortCreateRemote(nil, portName) else {
-            print("送信エラー: ポートに接続できません。受信側のアプリは起動していますか？")
+            NSLog("送信エラー: ポートに接続できません。受信側のアプリは起動していますか？")
             return
         }
         

@@ -15,23 +15,14 @@ struct FinderFileUtility_2App: App {
     @StateObject var configViewWindowManager = WindowInformationService(isShowWindow: true)
     @StateObject var editFileViewWindowManager = EditFileViewWindowInformationService(isShowWindow: false, viewModel: EditFileNameViewModel())
     var backgroundThread: Thread?
+    
 
-
-    var listenerDelegate: EditFileViewWindowInformationListener
-   // var listener: NSXPCListener
     init() {
-       // _ = EditFileNameCFNotificationCenterService(delegate: editFileViewWindowManager)
-        self.listenerDelegate = EditFileViewWindowInformationListener()
-       // self.listener = NSXPCListener.service()
-        // self.listener.delegate = self.listenerDelegate
-        // self.listener.resume()
-        let testHandler = CFMessageTestHandler()
-        launchMessagePort(cfMessagePortHandler: testHandler)
-        
+        // self.listenerDelegate = EditFileViewWindowInformationListener()
+        let editFilePipeLineInfo = CFMessagePortEditFilePipelineInformation()
+        let editThread = launchMessagePort(pipeLineInfo: editFilePipeLineInfo)
         // スレッドが解放されないように保持しておく
-        self.backgroundThread = testHandler.cfMessagePortThread
-        
-
+        self.backgroundThread = editThread
     }
     var body: some Scene {
         WindowGroup(id: "ConfigWindow") {
@@ -59,6 +50,10 @@ struct FinderFileUtility_2App: App {
                 }
                 .onDisappear {
                     self.editFileViewWindowManager.toggleIsShowWindow(shouldBeValue: false)
+                }
+                .onReceive(NotificationCenter.default.publisher(for: .notifyEditFileName)) { notification in
+                    
+                    
                 }
         }
         .onChange(of:self.editFileViewWindowManager.isShowWindow) {
