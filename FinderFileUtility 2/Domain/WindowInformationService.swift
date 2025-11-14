@@ -40,7 +40,6 @@ class EditFileViewWindowInformationService: NSObject, WindowManagementProtocol{
      ここでは,標準的なウィンドウ管理周辺情報のほか,CFNotificationCenterGetDarwinNotifyCenterを用いたcallback処理も分担している。
      */
     @Published var isShowWindow : Bool
-    var viewModel: EditFileNameViewModel
     
     func toggleIsShowWindow(shouldBeValue: Bool?) {
         if let shouldBeToggle = shouldBeValue {
@@ -52,33 +51,21 @@ class EditFileViewWindowInformationService: NSObject, WindowManagementProtocol{
     }
     @objc private func fileNameNotificationCallBack(notification: Notification) {
         guard let object = notification.object as? [String:Any] else {return}
-        guard let message = object["message"] as? String else {return}
-        print("EditFileViewWindowInformationService:\(message)")
         
+        guard let path = object["path"] as? String else {return}
+        guard let selectedExtension = object["selected_extension"] as? String else {return}
+        
+        let viewModel = CreateFileViewModel(currentDirURL: URL(fileURLWithPath: path), selectedExtension: selectedExtension)
+        let panelService = NSPanelManagementService(view: CreateFileView(viewModel: viewModel))
+        
+        panelService.openWindow(isfocused: true, title: "新規ファイル作成")
     }
-    init(isShowWindow: Bool, viewModel: EditFileNameViewModel) {
+    init(isShowWindow: Bool) {
         self.isShowWindow = isShowWindow
-        self.viewModel = viewModel
         super.init()
         NotificationCenter.default.addObserver(self, selector: #selector(fileNameNotificationCallBack), name: .notifyEditFileName, object: nil)
     }
 
 }
-class EditFileViewWindowInformationListener:NSObject, EditFileXPCProtocol, NSXPCListenerDelegate {
-    @objc func editFileNotification(path: String, ext: String, with reply: @escaping (Bool) -> Void) {
-        print("AAAAAA!!!!!")
-        /*self.viewModel.currentDirURL = URL(fileURLWithPath: path)
-        self.viewModel.selectedExt = ext
-        self.toggleIsShowWindow(shouldBeValue: true)*/
-        reply(true)
-        // パスを検証し,保存できるディレクトリであれば保存を行う.
-    }
-    func listener(_ listener: NSXPCListener,
-        shouldAcceptNewConnection connection: NSXPCConnection) -> Bool {
-        connection.exportedInterface = NSXPCInterface(with: EditFileXPCProtocol.self)
-        connection.exportedObject = self
-        connection.resume()
-        return true
-    }
-}
+ 
 

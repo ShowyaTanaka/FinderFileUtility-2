@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5377122C2CEDED4200F40E3B /* FFU2 Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 537712242CEDED4200F40E3B /* FFU2 Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		53DCAB402E87984700042A55 /* XPCProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DCAB3F2E8797BC00042A55 /* XPCProtocols.swift */; };
-		53DCAB412E87984700042A55 /* XPCProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DCAB3F2E8797BC00042A55 /* XPCProtocols.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +63,6 @@
 		537711DB2CEDECDD00F40E3B /* FinderFileUtility 2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FinderFileUtility 2Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		537711E52CEDECDD00F40E3B /* FinderFileUtility 2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FinderFileUtility 2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		537712242CEDED4200F40E3B /* FFU2 Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "FFU2 Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		53DCAB3F2E8797BC00042A55 /* XPCProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XPCProtocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -73,16 +70,15 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
-				WindowController.swift,
 			);
 			target = 537712232CEDED4200F40E3B /* FFU2 Extension */;
 		};
 		53C884CD2E86394600FA80DD /* Exceptions for "FinderFileUtility 2" folder in "FFU2 Extension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Domain/FileNameConfigService.swift,
-				Domain/Model/SecureBookMarkModel.swift,
-				Domain/Model/UserDefaultsModel.swift,
+				Domain/DTO/CFMessagePortPipeLineInformation.swift,
+				Models/SecureBookMarkModel.swift,
+				Models/UserDefaultsModel.swift,
 			);
 			target = 537712232CEDED4200F40E3B /* FFU2 Extension */;
 		};
@@ -152,7 +148,6 @@
 		53174C202E82BC7B00096264 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				53DCAB3F2E8797BC00042A55 /* XPCProtocols.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -360,7 +355,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53DCAB402E87984700042A55 /* XPCProtocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,7 +376,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53DCAB412E87984700042A55 /* XPCProtocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

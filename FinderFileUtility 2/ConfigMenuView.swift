@@ -13,9 +13,9 @@ struct ConfigMenuView: View {
         HStack {
             VStack {
                 PermissionSettings()
-                FileName()
-                Text(SecureBookMarkModel.getSecureBookMarkStringFullPath() ?? "none")
+                FileNameConfig()
             }
+            EditFileExtensionView()
         }
     }
 }

@@ -7,8 +7,6 @@
 
 import Cocoa
 import FinderSync
-import SwiftUI
-// TODO: XPCを用いてアプリ側にターゲットディレクトリの情報を送り、アプリ側からそこに読み書きする形へ。
 
 class FinderSync: FIFinderSync {
     private let keyForAvailableDirectory = "availableDirectory"
@@ -28,138 +26,56 @@ class FinderSync: FIFinderSync {
 
     }
 
-    // MARK: - Primary Finder Sync protocol methods
-
-    override func beginObservingDirectory(at url: URL) {
-        // The user is now seeing the container's contents.
-        // If they see it in more than one view at a time, we're only told once.
-        NSLog("beginObservingDirectoryAtURL: %@", url.path as NSString)
-    }
-
-    override func endObservingDirectory(at url: URL) {
-        // The user is no longer seeing the container's contents.
-        NSLog("endObservingDirectoryAtURL: %@", url.path as NSString)
-    }
-
-    override func requestBadgeIdentifier(for url: URL) {
-        NSLog("requestBadgeIdentifierForURL: %@", url.path as NSString)
-
-        // For demonstration purposes, this picks one of our two badges, or no badge at all, based on the filename.
-        let whichBadge = abs(url.path.hash) % 3
-        let badgeIdentifier = ["", "One", "Two"][whichBadge]
-        FIFinderSyncController.default().setBadgeIdentifier(badgeIdentifier, for: url)
-    }
-
-    // MARK: - Menu and toolbar item support
-
-    override var toolbarItemName: String {
-        return "FinderSy"
-    }
-
-    override var toolbarItemToolTip: String {
-        return "FinderSy: Click the toolbar item for a menu."
-    }
-
-    override var toolbarItemImage: NSImage {
-        return NSImage(named: NSImage.cautionName)!
-    }
-
     override func menu(for _: FIMenuKind) -> NSMenu {
         // Produce a menu for the extension.
-        let menu = NSMenu(title: "")
-        menu.addItem(withTitle: "Example Menu Item", action: #selector(sampleAction(_:)), keyEquivalent: "")
-        return menu
+        let main = NSMenu()
+        let submenu = NSMenu()
+        let mainDropdown = NSMenuItem(title: "Create File", action: nil, keyEquivalent: "")
+        main.addItem(mainDropdown)
+        main.setSubmenu(submenu, for: mainDropdown)
+
+
+        submenu.addItem(NSMenuItem(title: "py", action: #selector(createFileAction(_:)), keyEquivalent: ""))
+        submenu.addItem(NSMenuItem(title: "Option 2", action: nil, keyEquivalent: ""))
+        //let menu = NSMenu(title: "")
+        //menu.addItem(withTitle: "Create File", action: #selector(createFileAction(_:)), keyEquivalent: "")
+        return main
     }
 
-    @IBAction func sampleAction(_ sender: AnyObject?) {
+    @IBAction func createFileAction(_ sender: AnyObject?) {
+        NSLog("HSHDHDH")
         let target = FIFinderSyncController.default().targetedURL()
         let items = FIFinderSyncController.default().selectedItemURLs()
-        guard let targetURL = target else {return}
+        guard let targetURL = target else {NSLog("URLがないです"); return}
         let item = sender as! NSMenuItem
-        let selectedExt = item.title
-        /*
-        let editFileNameViewModel = EditFileNameViewModel(currentDirURL: targetURL, selectedExt: item.title)
-        let editFileNameView = EditFileNameView(viewModel: editFileNameViewModel)
-        NSLog("AAAA")
-        DispatchQueue.main.async{
-            let controller = MyViewController(
-                rootView: editFileNameView,
-            
-            )
-
-            let win = NSWindow(
-                contentViewController: controller
-            )
-            win.title = "新規ファイル作成"
-            win.styleMask = [.titled, .closable, .resizable] // 必要に応じて
-            win.center()
-
-            // ウィンドウレベルを「常に前面」に設定
-            win.level = .floating
-
-            // アプリを最前面にアクティブ化
-            NSApp.activate(ignoringOtherApps: true)
-            // フォーカスを持たせる（KeyWindow にする）
-            win.makeKeyAndOrderFront(nil)
-            win.becomeMain()   // メインウィンドウにする
-            win.makeFirstResponder(win.contentView) // TextField などに入力できるように
+        var selectedExt = item.title
+        if selectedExt.starts(with: "."){
+            let startIndex = selectedExt.index(after:selectedExt.startIndex)
+            selectedExt = String(selectedExt[startIndex...])
         }
-         */
-        func sendNotification(path: String, ext: String) {
-            let connection = NSXPCConnection(serviceName: "ShowyaTanaka.FinderFileUtility-2")
-            connection.remoteObjectInterface = NSXPCInterface(with: EditFileXPCProtocol.self)
-            connection.activate()
-            guard let proxy = connection.remoteObjectProxy as? EditFileXPCProtocol else {return}
-                proxy.editFileNotification(path: path, ext: ext)  {reply in
-                    if reply == true {
-                        NSLog("Success!")
-                    }
-                    
-                }
-
-           // connection.invalidate()
-        }
-        
-        NSLog("sampleAction: menu item: %@, target = %@, items = ", item.title as NSString, target!.path as NSString)
-        for obj in items! {
-            NSLog("    %@", obj.path as NSString)
-        }
-        /*let center = CFNotificationCenterGetDarwinNotifyCenter()
-        let userInfo: [CFString: Any] = [
-            "path" as CFString: target!.path as CFString,
-            "target_ext" as CFString: item.title as CFString
-        ]
-        let notify_name = CFNotificationName("com.FFU2.EditFile" as CFString)
-        CFNotificationCenterPostNotification(
-            center,
-            notify_name,
-            nil,
-            userInfo as CFDictionary,
-            true
-        )*/
-        sendNotification(path: target!.path, ext: item.title)
+        let sendObj = ["selected_extension": selectedExt, "path": targetURL.path()]
+        let jsonData = try! JSONSerialization.data(withJSONObject: sendObj, options: [])
         let portName = "group.com.ShoyaTanaka.FFU2.editfile" as CFString
-        let message = "hoge"
         
         // 2. CFMessagePortCreateRemoteでリモートポート（送信先）への参照を取得
         guard let remotePort = CFMessagePortCreateRemote(nil, portName) else {
             NSLog("送信エラー: ポートに接続できません。受信側のアプリは起動していますか？")
             return
         }
-        
+        let jsonString = String(data: jsonData, encoding: .utf8)!
         // 3. 送信するデータをCFDataに変換する
-        guard let data = message.data(using: .utf8) as CFData? else {
-            print("送信エラー: データの変換に失敗しました。")
+        guard let data = jsonString.data(using: .utf8) as CFData? else {
+            NSLog("送信エラー: データの変換に失敗しました。")
             return
         }
         
-        print("メッセージを送信します: \(message)")
+        print("メッセージを送信します: \(jsonString)")
         
         // 4. CFMessagePortSendRequestでメッセージを送信
         let timeout: TimeInterval = 5.0 // タイムアウト時間（秒）
         var returnData: Unmanaged<CFData>? = nil // 応答データを受け取るためのポインタ
 
-        let status = CFMessagePortSendRequest(
+        let _ = CFMessagePortSendRequest(
             remotePort,      // 送信先ポート
             0,               // Message ID (任意)
             data,            // 送信するデータ

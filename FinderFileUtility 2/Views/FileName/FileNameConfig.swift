@@ -7,8 +7,8 @@
 
 import Foundation
 import SwiftUI
-struct FileName:View{
-    @State var viewModel:FileNameViewModel = FileNameViewModel()
+struct FileNameConfig:View{
+    @State var viewModel:FileNameConfigViewModel = FileNameConfigViewModel()
     var body: some View{
         VStack(spacing:4){
             Text("新規ファイルの名称")

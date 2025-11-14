@@ -13,16 +13,14 @@ struct FinderFileUtility_2App: App {
     @Environment(\.dismissWindow) private var dismissWindow
     @Environment(\.openWindow) private var openWindow
     @StateObject var configViewWindowManager = WindowInformationService(isShowWindow: true)
-    @StateObject var editFileViewWindowManager = EditFileViewWindowInformationService(isShowWindow: false, viewModel: EditFileNameViewModel())
-    var backgroundThread: Thread?
-    
+    @StateObject var editFileViewWindowManager = EditFileViewWindowInformationService(isShowWindow: false)
+    var editFilePipeLine: CFMessagePortToNotificationPipeLineService
 
     init() {
-        // self.listenerDelegate = EditFileViewWindowInformationListener()
-        let editFilePipeLineInfo = CFMessagePortEditFilePipelineInformation()
-        let editThread = launchMessagePort(pipeLineInfo: editFilePipeLineInfo)
-        // スレッドが解放されないように保持しておく
-        self.backgroundThread = editThread
+        let editFilePipeLineInfo = CFMessagePortEditFilePipeLineInformation()
+        // PipeLineが解放されないように留めておく。
+        self.editFilePipeLine = CFMessagePortToNotificationPipeLineService(pipeLineInfo: editFilePipeLineInfo)
+        let _ = self.editFilePipeLine.launchMessagePort()
     }
     var body: some Scene {
         WindowGroup(id: "ConfigWindow") {
@@ -44,24 +42,12 @@ struct FinderFileUtility_2App: App {
         }
         
         WindowGroup(id: "NewFileWindow") {
-                EditFileNameView(viewModel: self.editFileViewWindowManager.viewModel)
-                .onAppear {
-                    self.editFileViewWindowManager.toggleIsShowWindow(shouldBeValue: true)
-                }
-                .onDisappear {
-                    self.editFileViewWindowManager.toggleIsShowWindow(shouldBeValue: false)
-                }
-                .onReceive(NotificationCenter.default.publisher(for: .notifyEditFileName)) { notification in
-                    
-                    
-                }
         }
         .onChange(of:self.editFileViewWindowManager.isShowWindow) {
+            print("AAAAAAA")
             if self.editFileViewWindowManager.isShowWindow {
-                openWindow(id: "NewFileWindow")
-            }
-            else {
-                dismissWindow(id: "NewFileWindow")
+                
+                // createPanel()
             }
         }
     }

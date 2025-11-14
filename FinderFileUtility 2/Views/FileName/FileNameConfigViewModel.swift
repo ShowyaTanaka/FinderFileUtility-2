@@ -8,12 +8,12 @@
 import Foundation
 import SwiftUI
 
-@Observable class FileNameViewModel{
+@Observable class FileNameConfigViewModel{
     var fileNameForDisplay:String = ""
     var beforeEditingFileName: String = ""
     
     init(){
-        let current_default_name_data: String = FileNameConfigService.getDefaultFileNameData()
+        let current_default_name_data: String = FileNameService.getDefaultFileNameData()
         self.fileNameForDisplay = current_default_name_data
         self.beforeEditingFileName = current_default_name_data
     }
@@ -23,8 +23,9 @@ import SwiftUI
     }
     
     func updateDefaultFileNameData(fileName: String){
-        FileNameConfigService.writeDefaultFileNameData(newFileName: fileName)
+        FileNameService.writeDefaultFileNameData(newFileName: fileName)
         self.beforeEditingFileName = fileName
     }
+    
     
 }
