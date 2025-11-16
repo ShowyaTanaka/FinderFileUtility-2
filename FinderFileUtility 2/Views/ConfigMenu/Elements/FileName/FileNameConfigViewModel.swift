@@ -1,10 +1,3 @@
-//
-//  FileNameViewModel.swift
-//  FinderFileUtility 2
-//
-//  Created by Noel Light on 2025/04/24.
-//
-
 import Foundation
 import SwiftUI
 

@@ -1,9 +1,3 @@
-//
-//  EditFileExtensionViewModel.swift
-//  FinderFileUtility 2
-//
-//  Created by Noel Light on 2025/11/09.
-//
 import Foundation
 struct ExtensionName: Identifiable {
     var id = UUID()
@@ -20,7 +14,6 @@ class EditFileExtensionViewModel:ObservableObject {
     }
     
     func deleteExtension(extensionID: ExtensionName.ID) {
-        print("DELETE")
         let targetDeletedExtensionName = self.extensions.filter{$0.id != extensionID}
         var extensionNameArray:[String] = []
         for extensionName in targetDeletedExtensionName {

@@ -1,9 +1,3 @@
-//
-//  EditFileNameModel.swift
-//  FinderFileUtility 2
-//
-//  Created by Noel Light on 2025/09/21.
-//
 import Foundation
 struct FileManagementService {
     

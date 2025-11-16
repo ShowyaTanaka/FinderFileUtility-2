@@ -1,9 +1,3 @@
-//
-//  FinderSettingsViewParts.swift
-//  FinderFileUtility 2
-//
-//  Created by ShowyaTanaka on 2025/04/24.
-//
 import SwiftUI
 import FinderSync
 

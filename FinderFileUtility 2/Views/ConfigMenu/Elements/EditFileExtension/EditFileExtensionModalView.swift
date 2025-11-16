@@ -1,9 +1,3 @@
-//
-//  EditFileExtensionModalView.swift
-//  FinderFileUtility 2
-//
-//  Created by Noel Light on 2025/11/09.
-//
 import SwiftUI
 struct EditFileExtensionModalView: NSPanelManagementView{
     

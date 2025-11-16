@@ -1,10 +1,3 @@
-//
-//  FileNameService.swift
-//  FinderFileUtility 2
-//
-//  Created by Noel Light on 2025/11/14.
-//
-
 struct FileNameService {
     
     static func writeDefaultFileNameData(newFileName: String) {

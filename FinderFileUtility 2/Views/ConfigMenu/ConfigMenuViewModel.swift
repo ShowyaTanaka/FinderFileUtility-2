@@ -1,10 +1,3 @@
-//
-//  ConfigMenuViewModel.swift
-//  FinderFileUtility 2
-//
-//  Created by Noel Light on 2024/11/19.
-//
-
 import FinderSync
 import Observation
 
