@@ -35,6 +35,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		5375C2A22DB975E60028ECAC /* Embed XPC Services */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed XPC Services";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		537712312CEDED4200F40E3B /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -63,11 +73,22 @@
 			);
 			target = 537712232CEDED4200F40E3B /* FFU2 Extension */;
 		};
+		53C884CD2E86394600FA80DD /* Exceptions for "FinderFileUtility 2" folder in "FFU2 Extension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Models/SecureBookMarkModel.swift,
+				Protocols/CFMessagePortPipeLineInformation.swift,
+			);
+			target = 537712232CEDED4200F40E3B /* FFU2 Extension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		537711CC2CEDECDC00F40E3B /* FinderFileUtility 2 */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				53C884CD2E86394600FA80DD /* Exceptions for "FinderFileUtility 2" folder in "FFU2 Extension" target */,
+			);
 			path = "FinderFileUtility 2";
 			sourceTree = "<group>";
 		};
@@ -87,6 +108,11 @@
 				5377122D2CEDED4200F40E3B /* Exceptions for "FFU2 Extension" folder in "FFU2 Extension" target */,
 			);
 			path = "FFU2 Extension";
+			sourceTree = "<group>";
+		};
+		53F75B8D2EC9932E00C9525B /* Common */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -126,6 +152,7 @@
 		537711C12CEDECDB00F40E3B = {
 			isa = PBXGroup;
 			children = (
+				53F75B8D2EC9932E00C9525B /* Common */,
 				537711CC2CEDECDC00F40E3B /* FinderFileUtility 2 */,
 				537711DE2CEDECDD00F40E3B /* FinderFileUtility 2Tests */,
 				537711E82CEDECDD00F40E3B /* FinderFileUtility 2UITests */,
@@ -156,6 +183,7 @@
 				537711C72CEDECDC00F40E3B /* Frameworks */,
 				537711C82CEDECDC00F40E3B /* Resources */,
 				537712312CEDED4200F40E3B /* Embed Foundation Extensions */,
+				5375C2A22DB975E60028ECAC /* Embed XPC Services */,
 			);
 			buildRules = (
 			);
@@ -164,6 +192,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				537711CC2CEDECDC00F40E3B /* FinderFileUtility 2 */,
+				53F75B8D2EC9932E00C9525B /* Common */,
 			);
 			name = "FinderFileUtility 2";
 			packageProductDependencies = (
@@ -232,6 +261,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				537712252CEDED4200F40E3B /* FFU2 Extension */,
+				53F75B8D2EC9932E00C9525B /* Common */,
 			);
 			name = "FFU2 Extension";
 			packageProductDependencies = (
@@ -247,7 +277,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1610;
+				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					537711C92CEDECDC00F40E3B = {
@@ -422,7 +452,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -479,7 +509,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -501,12 +531,16 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "FinderFileUtility-2-Info.plist";
+				"INFOPLIST_FILE[sdk=macosx*]" = "";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ShowyaTanaka.FinderFileUtility-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -520,7 +554,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "FinderFileUtility 2/FinderFileUtility_2.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "FinderFileUtility 2/FinderFileUtility 2Release.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -529,12 +563,15 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "FinderFileUtility-2-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ShowyaTanaka.FinderFileUtility-2";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -642,7 +679,7 @@
 		537712302CEDED4200F40E3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "FFU2 Extension/FFU2_Extension.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "FFU2 Extension/FFU2 ExtensionRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
