@@ -31,21 +31,18 @@ class FinderSync: FIFinderSync {
         let main = NSMenu()
         let submenu = NSMenu()
         let mainDropdown = NSMenuItem(title: "Create File", action: nil, keyEquivalent: "")
+        let extensionArray = FileExtensionService.getRegisteredExtension()
         main.addItem(mainDropdown)
         main.setSubmenu(submenu, for: mainDropdown)
-
-
-        submenu.addItem(NSMenuItem(title: "py", action: #selector(createFileAction(_:)), keyEquivalent: ""))
-        submenu.addItem(NSMenuItem(title: "Option 2", action: nil, keyEquivalent: ""))
-        //let menu = NSMenu(title: "")
-        //menu.addItem(withTitle: "Create File", action: #selector(createFileAction(_:)), keyEquivalent: "")
+        
+        for fileExtension in extensionArray {
+            submenu.addItem(NSMenuItem(title: fileExtension, action: #selector(createFileAction(_:)), keyEquivalent: ""))
+        }
         return main
     }
 
     @IBAction func createFileAction(_ sender: AnyObject?) {
-        NSLog("HSHDHDH")
         let target = FIFinderSyncController.default().targetedURL()
-        let items = FIFinderSyncController.default().selectedItemURLs()
         guard let targetURL = target else {NSLog("URLがないです"); return}
         let item = sender as! NSMenuItem
         var selectedExt = item.title
@@ -53,7 +50,7 @@ class FinderSync: FIFinderSync {
             let startIndex = selectedExt.index(after:selectedExt.startIndex)
             selectedExt = String(selectedExt[startIndex...])
         }
-        let sendObj = ["selected_extension": selectedExt, "path": targetURL.path()]
+        let sendObj = ["selected_extension": selectedExt, "path": targetURL.path().removingPercentEncoding]
         let jsonData = try! JSONSerialization.data(withJSONObject: sendObj, options: [])
         let portName = "group.com.ShoyaTanaka.FFU2.editfile" as CFString
         
@@ -68,8 +65,6 @@ class FinderSync: FIFinderSync {
             NSLog("送信エラー: データの変換に失敗しました。")
             return
         }
-        
-        print("メッセージを送信します: \(jsonString)")
         
         // 4. CFMessagePortSendRequestでメッセージを送信
         let timeout: TimeInterval = 5.0 // タイムアウト時間（秒）

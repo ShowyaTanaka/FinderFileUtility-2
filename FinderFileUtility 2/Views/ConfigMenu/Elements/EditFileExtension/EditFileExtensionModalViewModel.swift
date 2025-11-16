@@ -14,12 +14,29 @@ class EditFileExtensionModalViewModel:ObservableObject {
     @Published var saveComplete: Bool = false
     var parentViewModel: EditFileExtensionViewModel
     
+    private enum EditFileExtensionSaveStatus {
+        case success
+        case alreadyExists
+        case unavailableName
+        case unknownError
+    }
+    
     init(editFileExtensionViewModel: EditFileExtensionViewModel) {
         self.parentViewModel = editFileExtensionViewModel
     }
+    
+    
+    private func appendRegisteredExtension(_ newElement: String) -> EditFileExtensionSaveStatus {
+        guard newElement != "" else {return .unavailableName}
+        var extensionArray = FileExtensionService.getRegisteredExtension()
+        guard !extensionArray.contains(newElement) else {return .alreadyExists}
+        extensionArray.append(newElement)
+        let saveStatus = FileExtensionService.setRegisteredExtension(extensionArray)
+        return saveStatus ? .success : .unknownError
+    }
 
     func save() -> Bool{
-        let fileSaveStatus = FileExtensionService.appendRegisteredExtension(self.fileExtension)
+        let fileSaveStatus = self.appendRegisteredExtension(self.fileExtension)
         switch fileSaveStatus {
         case .success:
             self.errorDescription = nil

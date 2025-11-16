@@ -6,6 +6,10 @@
 //
 import SwiftUI
 
+/*
+ FIXME: macOS 26.1では,TextSelectionにバグが存在する可能性がある.(マルチバイト文字を含んだ状態で文字数でoffset指定するとうまく動かない) 発現条件は文字数<指定バイト数のとき(例:「あいうえお」は5文字,10バイトの文字列であるが,この場合であれば3文字目以降,つまり6バイト目以降を含んだ状態で範囲指定すると動作しなくなる) 将来的にmacOSのアップデートで修正された場合は,macOS 26.1までの26系だけ特別な制限をかける.
+ */
+
 struct CreateFileView: NSPanelManagementView {
     @FocusState private var isTextFieldFocused: Bool
     @State private var selection: TextSelection? = nil
@@ -22,8 +26,6 @@ struct CreateFileView: NSPanelManagementView {
                     guard self.viewModel.fileName != "" else { selection = nil; return }
                     let endOffset = self.viewModel.getFocusFileTextLength()
                     let end = self.viewModel.fileName.index(self.viewModel.fileName.startIndex, offsetBy: endOffset)
-                    print(end)
-                    
                     selection = .init(range: self.viewModel.fileName.startIndex..<end)
                 }
             HStack(spacing: 10){
@@ -41,7 +43,8 @@ struct CreateFileView: NSPanelManagementView {
                     else {
                         self.closeWindow()
                     }
-                }
+                }.buttonStyle(.borderedProminent)
+                    .tint(.blue).keyboardShortcut(.defaultAction)
             }
         }.onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {

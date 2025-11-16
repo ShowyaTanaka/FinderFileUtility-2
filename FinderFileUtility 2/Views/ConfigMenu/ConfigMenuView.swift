@@ -21,5 +21,5 @@ struct ConfigMenuView: View {
 }
 
 #Preview {
-    //ConfigMenuView()
+    ConfigMenuView()
 }

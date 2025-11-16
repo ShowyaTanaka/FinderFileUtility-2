@@ -17,7 +17,6 @@ class EditFileExtensionViewModel:ObservableObject {
         for extensionName in extensionArray {
             self.extensions.append(ExtensionName(extensionName: extensionName))
         }
-        // self.extensions = FileExtensionService.getRegisteredExtension()
     }
     
     func deleteExtension(extensionID: ExtensionName.ID) {

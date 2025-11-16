@@ -11,7 +11,7 @@ class CFMessagePortToNotificationPipeLineService {
     /*
      CFNotificationCenterで発行された通知を,SwiftネイティブなNotificationに変換し,アプリに通知するパイプラインを作成,管理するサービス.
      */
-    /* TODO: CFNotificationCenterを用いて,Sandbox下でのDistributedNotificationCenterでは実現できないことを実現している.そのため,macOSの将来的な変更に影響を受ける可能性が否定できない.代替APIが出た際はそちらの実装に置き換える.*/
+    /* TODO: CFNotificationCenterを用いて,Sandbox下でのDistributedNotificationCenterでは実現できないことを実現している.そのため,macOSの将来的な変更に影響を受ける可能性が否定できない.代替APIが出た際はそちらの実装に置き換える. */
     
     private var pipeLineThread: Thread
     
@@ -47,6 +47,7 @@ class CFMessagePortToNotificationPipeLineService {
         let portName = pipeLineInfoClass.portName
         let infoPtr = Unmanaged.passRetained(pipeLineInfoClass).toOpaque()
         var context = getCFMessagePortContext(infoPtr: infoPtr)
+        print(portName)
         
         return Thread {
             var shouldFreeInfo: DarwinBoolean = false

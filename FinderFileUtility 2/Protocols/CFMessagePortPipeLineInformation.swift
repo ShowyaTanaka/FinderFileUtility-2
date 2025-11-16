@@ -6,13 +6,13 @@
 //
 import Foundation
 
+extension Notification.Name {
+    static let notifyEditFileName = Notification.Name("notifyEditFileName")
+}
 
 protocol CFMessagePortToNotificationPipeLineInformationProtocol {
     var portName: CFString {get set}
     var notificationName: Notification.Name {get set}
-}
-extension Notification.Name {
-    static let notifyEditFileName = Notification.Name("notifyEditFileName")
 }
 
 struct CFMessagePortEditFilePipeLineInformation: CFMessagePortToNotificationPipeLineInformationProtocol{

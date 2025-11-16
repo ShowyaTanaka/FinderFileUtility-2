@@ -17,6 +17,18 @@ struct FileManagementService {
         return !fileManager.fileExists(atPath: mergedFileUrl.path.removingPercentEncoding!)
     }
     
+    private static func renameFileName(fileName: String, index: Int) -> String {
+        if fileName.contains(/[.]/) && !fileName.starts(with: "."){
+            let fileNameList = fileName.split(separator: ".")
+            return "\(fileNameList.dropLast().joined(separator: ""))のコピー\(index).\(fileNameList.last!)"
+        }
+        else{
+            print("else")
+            // その他の場合は,末尾に「のコピーn」とつける
+            return "\(fileName)のコピー\(index)"
+        }
+    }
+    
     static func createFile(fileName: String, currentDirURL: URL) -> Bool {
         guard let securityScopedURL = SecureBookMarkModel.getSecureBookMarkUrl() else {return false}
         if !securityScopedURL.startAccessingSecurityScopedResource(){
@@ -34,23 +46,10 @@ struct FileManagementService {
             }
         }
         let mergedDirectoryURL = currentDirURL.appendingPathComponent(saveFileName)
-       // let mergedDirectoryURL = url.deletingLastPathComponent().appendingPathComponent(mergedRelativeURL.relativeString)
         guard let savePath = mergedDirectoryURL.path().removingPercentEncoding else {return false}
         print("saveDir:\(savePath)")
         FileManager.default.createFile(atPath: savePath, contents: nil)
         return true
-    }
-    
-    private static func renameFileName(fileName: String, index: Int) -> String {
-        if fileName.contains(/[.]/) && !fileName.starts(with: "."){
-            let fileNameList = fileName.split(separator: ".")
-            return "\(fileNameList.dropLast().joined(separator: ""))のコピー\(index).\(fileNameList.last!)"
-        }
-        else{
-            print("else")
-            // その他の場合は,末尾に「のコピーn」とつける
-            return "\(fileName)のコピー\(index)"
-        }
     }
     
 }

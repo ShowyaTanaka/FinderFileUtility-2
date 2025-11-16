@@ -20,11 +20,7 @@ class CreateFileViewModel: ObservableObject {
     }
     func getFocusFileTextLength() -> Int {
         if self.fileName.contains(/[.]/) && !self.fileName.starts(with: "."){
-            print("dot")
-            
             let fileNameList = self.fileName.split(separator: ".")
-            print(fileNameList.dropLast().joined(separator: ""))
-            print(fileNameList.dropLast().joined(separator: "").count)
             return fileNameList.dropLast().joined(separator: "").count
         }
         return self.fileName.count

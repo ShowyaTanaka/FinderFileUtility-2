@@ -76,9 +76,8 @@
 		53C884CD2E86394600FA80DD /* Exceptions for "FinderFileUtility 2" folder in "FFU2 Extension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Domain/DTO/CFMessagePortPipeLineInformation.swift,
 				Models/SecureBookMarkModel.swift,
-				Models/UserDefaultsModel.swift,
+				Protocols/CFMessagePortPipeLineInformation.swift,
 			);
 			target = 537712232CEDED4200F40E3B /* FFU2 Extension */;
 		};
@@ -109,6 +108,11 @@
 				5377122D2CEDED4200F40E3B /* Exceptions for "FFU2 Extension" folder in "FFU2 Extension" target */,
 			);
 			path = "FFU2 Extension";
+			sourceTree = "<group>";
+		};
+		53F75B8D2EC9932E00C9525B /* Common */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -145,17 +149,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		53174C202E82BC7B00096264 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		537711C12CEDECDB00F40E3B = {
 			isa = PBXGroup;
 			children = (
-				53174C202E82BC7B00096264 /* Common */,
+				53F75B8D2EC9932E00C9525B /* Common */,
 				537711CC2CEDECDC00F40E3B /* FinderFileUtility 2 */,
 				537711DE2CEDECDD00F40E3B /* FinderFileUtility 2Tests */,
 				537711E82CEDECDD00F40E3B /* FinderFileUtility 2UITests */,
@@ -195,6 +192,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				537711CC2CEDECDC00F40E3B /* FinderFileUtility 2 */,
+				53F75B8D2EC9932E00C9525B /* Common */,
 			);
 			name = "FinderFileUtility 2";
 			packageProductDependencies = (
@@ -263,6 +261,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				537712252CEDED4200F40E3B /* FFU2 Extension */,
+				53F75B8D2EC9932E00C9525B /* Common */,
 			);
 			name = "FFU2 Extension";
 			packageProductDependencies = (
