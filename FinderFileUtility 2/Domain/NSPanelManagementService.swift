@@ -1,9 +1,3 @@
-//
-//  NSPanelManagementService.swift
-//  FinderFileUtility 2
-//
-//  Created by Noel Light on 2025/11/09.
-//
 import SwiftUI
 import Combine
 class NSPanelManagementService<Content: NSPanelManagementView>:ObservableObject {
@@ -14,12 +8,8 @@ class NSPanelManagementService<Content: NSPanelManagementView>:ObservableObject 
     init(view: Content) {
         self.view = view
         self.view.isCloseWindow.$isClose.sink { recieveComplete in
-            print(recieveComplete)
-            print("detect")
 
         } receiveValue: { isCloseWindow in
-            print("detect recieve")
-            print(isCloseWindow)
             if isCloseWindow{
                 self.closeWindow()
             }

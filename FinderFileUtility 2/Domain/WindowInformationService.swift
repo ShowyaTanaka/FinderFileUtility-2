@@ -1,13 +1,7 @@
-//
-//  NewFileWindowManager.swift
-//  FinderFileUtility 2
-//
-//  Created by Noel Light on 2025/09/24.
-//
 import SwiftUI
 
 @MainActor
-class EditFileViewWindowInformationService: NSObject{
+class EditFileViewWindowInformationService: NSObject, ObservableObject{
     
     /*
      EditFileViewWindow用に独自拡張したもの。
@@ -23,7 +17,7 @@ class EditFileViewWindowInformationService: NSObject{
         let panelService = NSPanelManagementService(view: CreateFileView(viewModel: viewModel))
         panelService.openWindow(isfocused: true, title: "新規ファイル作成")
     }
-    init(isShowWindow: Bool) {
+    override init() {
         super.init()
         NotificationCenter.default.addObserver(self, selector: #selector(fileNameNotificationCallBack), name: .notifyEditFileName, object: nil)
     }

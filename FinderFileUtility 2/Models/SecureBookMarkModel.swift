@@ -1,10 +1,3 @@
-//
-//  ConfigMenuModel.swift
-//  FinderFileUtility 2
-//
-//  Created by ShowyaTanaka on 2024/11/19.
-//
-
 import FinderSync
 
 struct SecureBookMarkModel{

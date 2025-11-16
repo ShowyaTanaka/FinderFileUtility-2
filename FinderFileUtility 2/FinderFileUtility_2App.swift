@@ -1,10 +1,3 @@
-//
-//  FinderFileUtility_2App.swift
-//  FinderFileUtility 2
-//
-//  Created by Noel Light on 2024/11/20.
-//
-
 import SwiftUI
 
 @main
@@ -12,7 +5,7 @@ struct FinderFileUtility_2App: App {
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.dismissWindow) private var dismissWindow
     @Environment(\.openWindow) private var openWindow
-    @StateObject var editFileViewWindowManager = EditFileViewWindowInformationService(isShowWindow: false)
+    @StateObject var editFileViewWindowManager = EditFileViewWindowInformationService()
     var editFilePipeLine: CFMessagePortToNotificationPipeLineService
 
     init() {

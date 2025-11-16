@@ -1,16 +1,10 @@
-//
-//  EditFileExtensionModalViewModel.swift
-//  FinderFileUtility 2
-//
-//  Created by Noel Light on 2025/11/09.
-//
 import Foundation
 import SwiftUI
 
 class EditFileExtensionModalViewModel:ObservableObject {
     
     @Published var fileExtension:String = ""
-    @Published var errorDescription:String? = nil
+    var errorDescription:String? = nil
     @Published var saveComplete: Bool = false
     var parentViewModel: EditFileExtensionViewModel
     
@@ -24,7 +18,6 @@ class EditFileExtensionModalViewModel:ObservableObject {
     init(editFileExtensionViewModel: EditFileExtensionViewModel) {
         self.parentViewModel = editFileExtensionViewModel
     }
-    
     
     private func appendRegisteredExtension(_ newElement: String) -> EditFileExtensionSaveStatus {
         guard newElement != "" else {return .unavailableName}
