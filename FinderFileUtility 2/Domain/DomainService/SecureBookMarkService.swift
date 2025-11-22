@@ -1,6 +1,6 @@
 import FinderSync
 
-struct SecureBookMarkModel{
+struct SecureBookMarkService{
     private static let keyForSecureBookmark = "secureBookMark"
     private static let keyForAvailableDirectory = "availableDirectory"
     

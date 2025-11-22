@@ -1,11 +1,3 @@
-//
-//  FileExtensionService.swift
-//  FinderFileUtility 2
-//
-//  Created by Noel Light on 2025/11/09.
-//
-
-
 struct FileExtensionService {
     static func getRegisteredExtension() -> [String] {
         if let registeredArray = UserDefaultsModel.getArrayValue(forKey: UserDefaultsKey.fileExtensionKey) as? [String] {

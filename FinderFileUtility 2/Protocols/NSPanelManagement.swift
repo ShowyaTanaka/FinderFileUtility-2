@@ -1,14 +1,10 @@
 import SwiftUI
+import Combine
 protocol NSPanelManagementView: View {
-    associatedtype isCloseWindowStat: isCloseWindowStatus
-    var isCloseWindow: isCloseWindowStat { get }
+    associatedtype VM: NSPanelManagementViewModelProtocol
+    var viewModel: VM {get}
 }
-extension NSPanelManagementView {
-    func closeWindow() {
-        self.isCloseWindow.isClose = true
-    }
+protocol NSPanelManagementViewModelProtocol {
+    var isWindowClosePublisher: AnyPublisher<Bool, Never> { get }
 }
 
-class isCloseWindowStatus: ObservableObject {
-    @Published var isClose: Bool = false
-}

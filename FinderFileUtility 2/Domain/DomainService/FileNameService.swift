@@ -13,4 +13,14 @@ struct FileNameService {
         FileNameService.writeDefaultFileNameData(newFileName: default_file_name)
         return default_file_name
     }
+    static func renameFileName(fileName: String, index: Int) -> String {
+        if fileName.contains(/[.]/) && !fileName.starts(with: "."){
+            let fileNameList = fileName.split(separator: ".")
+            return "\(fileNameList.dropLast().joined(separator: ""))のコピー\(index).\(fileNameList.last!)"
+        }
+        else{
+            // その他の場合は,末尾に「のコピーn」とつける
+            return "\(fileName)のコピー\(index)"
+        }
+    }
 }
