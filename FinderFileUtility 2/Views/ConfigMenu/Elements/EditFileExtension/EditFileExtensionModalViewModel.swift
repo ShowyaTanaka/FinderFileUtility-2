@@ -1,12 +1,17 @@
 import Foundation
 import SwiftUI
+import Combine
 
-class EditFileExtensionModalViewModel:ObservableObject {
+class EditFileExtensionModalViewModel:ObservableObject, NSPanelManagementViewModelProtocol {
     
     @Published var fileExtension:String = ""
     var errorDescription:String? = nil
     @Published var saveComplete: Bool = false
     var parentViewModel: EditFileExtensionViewModel
+    @Published var isWindowClose = false
+    var isWindowClosePublisher: AnyPublisher<Bool, Never> {
+        return $isWindowClose.eraseToAnyPublisher()
+    }
     
     private enum EditFileExtensionSaveStatus {
         case success

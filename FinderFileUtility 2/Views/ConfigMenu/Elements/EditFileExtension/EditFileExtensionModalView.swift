@@ -8,7 +8,6 @@ struct EditFileExtensionModalView: NSPanelManagementView{
         _viewModel = StateObject(wrappedValue: viewModel)
     }
     
-    var isCloseWindow = isCloseWindowStatus()
     
     var body: some View {
         VStack(spacing: 10) {
@@ -18,12 +17,12 @@ struct EditFileExtensionModalView: NSPanelManagementView{
             HStack(spacing: 10) {
                 Spacer().frame(width: 100)
                 Button("キャンセル") {
-                    self.closeWindow()
+                    self.viewModel.isWindowClose = true
                 }
                 Button("追加"){
                     let saveStatus = self.viewModel.save()
                     if saveStatus {
-                        self.closeWindow()
+                        self.viewModel.isWindowClose = true
                     }
                     }.buttonStyle(.borderedProminent)
                     .tint(.blue).keyboardShortcut(.defaultAction)

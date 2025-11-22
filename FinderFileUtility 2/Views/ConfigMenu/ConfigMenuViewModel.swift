@@ -20,7 +20,7 @@ private struct SaveSecureBookMarkResult {
     
     init() {
         self.isEnableFinderExtension = FIFinderSyncController.isExtensionEnabled
-        self.allowedDirectory = SecureBookMarkModel.getSecureBookMarkStringFullPath()
+        self.allowedDirectory = SecureBookMarkService.getSecureBookMarkStringFullPath()
     }
     
     private func showAlert(title: String, message: String){
@@ -66,8 +66,8 @@ private struct SaveSecureBookMarkResult {
 
         switch result.status {
             case .ok:
-            if SecureBookMarkModel.saveSecureBookMark(bookmark: result.bookmark) {
-                    self.allowedDirectory = SecureBookMarkModel.getSecureBookMarkStringFullPath()
+            if SecureBookMarkService.saveSecureBookMark(bookmark: result.bookmark) {
+                    self.allowedDirectory = SecureBookMarkService.getSecureBookMarkStringFullPath()
                 }
                 else {
                     self.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")
@@ -78,8 +78,8 @@ private struct SaveSecureBookMarkResult {
             case .smaller_permission_for_home_directory:
                 let userResult = self.showAlertWithUserSelect(title: "権限が小さいです", message: "ホームディレクトリより下のフォルダが指定されました。一部のフォルダでは正常に動作しない可能性があります。よろしいですか？")
                 if userResult {
-                    if SecureBookMarkModel.saveSecureBookMark(bookmark: result.bookmark) {
-                        self.allowedDirectory = SecureBookMarkModel.getSecureBookMarkStringFullPath()
+                    if SecureBookMarkService.saveSecureBookMark(bookmark: result.bookmark) {
+                        self.allowedDirectory = SecureBookMarkService.getSecureBookMarkStringFullPath()
                     }
                     else {
                         self.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")

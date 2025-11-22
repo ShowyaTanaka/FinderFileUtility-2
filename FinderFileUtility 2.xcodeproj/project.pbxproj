@@ -76,8 +76,9 @@
 		53C884CD2E86394600FA80DD /* Exceptions for "FinderFileUtility 2" folder in "FFU2 Extension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Models/SecureBookMarkModel.swift,
-				Protocols/CFMessagePortPipeLineInformation.swift,
+				Domain/DomainService/SecureBookMarkService.swift,
+				Domain/Infrastructure/IRepository/FileIRepository.swift,
+				Domain/Infrastructure/Repository/FileRepository.swift,
 			);
 			target = 537712232CEDED4200F40E3B /* FFU2 Extension */;
 		};

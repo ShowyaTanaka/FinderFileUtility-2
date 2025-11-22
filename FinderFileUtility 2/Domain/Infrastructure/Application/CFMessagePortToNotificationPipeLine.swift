@@ -1,12 +1,13 @@
 import Foundation
 
-class CFMessagePortToNotificationPipeLineService {
+class CFMessagePortToNotificationPipeLine {
     /*
      CFNotificationCenterで発行された通知を,SwiftネイティブなNotificationに変換し,アプリに通知するパイプラインを作成,管理するサービス.
      */
     /* TODO: CFNotificationCenterを用いて,Sandbox下でのDistributedNotificationCenterでは実現できないことを実現している.そのため,macOSの将来的な変更に影響を受ける可能性が否定できない.代替APIが出た際はそちらの実装に置き換える. */
     
     private var pipeLineThread: Thread
+    var pipeLineDelegate: CFMessagePortToNotificationPipeLineDelegate
     
     private class PipeLineInfo {
         var portName: CFString
@@ -78,9 +79,11 @@ class CFMessagePortToNotificationPipeLineService {
         }
     }
     
-    init(pipeLineInfo: CFMessagePortEditFilePipeLineInformation) {
-        self.pipeLineThread = CFMessagePortToNotificationPipeLineService.createCFMessagePortThread(
-            pipeLineInfo: PipeLineInfo(portName: pipeLineInfo.portName, notificationName: pipeLineInfo.notificationName))
+    init(pipeLineDelegate: CFMessagePortToNotificationPipeLineDelegate) {
+        self.pipeLineThread = CFMessagePortToNotificationPipeLine.createCFMessagePortThread(
+            pipeLineInfo: PipeLineInfo(portName: pipeLineDelegate.portName, notificationName: pipeLineDelegate.notificationName))
+        self.pipeLineDelegate = pipeLineDelegate
+        NotificationCenter.default.addObserver(self.pipeLineDelegate, selector: self.pipeLineDelegate.callBackSelector, name: self.pipeLineDelegate.notificationName, object: nil)
     }
     
     func launchMessagePort() -> Bool {

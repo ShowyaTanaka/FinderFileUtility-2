@@ -5,12 +5,12 @@ import SwiftUI
  */
 
 struct CreateFileView: NSPanelManagementView {
+    
     @FocusState private var isTextFieldFocused: Bool
     @State private var selection: TextSelection? = nil
-    var isCloseWindow = isCloseWindowStatus()
-    @StateObject var viewModel: CreateFileViewModel
+    @ObservedObject var viewModel: CreateFileViewModel
     init(viewModel: CreateFileViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+        self.viewModel = viewModel
     }
     var body: some View {
         VStack {
@@ -24,7 +24,7 @@ struct CreateFileView: NSPanelManagementView {
                 }
             HStack(spacing: 10){
                 Button("キャンセル") {
-                    self.closeWindow()
+                    self.viewModel.isWindowClose = true
                 }
                 Button("作成") {
                     let createFileStatus = self.viewModel.createFile()
@@ -35,7 +35,7 @@ struct CreateFileView: NSPanelManagementView {
                         _ = alert.runModal()
                     }
                     else {
-                        self.closeWindow()
+                        self.viewModel.isWindowClose = true
                     }
                 }.buttonStyle(.borderedProminent)
                     .tint(.blue).keyboardShortcut(.defaultAction)

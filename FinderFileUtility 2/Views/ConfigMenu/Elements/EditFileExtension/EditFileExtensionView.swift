@@ -27,7 +27,7 @@ struct EditFileExtensionView: View{
 
                         DispatchQueue.main.async {
                             let modalViewModel = EditFileExtensionModalViewModel(editFileExtensionViewModel: self.viewModel)
-                            let panelService = NSPanelManagementService(view: EditFileExtensionModalView(viewModel: modalViewModel))
+                            let panelService = NSPanelManagementService(view: EditFileExtensionModalView(viewModel: modalViewModel), viewModel: modalViewModel)
                             panelService.openWindow(isfocused: true, title: "拡張子を追加", width: 300, height: 400)
                         }
                     }
