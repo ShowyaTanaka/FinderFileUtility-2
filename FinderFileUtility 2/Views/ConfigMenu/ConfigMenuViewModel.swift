@@ -1,5 +1,6 @@
 import FinderSync
 import Observation
+import ServiceManagement
 
 private enum SaveSecureBookMarkStatus {
     // ConfigMenuModelのsaveSecureBookMarkForHomeDirectoryの結果を示す
@@ -17,6 +18,7 @@ private struct SaveSecureBookMarkResult {
 @Observable class ConfigMenuViewModel {
     var isEnableFinderExtension: Bool
     var allowedDirectory: String?
+    var launchAtLogin = SMAppService.mainApp.status
     
     init() {
         self.isEnableFinderExtension = FIFinderSyncController.isExtensionEnabled
@@ -146,5 +148,26 @@ private struct SaveSecureBookMarkResult {
             }
 
             return result
+    }
+    func isLaunchAtLoginEnabled() -> Bool {
+        return self.launchAtLogin == .enabled
+    }
+    func registerLogin() {
+        do {
+            try SMAppService.mainApp.register()
+        }
+        catch {
+            self.showAlert(title: "Error", message: "ログイン時起動の登録に失敗しました")
+        }
+        self.launchAtLogin = SMAppService.mainApp.status
+    }
+    func unregisterLogin() {
+        do {
+            try SMAppService.mainApp.unregister()
+        }
+        catch {
+            self.showAlert(title: "Error", message: "ログイン時起動の解除に失敗しました")
+        }
+        self.launchAtLogin = SMAppService.mainApp.status
     }
 }

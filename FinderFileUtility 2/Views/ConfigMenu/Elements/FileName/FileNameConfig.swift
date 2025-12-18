@@ -14,7 +14,7 @@ struct FileNameConfig:View{
                     viewModel.resetFileNameForDisplay()
                 }.disabled(viewModel.fileNameForDisplay == viewModel.beforeEditingFileName)
             }
-        }.frame(width:260,height:135).mask(RoundedRectangle(cornerRadius: 10))
+        }.frame(width:260,height:95).mask(RoundedRectangle(cornerRadius: 10))
             .overlay(RoundedRectangle(cornerRadius: 10)
                    .stroke(lineWidth: 1))
             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))

@@ -63,6 +63,8 @@
 		537711DB2CEDECDD00F40E3B /* FinderFileUtility 2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FinderFileUtility 2Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		537711E52CEDECDD00F40E3B /* FinderFileUtility 2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FinderFileUtility 2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		537712242CEDED4200F40E3B /* FFU2 Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "FFU2 Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		53E5D20E2EF4346600BCA538 /* FFU Daemon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FFU Daemon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		53E5D21D2EF434D100BCA538 /* FFU2 Daemon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FFU2 Daemon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -111,6 +113,11 @@
 			path = "FFU2 Extension";
 			sourceTree = "<group>";
 		};
+		53E5D21E2EF434D100BCA538 /* FFU2 Daemon */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "FFU2 Daemon";
+			sourceTree = "<group>";
+		};
 		53F75B8D2EC9932E00C9525B /* Common */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Common;
@@ -147,6 +154,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		53E5D20B2EF4346600BCA538 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53E5D21A2EF434D100BCA538 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -158,6 +179,7 @@
 				537711DE2CEDECDD00F40E3B /* FinderFileUtility 2Tests */,
 				537711E82CEDECDD00F40E3B /* FinderFileUtility 2UITests */,
 				537712252CEDED4200F40E3B /* FFU2 Extension */,
+				53E5D21E2EF434D100BCA538 /* FFU2 Daemon */,
 				537711CB2CEDECDC00F40E3B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -169,6 +191,8 @@
 				537711DB2CEDECDD00F40E3B /* FinderFileUtility 2Tests.xctest */,
 				537711E52CEDECDD00F40E3B /* FinderFileUtility 2UITests.xctest */,
 				537712242CEDED4200F40E3B /* FFU2 Extension.appex */,
+				53E5D20E2EF4346600BCA538 /* FFU Daemon.app */,
+				53E5D21D2EF434D100BCA538 /* FFU2 Daemon.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -271,6 +295,47 @@
 			productReference = 537712242CEDED4200F40E3B /* FFU2 Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		53E5D20D2EF4346600BCA538 /* FFU Daemon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53E5D2182EF4346600BCA538 /* Build configuration list for PBXNativeTarget "FFU Daemon" */;
+			buildPhases = (
+				53E5D20A2EF4346600BCA538 /* Sources */,
+				53E5D20B2EF4346600BCA538 /* Frameworks */,
+				53E5D20C2EF4346600BCA538 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "FFU Daemon";
+			packageProductDependencies = (
+			);
+			productName = "FFU Daemon";
+			productReference = 53E5D20E2EF4346600BCA538 /* FFU Daemon.app */;
+			productType = "com.apple.product-type.application";
+		};
+		53E5D21C2EF434D100BCA538 /* FFU2 Daemon */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53E5D2252EF434D200BCA538 /* Build configuration list for PBXNativeTarget "FFU2 Daemon" */;
+			buildPhases = (
+				53E5D2192EF434D100BCA538 /* Sources */,
+				53E5D21A2EF434D100BCA538 /* Frameworks */,
+				53E5D21B2EF434D100BCA538 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				53E5D21E2EF434D100BCA538 /* FFU2 Daemon */,
+			);
+			name = "FFU2 Daemon";
+			packageProductDependencies = (
+			);
+			productName = "FFU2 Daemon";
+			productReference = 53E5D21D2EF434D100BCA538 /* FFU2 Daemon.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -278,7 +343,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2600;
+				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
 					537711C92CEDECDC00F40E3B = {
@@ -294,6 +359,12 @@
 					};
 					537712232CEDED4200F40E3B = {
 						CreatedOnToolsVersion = 16.1;
+					};
+					53E5D20D2EF4346600BCA538 = {
+						CreatedOnToolsVersion = 26.2;
+					};
+					53E5D21C2EF434D100BCA538 = {
+						CreatedOnToolsVersion = 26.2;
 					};
 				};
 			};
@@ -315,6 +386,8 @@
 				537711DA2CEDECDD00F40E3B /* FinderFileUtility 2Tests */,
 				537711E42CEDECDD00F40E3B /* FinderFileUtility 2UITests */,
 				537712232CEDED4200F40E3B /* FFU2 Extension */,
+				53E5D20D2EF4346600BCA538 /* FFU Daemon */,
+				53E5D21C2EF434D100BCA538 /* FFU2 Daemon */,
 			);
 		};
 /* End PBXProject section */
@@ -348,6 +421,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		53E5D20C2EF4346600BCA538 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53E5D21B2EF434D100BCA538 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -373,6 +460,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		537712202CEDED4200F40E3B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53E5D20A2EF4346600BCA538 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53E5D2192EF434D100BCA538 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -705,6 +806,134 @@
 			};
 			name = Release;
 		};
+		53E5D2162EF4346600BCA538 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ShowyaTanaka.FFU-Daemon";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		53E5D2172EF4346600BCA538 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ShowyaTanaka.FFU-Daemon";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		53E5D2262EF434D200BCA538 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "FFU2 Daemon/FFU2 Daemon.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HWETRKW89U;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ShowyaTanaka.FFU2-Daemon";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		53E5D2272EF434D200BCA538 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "FFU2 Daemon/FFU2 Daemon.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HWETRKW89U;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ShowyaTanaka.FFU2-Daemon";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -715,7 +944,7 @@
 				537711EE2CEDECDD00F40E3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		537711EF2CEDECDD00F40E3B /* Build configuration list for PBXNativeTarget "FinderFileUtility 2" */ = {
 			isa = XCConfigurationList;
@@ -724,7 +953,7 @@
 				537711F12CEDECDD00F40E3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		537711F22CEDECDD00F40E3B /* Build configuration list for PBXNativeTarget "FinderFileUtility 2Tests" */ = {
 			isa = XCConfigurationList;
@@ -733,7 +962,7 @@
 				537711F42CEDECDD00F40E3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		537711F52CEDECDD00F40E3B /* Build configuration list for PBXNativeTarget "FinderFileUtility 2UITests" */ = {
 			isa = XCConfigurationList;
@@ -742,7 +971,7 @@
 				537711F72CEDECDD00F40E3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		5377122E2CEDED4200F40E3B /* Build configuration list for PBXNativeTarget "FFU2 Extension" */ = {
 			isa = XCConfigurationList;
@@ -751,7 +980,25 @@
 				537712302CEDED4200F40E3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
+		};
+		53E5D2182EF4346600BCA538 /* Build configuration list for PBXNativeTarget "FFU Daemon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53E5D2162EF4346600BCA538 /* Debug */,
+				53E5D2172EF4346600BCA538 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		53E5D2252EF434D200BCA538 /* Build configuration list for PBXNativeTarget "FFU2 Daemon" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53E5D2262EF434D200BCA538 /* Debug */,
+				53E5D2272EF434D200BCA538 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

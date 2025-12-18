@@ -4,46 +4,51 @@ import FinderSync
 struct PermissionSettings:View {
     @State var viewModel = ConfigMenuViewModel()
     var body: some View{
-        VStack(spacing: 0){
-            
-            VStack{
-            HStack{
-                Text("Finder拡張")
-                Spacer()
-            }.padding(EdgeInsets(top:0,leading: 10,bottom: 0,trailing: 0))
-            HStack{
-                Spacer()
-                if (viewModel.isEnableFinderExtension){
-                    Text("許可済み")
+    VStack(spacing: 0){
+        permissionSettingsElementViewGenerator(
+            title: "Finder拡張",
+            condition: viewModel.isEnableFinderExtension,
+            isConditionMatchedElement: Text("許可済み"),
+            isConditionUnMatchedElement:
+                Button("許可する"){
+                    FIFinderSyncController.showExtensionManagementInterface()
                 }
-                else{
-                    Button("許可する"){
-                        FIFinderSyncController.showExtensionManagementInterface()
+        )
+        
+        Divider()
+        
+        permissionSettingsElementViewGenerator(
+            title: "ホームディレクトリへのアクセス",
+            condition: viewModel.allowedDirectory == nil,
+            isConditionMatchedElement: Text("許可済み"),
+            isConditionUnMatchedElement:
+                Button("許可する"){
+                    Task {
+                        await viewModel.saveSecureBookMark()
                     }
                 }
-            }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
-        }
-            Divider()
-            VStack{
-                HStack{
-                    Text("ホームディレクトリへのアクセス")
-                    Spacer()
-                }.padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 0))
-                HStack{
-                    Spacer()
-                    if viewModel.allowedDirectory != nil {
-                        Text("許可済み")
+        )
+        
+        Divider()
+        
+        permissionSettingsElementViewGenerator(
+            title: "ログイン時自動起動: \(viewModel.isLaunchAtLoginEnabled() ? "有効": "無効")",
+            condition: viewModel.launchAtLogin != .enabled,
+            isConditionMatchedElement:
+                Button("有効にする"){
+                    Task {
+                        viewModel.registerLogin()
                     }
-                    else{
-                        Button("許可する"){
-                            Task {
-                                await viewModel.saveSecureBookMark()
-                            }
-                        }
+                },
+            isConditionUnMatchedElement:
+                Button("無効にする") {
+                    Task {
+                        viewModel.unregisterLogin()
                     }
-                }.padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 10))
-            }
-        }.frame(width:260,height:125).mask(RoundedRectangle(cornerRadius: 10))
+                }
+        )
+        
+    }.frame(width:260,height:165).mask(RoundedRectangle(cornerRadius: 10))
             .overlay(RoundedRectangle(cornerRadius: 10)
                    .stroke(lineWidth: 1))
             .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
