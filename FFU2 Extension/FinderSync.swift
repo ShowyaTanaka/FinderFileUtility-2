@@ -13,6 +13,7 @@ class FinderSync: FIFinderSync {
     var myFolderURL = URL(fileURLWithPath: "")
     
     override init() {
+        NSLog("FinderSync() launched from %@", Bundle.main.bundlePath as NSString)
         if let userDefaults = UserDefaults(suiteName: "group.com.ShoyaTanaka.FFU2") {
             if let directoryPath = userDefaults.string(forKey: self.keyForAvailableDirectory) {
                 self.myFolderURL = URL(fileURLWithPath: directoryPath)

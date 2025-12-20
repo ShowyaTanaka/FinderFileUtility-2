@@ -19,12 +19,12 @@ struct PermissionSettings:View {
         
         permissionSettingsElementViewGenerator(
             title: "ホームディレクトリへのアクセス",
-            condition: viewModel.allowedDirectory == nil,
+            condition: viewModel.isAllowedDirectory,
             isConditionMatchedElement: Text("許可済み"),
             isConditionUnMatchedElement:
                 Button("許可する"){
                     Task {
-                        await viewModel.saveSecureBookMark()
+                        viewModel.callSaveSecureBookMark()
                     }
                 }
         )

@@ -9,7 +9,7 @@ struct SecureBookMarkService{
         guard let bookmark = bookMarkData else { return nil }
         // 一部フォルダにのみ限定して許可し、その後リネームしてしまった場合、正常にトークンが利用できなくなるためそれに備えて
         var folderNameChanged = false
-        guard let _ = try? URL(resolvingBookmarkData: bookmark, options: .withSecurityScope, bookmarkDataIsStale: &folderNameChanged) else { return nil }
+        guard let _ = try? URL(resolvingBookmarkData: bookmark, options: .withSecurityScope, bookmarkDataIsStale: &folderNameChanged) else {return nil }
         return !folderNameChanged ? bookMarkData : nil
     }
 
@@ -17,10 +17,14 @@ struct SecureBookMarkService{
         // userDefaults.set(nil, forKey: self.keyForSecureBookmark)
         // SecureBookMarkの検証をする
         guard let bookmarkData = self.validateSecureBookMarkData(bookMarkData: UserDefaultsModel.getDataValue(forKey: self.keyForSecureBookmark)) else {return nil}
+        print("AAA")
         var folderNameChanged = false
         let url = try! URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, bookmarkDataIsStale: &folderNameChanged)
         // 正常にトークンが利用できる場合のみpathを返す
         return url.path()
+    }
+    static func isBookMarkExists() -> Bool {
+        return UserDefaultsModel.getDataValue(forKey: self.keyForSecureBookmark) != nil
     }
     
     static func getSecureBookMarkUrl() -> URL? {

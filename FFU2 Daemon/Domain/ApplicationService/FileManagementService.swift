@@ -11,7 +11,7 @@ struct FileManagementService {
          */
         let mergedFileUrl = directoryUrl.appendingPathComponent(fileName)
         do{
-            return try self.fileRepository.exists(path: mergedFileUrl)
+            return try !self.fileRepository.exists(path: mergedFileUrl)
         }
         catch{
             return nil
@@ -30,6 +30,8 @@ struct FileManagementService {
             while !duplicateFileResult {
                 file_idx += 1
                 saveFileName = FileNameService.renameFileName(fileName: fileName, index: file_idx)
+                guard let tempDuplicateFileResult = self.validateDuplicateFileName (fileName: saveFileName, directoryUrl: currentDirURL) else {return false}
+                duplicateFileResult = tempDuplicateFileResult
             }
         }
         let mergedDirectoryURL = currentDirURL.appendingPathComponent(saveFileName)

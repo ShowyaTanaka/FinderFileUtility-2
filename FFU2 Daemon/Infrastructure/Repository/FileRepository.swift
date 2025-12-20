@@ -4,7 +4,8 @@ import Foundation
 
 struct FileRepository:FileIRepository {
     func exists(path: URL) throws -> Bool {
-        guard let securityScopedURL = SecureBookMarkService.getSecureBookMarkUrl() else {throw FileError.notAccessible}
+        guard let securityScopedURL = SecureBookMarkService.getSecureBookMarkUrl() else {
+            throw FileError.notAccessible}
         if !securityScopedURL.startAccessingSecurityScopedResource(){
             throw FileError.notAccessible
         }
@@ -13,7 +14,9 @@ struct FileRepository:FileIRepository {
     }
     func create(path: URL, data: Data?) throws -> Bool {
         guard let sanitizedPath = path.path().removingPercentEncoding else {throw FileError.invalidPath}
-        guard let securityScopedURL = SecureBookMarkService.getSecureBookMarkUrl() else {throw FileError.notAccessible}
+        guard let securityScopedURL = SecureBookMarkService.getSecureBookMarkUrl() else {
+            throw FileError.notAccessible
+        }
         if !securityScopedURL.startAccessingSecurityScopedResource(){
             throw FileError.notAccessible
         }
