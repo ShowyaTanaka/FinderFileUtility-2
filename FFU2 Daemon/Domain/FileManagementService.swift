@@ -1,6 +1,6 @@
 import Foundation
 struct FileManagementService {
-    
+
     var fileRepository: FileIRepository
     init() {
         self.fileRepository = FileRepository()
@@ -10,15 +10,14 @@ struct FileManagementService {
          ファイル名の重複確認をする関数。重複するファイルが存在する場合にはfalseを返し,重複するファイルが存在しない場合にはtrueを返す。
          */
         let mergedFileUrl = directoryUrl.appendingPathComponent(fileName)
-        do{
+        do {
             return try !self.fileRepository.exists(path: mergedFileUrl)
-        }
-        catch{
+        } catch {
             return nil
         }
 
     }
-    
+
     func createFile(fileName: String, currentDirURL: URL) -> Bool {
         var saveFileName = fileName
         guard var duplicateFileResult = self.validateDuplicateFileName(fileName: saveFileName, directoryUrl: currentDirURL) else {return false}
@@ -26,21 +25,20 @@ struct FileManagementService {
             // 重複している場合は,リネームして保存する
             var file_idx = 1
             saveFileName = FileNameService.renameFileName(fileName: fileName, index: 1)
-            guard var duplicateFileResult = self.validateDuplicateFileName (fileName: saveFileName, directoryUrl: currentDirURL) else {return false}
+            guard var duplicateFileResult = self.validateDuplicateFileName(fileName: saveFileName, directoryUrl: currentDirURL) else {return false}
             while !duplicateFileResult {
                 file_idx += 1
                 saveFileName = FileNameService.renameFileName(fileName: fileName, index: file_idx)
-                guard let tempDuplicateFileResult = self.validateDuplicateFileName (fileName: saveFileName, directoryUrl: currentDirURL) else {return false}
+                guard let tempDuplicateFileResult = self.validateDuplicateFileName(fileName: saveFileName, directoryUrl: currentDirURL) else {return false}
                 duplicateFileResult = tempDuplicateFileResult
             }
         }
         let mergedDirectoryURL = currentDirURL.appendingPathComponent(saveFileName)
         do {
             return try self.fileRepository.create(path: mergedDirectoryURL, data: nil)
-        }
-        catch {
+        } catch {
             return false
         }
     }
-    
+
 }

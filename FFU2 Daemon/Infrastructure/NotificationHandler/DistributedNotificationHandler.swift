@@ -23,7 +23,7 @@ class DistributedNotificationHandler {
             self.observer = nil
         }
     }
-    
+
     init(delegate: DistributedNotificationHandlerDelegate) {
         self.delegate = delegate
         self.start()

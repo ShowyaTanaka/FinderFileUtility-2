@@ -2,11 +2,11 @@
 
 import Foundation
 
-struct FileRepository:FileIRepository {
+struct FileRepository: FileIRepository {
     func exists(path: URL) throws -> Bool {
         guard let securityScopedURL = SecureBookMarkService.getSecureBookMarkUrl() else {
             throw FileError.notAccessible}
-        if !securityScopedURL.startAccessingSecurityScopedResource(){
+        if !securityScopedURL.startAccessingSecurityScopedResource() {
             throw FileError.notAccessible
         }
         defer { securityScopedURL.stopAccessingSecurityScopedResource() }
@@ -17,7 +17,7 @@ struct FileRepository:FileIRepository {
         guard let securityScopedURL = SecureBookMarkService.getSecureBookMarkUrl() else {
             throw FileError.notAccessible
         }
-        if !securityScopedURL.startAccessingSecurityScopedResource(){
+        if !securityScopedURL.startAccessingSecurityScopedResource() {
             throw FileError.notAccessible
         }
         defer { securityScopedURL.stopAccessingSecurityScopedResource() }

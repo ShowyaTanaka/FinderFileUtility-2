@@ -11,7 +11,7 @@ import FinderSync
 class FinderSync: FIFinderSync {
     private let keyForAvailableDirectory = "availableDirectory"
     var myFolderURL = URL(fileURLWithPath: "")
-    
+
     override init() {
         NSLog("FinderSync() launched from %@", Bundle.main.bundlePath as NSString)
         if let userDefaults = UserDefaults(suiteName: "group.com.ShoyaTanaka.FFU2") {
@@ -35,7 +35,7 @@ class FinderSync: FIFinderSync {
         let extensionArray = FileExtensionService.getRegisteredExtension()
         main.addItem(mainDropdown)
         main.setSubmenu(submenu, for: mainDropdown)
-        
+
         for fileExtension in extensionArray {
             submenu.addItem(NSMenuItem(title: fileExtension, action: #selector(createFileAction(_:)), keyEquivalent: ""))
         }
@@ -45,16 +45,16 @@ class FinderSync: FIFinderSync {
     @IBAction func createFileAction(_ sender: AnyObject?) {
         let target = FIFinderSyncController.default().targetedURL()
         guard let targetURL = target else {NSLog("URLがないです"); return}
-        let item = sender as! NSMenuItem
+        guard let item = sender as? NSMenuItem else {NSLog("NSMenuItemを作れませんでした."); return}
         var selectedExt = item.title
-        if selectedExt.starts(with: "."){
-            let startIndex = selectedExt.index(after:selectedExt.startIndex)
+        if selectedExt.starts(with: ".") {
+            let startIndex = selectedExt.index(after: selectedExt.startIndex)
             selectedExt = String(selectedExt[startIndex...])
         }
         let sendObj = ["selected_extension": selectedExt, "path": targetURL.path().removingPercentEncoding]
-        let jsonData = try! JSONSerialization.data(withJSONObject: sendObj, options: [])
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: sendObj, options: []) else {NSLog("sendObjをjsonにできませんでした。"); return}
         let portName = "group.com.ShoyaTanaka.FFU2.editfile" as CFString
-        
+
         // 2. CFMessagePortCreateRemoteでリモートポート（送信先）への参照を取得
         guard let remotePort = CFMessagePortCreateRemote(nil, portName) else {
             NSLog("送信エラー: ポートに接続できません。受信側のアプリは起動していますか？")
@@ -66,12 +66,12 @@ class FinderSync: FIFinderSync {
             NSLog("送信エラー: データの変換に失敗しました。")
             return
         }
-        
+
         // 4. CFMessagePortSendRequestでメッセージを送信
         let timeout: TimeInterval = 5.0 // タイムアウト時間（秒）
-        var returnData: Unmanaged<CFData>? = nil // 応答データを受け取るためのポインタ
+        var returnData: Unmanaged<CFData>? // 応答データを受け取るためのポインタ
 
-        let _ = CFMessagePortSendRequest(
+        _ = CFMessagePortSendRequest(
             remotePort,      // 送信先ポート
             0,               // Message ID (任意)
             data,            // 送信するデータ

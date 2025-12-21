@@ -1,14 +1,12 @@
 import SwiftUI
-struct EditFileExtensionModalView: NSPanelManagementView{
-    
-    @Environment(\.dismiss) var dismiss
+struct EditFileExtensionModalView: NSPanelManagementView {
+
     @FocusState var isFocused: Bool
     @StateObject var viewModel: EditFileExtensionModalViewModel
     init(viewModel: EditFileExtensionModalViewModel) {
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-    
-    
+
     var body: some View {
         VStack(spacing: 10) {
             Text("拡張子名を入力してください。")
@@ -17,15 +15,17 @@ struct EditFileExtensionModalView: NSPanelManagementView{
             HStack(spacing: 10) {
                 Spacer().frame(width: 100)
                 Button("キャンセル") {
-                    self.viewModel.isWindowClose = true
+                    self.viewModel.closeWindow()
                 }
-                Button("追加"){
+                Button("追加") {
                     let saveStatus = self.viewModel.save()
                     if saveStatus {
-                        self.viewModel.isWindowClose = true
+                        self.viewModel.closeWindow()
                     }
-                    }.buttonStyle(.borderedProminent)
-                    .tint(.blue).keyboardShortcut(.defaultAction)
+                }.disabled(self.viewModel.fileExtension == "")
+                    .buttonStyle(.borderedProminent)
+                    .tint(self.viewModel.fileExtension == "" ? .gray : .blue)
+                    .opacity(self.viewModel.fileExtension == "" ? 0.6 : 1.0).keyboardShortcut(.defaultAction)
 
             }
         }.frame(width: 270, height: 120).onAppear {
@@ -35,4 +35,3 @@ struct EditFileExtensionModalView: NSPanelManagementView{
         }
     }
 }
-

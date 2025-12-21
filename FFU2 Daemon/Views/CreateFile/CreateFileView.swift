@@ -5,9 +5,9 @@ import SwiftUI
  */
 
 struct CreateFileView: NSPanelManagementView {
-    
+
     @FocusState private var isTextFieldFocused: Bool
-    @State private var selection: TextSelection? = nil
+    @State private var selection: TextSelection?
     @ObservedObject var viewModel: CreateFileViewModel
     init(viewModel: CreateFileViewModel) {
         self.viewModel = viewModel
@@ -22,9 +22,9 @@ struct CreateFileView: NSPanelManagementView {
                     let end = self.viewModel.fileName.index(self.viewModel.fileName.startIndex, offsetBy: endOffset)
                     selection = .init(range: self.viewModel.fileName.startIndex..<end)
                 }
-            HStack(spacing: 10){
+            HStack(spacing: 10) {
                 Button("キャンセル") {
-                    self.viewModel.isWindowClose = true
+                    self.viewModel.closeWindow()
                 }
                 Button("作成") {
                     let createFileStatus = self.viewModel.createFile()
@@ -33,12 +33,11 @@ struct CreateFileView: NSPanelManagementView {
                         alert.messageText = "ファイル作成に失敗しました。"
                         alert.addButton(withTitle: "OK")
                         _ = alert.runModal()
-                    }
-                    else {
-                        self.viewModel.isWindowClose = true
+                    } else {
+                        self.viewModel.closeWindow()
                     }
                 }.buttonStyle(.borderedProminent)
-                    .tint(.blue).keyboardShortcut(.defaultAction)
+                .tint(.blue).keyboardShortcut(.defaultAction)
             }
         }.onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -47,4 +46,3 @@ struct CreateFileView: NSPanelManagementView {
         }
     }
 }
-

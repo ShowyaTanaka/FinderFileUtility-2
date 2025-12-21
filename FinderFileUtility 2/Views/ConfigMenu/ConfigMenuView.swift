@@ -1,5 +1,5 @@
-import SwiftUI
 import FinderSync
+import SwiftUI
 
 struct ConfigMenuView: View {
     var body: some View {

@@ -1,22 +1,31 @@
 import Foundation
 import SwiftUI
-struct FileNameConfig:View{
-    @State var viewModel:FileNameConfigViewModel = FileNameConfigViewModel()
-    var body: some View{
-        VStack(spacing:4){
-            Text("新規ファイルの名称")
-            HStack{
-                TextField("ファイル名を入力...",text: $viewModel.fileNameForDisplay)
-                Button("変更") {
-                    viewModel.updateDefaultFileNameData(fileName: viewModel.fileNameForDisplay)
-                }.disabled(viewModel.fileNameForDisplay == viewModel.beforeEditingFileName)
-                Button("戻す") {
-                    viewModel.resetFileNameForDisplay()
-                }.disabled(viewModel.fileNameForDisplay == viewModel.beforeEditingFileName)
+struct FileNameConfig: View {
+    @StateObject var viewModel: FileNameConfigViewModel = FileNameConfigViewModel()
+    var body: some View {
+        VStack(spacing: 0) {
+            HStack {
+                Text("新規ファイル名")
+                Spacer()
+            }.padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+            Text("")
+            VStack {
+                HStack {
+                    Text("現在のファイル名:\(self.viewModel.fileNameForDisplay)")
+                    Spacer()
+                }.padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 10))
+                HStack {
+                    Spacer()
+                    Button("変更") {
+
+                        self.viewModel.openFileNameConfigModal()
+                    }
+                }.padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+
             }
-        }.frame(width:260,height:95).mask(RoundedRectangle(cornerRadius: 10))
-            .overlay(RoundedRectangle(cornerRadius: 10)
-                   .stroke(lineWidth: 1))
-            .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+        }.frame(width: 260, height: 95).mask(RoundedRectangle(cornerRadius: 10))
+        .overlay(RoundedRectangle(cornerRadius: 10)
+                    .stroke(lineWidth: 1))
+        .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
     }
 }

@@ -1,5 +1,5 @@
-import SwiftUI
 import ServiceManagement
+import SwiftUI
 
 @main
 struct FinderFileUtility_2App: App {
@@ -8,9 +8,8 @@ struct FinderFileUtility_2App: App {
     @Environment(\.openWindow) private var openWindow
     var body: some Scene {
         WindowGroup(id: "ConfigWindow") {
-                ConfigMenuView()
+            ConfigMenuView()
         }
     }
 
 }
-

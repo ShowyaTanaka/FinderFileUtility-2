@@ -1,5 +1,5 @@
 import Foundation
-@objc protocol CFMessagePortToNotificationPipeLineDelegate {
+@objc protocol CFMessagePortToNotificationHandlerDelegate {
     var notificationName: Notification.Name {get}
     var portName: CFString {get}
     @objc optional func callback()

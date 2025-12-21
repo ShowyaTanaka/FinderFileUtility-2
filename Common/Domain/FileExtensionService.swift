@@ -2,8 +2,7 @@ struct FileExtensionService {
     static func getRegisteredExtension() -> [String] {
         if let registeredArray = UserDefaultsModel.getArrayValue(forKey: UserDefaultsKey.fileExtensionKey) as? [String] {
             return registeredArray
-        }
-        else {
+        } else {
             // UserDefaultsに何も登録されていない場合は,空を返す
             UserDefaultsModel.setValue(value: [], forKey: UserDefaultsKey.fileExtensionKey)
             return []
