@@ -56,13 +56,13 @@ class CFMessagePortToNotificationHandler {
                     guard let receivedString = String(data: cfdata, encoding: .utf8) else {return nil}
 
                     let notificationPipelineInformation = Unmanaged<PipeLineInfo>.fromOpaque(info).takeUnretainedValue()
-                    print("受信データ: \(receivedString)")
+                    NSLog("受信データ: \(receivedString)")
                     guard let message = try? JSONSerialization.jsonObject(with: cfdata, options: []) as? [String: String] else {
                         NSLog("JSONのシリアライズに失敗しました")
                         return nil
                     }
                     NotificationCenter.default.post(name: notificationPipelineInformation.notificationName, object: message)
-                    print("送信しました！")
+                    NSLog("送信しました！")
 
                     return nil
                 }, // コールバック関数
@@ -76,7 +76,7 @@ class CFMessagePortToNotificationHandler {
             let runLoopSource = CFMessagePortCreateRunLoopSource(kCFAllocatorDefault, localPort, 0)
             CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, .commonModes)
 
-            print("\(portName) という名前でメッセージの待受を開始しました。")
+            NSLog("\(portName) という名前でメッセージの待受を開始しました。")
             // アプリケーションが終了しないようにRun Loopを回し続ける
             CFRunLoopRun()
         }

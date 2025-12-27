@@ -2,7 +2,7 @@ import Foundation
 
 class DistributedNotificationHandler {
     private var observer: NSObjectProtocol?
-    private weak var delegate: DistributedNotificationHandlerDelegate?
+    private var delegate: DistributedNotificationHandlerDelegate?
     func start() {
         guard let delegate = self.delegate else { return }
         self.observer = DistributedNotificationCenter.default().addObserver(
@@ -10,11 +10,10 @@ class DistributedNotificationHandler {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            guard let self else { return }
+            guard self != nil else { return }
             Task {
                 await delegate.callBack()
             }
-            print("JAJSJSJ")
         }
     }
     func stop() {
@@ -29,6 +28,7 @@ class DistributedNotificationHandler {
         self.start()
     }
     deinit {
+        NSLog("DIstributedNotificationHandler deinit")
         self.stop()
     }
 }

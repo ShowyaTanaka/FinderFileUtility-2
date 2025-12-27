@@ -2,7 +2,7 @@ import FinderSync
 import SwiftUI
 
 struct PermissionSettings: View {
-    @State var viewModel = ConfigMenuViewModel()
+    @State var viewModel = PermissionSettingsViewModel()
     var body: some View {
         VStack(spacing: 0) {
             permissionSettingsElementViewGenerator(

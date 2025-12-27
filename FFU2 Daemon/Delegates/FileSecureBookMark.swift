@@ -16,39 +16,8 @@ private struct SaveSecureBookMarkResult {
 
 class FileSecureBookMark: DistributedNotificationHandlerDelegate {
     var notificationKey = NotificationKey.FFU2_DAEMON_SAVE_SECURITY_SCOPED_BOOKMARK_KEY
-
-    private func showAlert(title: String, message: String) {
-        /*
-         ユーザーの選択肢無しでアラートを表示する。
-         */
-        let alert = NSAlert()
-        alert.messageText = title
-        alert.informativeText = message
-        alert.addButton(withTitle: "OK")
-        _ = alert.runModal()
-    }
     deinit {
-        print("FileSecureBookMark deinited")
-    }
-
-    private func showAlertWithUserSelect(title: String, message: String) -> Bool {
-        /*
-         ユーザーが選択できるアラートを表示する。
-         OKが押された場合はtrueを、それ以外ならfalseを返す。
-         */
-        let alert = NSAlert()
-        alert.messageText = title
-        alert.informativeText = message
-        alert.addButton(withTitle: "OK")
-        alert.buttons[0].tag = NSApplication.ModalResponse.OK.rawValue
-        alert.addButton(withTitle: "キャンセル")
-        alert.buttons[1].tag = NSApplication.ModalResponse.cancel.rawValue
-        let result = alert.runModal()
-        if result == .OK {
-            return true
-        } else {
-            return false
-        }
+        NSLog("FileSecureBookMark deinited")
     }
 
     @MainActor // NSWindowがいるので主スレッド指定
@@ -64,14 +33,13 @@ class FileSecureBookMark: DistributedNotificationHandlerDelegate {
         panel.canChooseDirectories = true
         panel.directoryURL = URL(string: NSHomeDirectory())
         let result = panel.runModal()
-        print("response:", result, "raw:", result.rawValue)
         // NSOpenPanelのbeginを非同期処理で扱う
         if result == .OK {
             do {
                 let bookmarkData = try panel.url!.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
                 var unused_status = false // 入れないと怒られるから入れただけで無意味である。
                 guard let url = try? URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, bookmarkDataIsStale: &unused_status) else {
-                    self.showAlert(title: "BookMarkエラー", message: "Security Scoped Bookmarkを取得できませんでした。")
+                    NSAlertService.showAlert(title: "BookMarkエラー", message: "Security Scoped Bookmarkを取得できませんでした。")
                     return
                 }
                 let allowed_url = url.path().components(separatedBy: "/")
@@ -102,22 +70,22 @@ class FileSecureBookMark: DistributedNotificationHandlerDelegate {
         switch save_result.status {
         case .ok:
             if !SecureBookMarkService.saveSecureBookMark(bookmark: save_result.bookmark) {
-                self.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")
+                NSAlertService.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")
             }
         case .unsupporeted_directory:
-            self.showAlert(title: "サポートされていないディレクトリ",
+            NSAlertService.showAlert(title: "サポートされていないディレクトリ",
                            message: "指定したディレクトリはサポートされていません。ホームディレクトリ、あるいはそれより下の階層を指定してください。")
         case .smaller_permission_for_home_directory:
-            let userResult = self.showAlertWithUserSelect(title: "権限が小さいです", message: "ホームディレクトリより下のフォルダが指定されました。一部のフォルダでは正常に動作しない可能性があります。よろしいですか？")
+            let userResult = NSAlertService.showAlertWithUserSelect(title: "権限が小さいです", message: "ホームディレクトリより下のフォルダが指定されました。一部のフォルダでは正常に動作しない可能性があります。よろしいですか？")
             if userResult {
                 if !SecureBookMarkService.saveSecureBookMark(bookmark: save_result.bookmark) {
-                    self.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")
+                    NSAlertService.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")
                 }
             }
         case .canceled:
             return
         case .failed:
-            self.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")
+            NSAlertService.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")
         }
     }
 

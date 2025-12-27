@@ -104,9 +104,12 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Domain/FileNameService.swift,
+				Domain/NSAlertService.swift,
 				Domain/NSPanelService.swift,
 				Domain/SecureBookMarkService.swift,
 				Infrastructure/ControlledNSPanel.swift,
+				Infrastructure/DistributedNotificationHandler.swift,
+				Protocols/DistributedNotificationHandlerDelegate.swift,
 				Protocols/NSPanelManagement.swift,
 			);
 			target = 537712232CEDED4200F40E3B /* FFU2 Extension */;
@@ -115,11 +118,14 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Domain/FileNameService.swift,
+				Domain/NSAlertService.swift,
 				Domain/NSPanelService.swift,
 				Domain/SecureBookMarkService.swift,
 				EnvironmentKey/NotificationKey.swift,
 				Infrastructure/ControlledNSPanel.swift,
+				Infrastructure/DistributedNotificationHandler.swift,
 				Models/UserDefaultsModel.swift,
+				Protocols/DistributedNotificationHandlerDelegate.swift,
 				Protocols/NSPanelManagement.swift,
 			);
 			target = 53E5D24B2EF4473400BCA538 /* FFU2 Daemon */;
@@ -784,7 +790,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ShowyaTanaka.FinderFileUtility-2Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -802,7 +808,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.1;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ShowyaTanaka.FinderFileUtility-2Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
