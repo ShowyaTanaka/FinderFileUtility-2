@@ -11,6 +11,8 @@ class EditFileExtensionModalViewModel: ObservableObject, NSPanelManagementViewMo
     static let viewType = EditFileExtensionModalView.self
     var panel: NSPanel?
     static let title = "拡張子を追加"
+    let fileExtensionService: FileExtensionServiceProtocol
+    let panelService: NSPanelServiceProtocol.Type
 
     private enum EditFileExtensionSaveStatus {
         case success
@@ -19,16 +21,18 @@ class EditFileExtensionModalViewModel: ObservableObject, NSPanelManagementViewMo
         case unknownError
     }
 
-    init(editFileExtensionViewModel: EditFileExtensionViewModel) {
+    init(editFileExtensionViewModel: EditFileExtensionViewModel, fileExtensionService: FileExtensionServiceProtocol, panelServiceType: NSPanelServiceProtocol.Type) {
         self.parentViewModel = editFileExtensionViewModel
+        self.fileExtensionService = fileExtensionService
+        self.panelService = panelServiceType
     }
 
     private func appendRegisteredExtension(_ newElement: String) -> EditFileExtensionSaveStatus {
         guard newElement != "" else {return .unavailableName}
-        var extensionArray = FileExtensionService.getRegisteredExtension()
+        var extensionArray = self.fileExtensionService.getRegisteredExtension()
         guard !extensionArray.contains(newElement) else {return .alreadyExists}
         extensionArray.append(newElement)
-        let saveStatus = FileExtensionService.setRegisteredExtension(extensionArray)
+        let saveStatus = self.fileExtensionService.setRegisteredExtension(extensionArray)
         return saveStatus ? .success : .unknownError
     }
 

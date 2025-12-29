@@ -16,8 +16,16 @@ private struct SaveSecureBookMarkResult {
 
 class FileSecureBookMark: DistributedNotificationHandlerDelegate {
     var notificationKey = NotificationKey.FFU2_DAEMON_SAVE_SECURITY_SCOPED_BOOKMARK_KEY
+    let nsAlertService: NSAlertServiceProtocol.Type
+    let secureBookMarkService: SecureBookMarkServiceProtocol
+    let nsOpenPanelService: NSOpenPanelServiceProtocol
     deinit {
         NSLog("FileSecureBookMark deinited")
+    }
+    init(nsAlertService: NSAlertServiceProtocol.Type=NSAlertService.self, secureBookMarkService: SecureBookMarkServiceProtocol, nsOpenPanelService: NSOpenPanelServiceProtocol){
+        self.nsAlertService = nsAlertService
+        self.secureBookMarkService = secureBookMarkService
+        self.nsOpenPanelService = nsOpenPanelService
     }
 
     @MainActor // NSWindowがいるので主スレッド指定
@@ -27,22 +35,13 @@ class FileSecureBookMark: DistributedNotificationHandlerDelegate {
 
          */
         var save_result = SaveSecureBookMarkResult()
-        let panel = NSOpenPanel()
-        panel.allowsMultipleSelection = false
-        panel.canChooseFiles = false
-        panel.canChooseDirectories = true
-        panel.directoryURL = URL(string: NSHomeDirectory())
-        let result = panel.runModal()
+        let result = self.nsOpenPanelService.runModal(allowsMultipleSelection: false, canChooseFiles: false, canChooseDirectories: false, directoryPath: NSHomeDirectory())
         // NSOpenPanelのbeginを非同期処理で扱う
         if result == .OK {
             do {
-                let bookmarkData = try panel.url!.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil)
-                var unused_status = false // 入れないと怒られるから入れただけで無意味である。
-                guard let url = try? URL(resolvingBookmarkData: bookmarkData, options: .withSecurityScope, bookmarkDataIsStale: &unused_status) else {
-                    NSAlertService.showAlert(title: "BookMarkエラー", message: "Security Scoped Bookmarkを取得できませんでした。")
-                    return
-                }
-                let allowed_url = url.path().components(separatedBy: "/")
+                let url = try self.nsOpenPanelService.getSecureBookMarkUrl()
+                let bookMarkData = try self.nsOpenPanelService.getBookmarkData()
+                let allowed_url = url.components(separatedBy: "/")
                 let home_url_array = NSHomeDirectory().components(separatedBy: "/")[0 ... 2]
 
                 if allowed_url.prefix(3) != home_url_array {
@@ -52,40 +51,42 @@ class FileSecureBookMark: DistributedNotificationHandlerDelegate {
                     // allowed_urlの個数が3より多い場合、ホームディレクトリ下のなにかのフォルダを指定していることになるため、パーミッションとしては小さい
 
                     save_result.status = .smaller_permission_for_home_directory
-                    save_result.bookmark = bookmarkData
+                    save_result.bookmark = bookMarkData
                 } else {
                     // 正常な場合はokを返す
                     save_result.status = .ok
-                    save_result.bookmark = bookmarkData
+                    save_result.bookmark = bookMarkData
                 }
-            } catch {
+            } catch let error {
+                self.nsAlertService.showAlert(title: "エラー", message: "エラーが発生しました。\(error)")
                 save_result.status = .failed
             }
         } else if result == .cancel {
             save_result.status = .canceled
         } else {
+            self.nsAlertService.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")
             save_result.status = .failed
         }
 
         switch save_result.status {
         case .ok:
-            if !SecureBookMarkService.saveSecureBookMark(bookmark: save_result.bookmark) {
-                NSAlertService.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")
+            if !self.secureBookMarkService.saveSecureBookMark(bookmark: save_result.bookmark) {
+                self.nsAlertService.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")
             }
         case .unsupporeted_directory:
-            NSAlertService.showAlert(title: "サポートされていないディレクトリ",
+            self.nsAlertService.showAlert(title: "サポートされていないディレクトリ",
                            message: "指定したディレクトリはサポートされていません。ホームディレクトリ、あるいはそれより下の階層を指定してください。")
         case .smaller_permission_for_home_directory:
-            let userResult = NSAlertService.showAlertWithUserSelect(title: "権限が小さいです", message: "ホームディレクトリより下のフォルダが指定されました。一部のフォルダでは正常に動作しない可能性があります。よろしいですか？")
+            let userResult = self.nsAlertService.showAlertWithUserSelect(title: "権限が小さいです", message: "ホームディレクトリより下のフォルダが指定されました。一部のフォルダでは正常に動作しない可能性があります。よろしいですか？")
             if userResult {
-                if !SecureBookMarkService.saveSecureBookMark(bookmark: save_result.bookmark) {
-                    NSAlertService.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")
+                if !self.secureBookMarkService.saveSecureBookMark(bookmark: save_result.bookmark) {
+                    self.nsAlertService.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")
                 }
             }
         case .canceled:
             return
         case .failed:
-            NSAlertService.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")
+            return
         }
     }
 

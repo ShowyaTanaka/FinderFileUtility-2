@@ -1,6 +1,6 @@
 import Cocoa
 
-struct NSAlertService {
+struct NSAlertService: NSAlertServiceProtocol {
     static func showAlert(title: String, message: String) {
         /*
          ユーザーの選択肢無しでアラートを表示する。

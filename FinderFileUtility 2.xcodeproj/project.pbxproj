@@ -106,10 +106,10 @@
 				Domain/FileNameService.swift,
 				Domain/NSAlertService.swift,
 				Domain/NSPanelService.swift,
-				Domain/SecureBookMarkService.swift,
-				Infrastructure/ControlledNSPanel.swift,
+				Factory/OnlyFFU2AndDaemonFactory.swift,
 				Infrastructure/DistributedNotificationHandler.swift,
 				Protocols/DistributedNotificationHandlerDelegate.swift,
+				Protocols/Domain/NSPanelServiceProtocol.swift,
 				Protocols/NSPanelManagement.swift,
 			);
 			target = 537712232CEDED4200F40E3B /* FFU2 Extension */;
@@ -120,12 +120,16 @@
 				Domain/FileNameService.swift,
 				Domain/NSAlertService.swift,
 				Domain/NSPanelService.swift,
-				Domain/SecureBookMarkService.swift,
 				EnvironmentKey/NotificationKey.swift,
-				Infrastructure/ControlledNSPanel.swift,
+				Factory/OnlyFFU2AndDaemonFactory.swift,
 				Infrastructure/DistributedNotificationHandler.swift,
 				Models/UserDefaultsModel.swift,
 				Protocols/DistributedNotificationHandlerDelegate.swift,
+				Protocols/Domain/FileExtensionServiceProtocol.swift,
+				Protocols/Domain/FileNameServiceProtocol.swift,
+				Protocols/Domain/NSAlertServiceProtocol.swift,
+				Protocols/Domain/NSPanelServiceProtocol.swift,
+				Protocols/Models/UserDefaultsModelProtocol.swift,
 				Protocols/NSPanelManagement.swift,
 			);
 			target = 53E5D24B2EF4473400BCA538 /* FFU2 Daemon */;

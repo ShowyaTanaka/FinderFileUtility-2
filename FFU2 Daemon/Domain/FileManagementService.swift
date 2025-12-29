@@ -1,9 +1,12 @@
 import Foundation
-struct FileManagementService {
+struct FileManagementService: FileManagementServiceProtocol {
 
     var fileRepository: FileIRepository
-    init() {
-        self.fileRepository = FileRepository()
+    let fileNameService: FileNameServiceProtocol
+    
+    init(fileNameService: FileNameServiceProtocol) {
+        self.fileRepository = FileRepository(secureBookMarkService: SecureBookMarkService(userDefaultsModel: UserDefaultsModel()))
+        self.fileNameService = fileNameService
     }
     private func validateDuplicateFileName(fileName: String, directoryUrl: URL) -> Bool? {
         /*
@@ -24,11 +27,11 @@ struct FileManagementService {
         if !duplicateFileResult {
             // 重複している場合は,リネームして保存する
             var file_idx = 1
-            saveFileName = FileNameService.renameFileName(fileName: fileName, index: 1)
+            saveFileName = self.fileNameService.renameFileName(fileName: fileName, index: 1)
             guard var duplicateFileResult = self.validateDuplicateFileName(fileName: saveFileName, directoryUrl: currentDirURL) else {return false}
             while !duplicateFileResult {
                 file_idx += 1
-                saveFileName = FileNameService.renameFileName(fileName: fileName, index: file_idx)
+                saveFileName = self.fileNameService.renameFileName(fileName: fileName, index: file_idx)
                 guard let tempDuplicateFileResult = self.validateDuplicateFileName(fileName: saveFileName, directoryUrl: currentDirURL) else {return false}
                 duplicateFileResult = tempDuplicateFileResult
             }

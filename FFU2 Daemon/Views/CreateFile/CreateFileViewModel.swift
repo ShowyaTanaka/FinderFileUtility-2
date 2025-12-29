@@ -2,7 +2,11 @@ import Cocoa
 import Combine
 import Foundation
 class CreateFileViewModel: ObservableObject, NSPanelManagementViewModelProtocol {
+    
+    
     static let viewType = CreateFileView.self
+    let fileManagementService: FileManagementServiceProtocol
+    let panelService: NSPanelServiceProtocol.Type
 
     var closeRequested = PassthroughSubject<Void, Never>()
     var panel: NSPanel?
@@ -10,15 +14,16 @@ class CreateFileViewModel: ObservableObject, NSPanelManagementViewModelProtocol 
 
     var currentDirURL: URL?
     @Published var fileName: String
-    init(currentDirURL: URL, selectedExtension: String) {
+    init(currentDirURL: URL, selectedExtension: String, fileNameService: FileNameServiceProtocol, fileManagementService: FileManagementServiceProtocol, panelService: NSPanelServiceProtocol.Type) {
         self.currentDirURL = currentDirURL
-
-        self.fileName = FileNameService.getDefaultFileNameData()
+        self.fileManagementService = fileManagementService
+        self.panelService = panelService
+        self.fileName = fileNameService.getDefaultFileNameData()
         self.fileName += selectedExtension.starts(with: ".") ? selectedExtension : "." + selectedExtension
     }
     func createFile() -> Bool {
         guard let currentDirURLConfirm = self.currentDirURL else {return false}
-        return FileManagementService().createFile(fileName: self.fileName, currentDirURL: currentDirURLConfirm)
+        return self.fileManagementService.createFile(fileName: self.fileName, currentDirURL: currentDirURLConfirm)
     }
     func getFocusFileTextLength() -> Int {
         if self.fileName.contains(/[.]/) && !self.fileName.starts(with: ".") {

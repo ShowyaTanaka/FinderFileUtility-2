@@ -6,10 +6,14 @@ struct ExtensionName: Identifiable {
 }
 class EditFileExtensionViewModel: ObservableObject {
     @Published var extensions: [ExtensionName]
-    lazy var modalViewModel = EditFileExtensionModalViewModel(editFileExtensionViewModel: self)
-    init() {
-        let extensionArray = FileExtensionService.getRegisteredExtension()
+    let fileExtensionService: FileExtensionServiceProtocol
+    let panelServiceType: NSPanelServiceProtocol.Type
+    lazy var modalViewModel = EditFileExtensionModalViewModel(editFileExtensionViewModel: self, fileExtensionService: self.fileExtensionService, panelServiceType:self.panelServiceType)
+    init(fileExtensionService: FileExtensionServiceProtocol=fileExtensionServiceFactory(), panelServiceType: NSPanelServiceProtocol.Type) {
+        let extensionArray = fileExtensionService.getRegisteredExtension()
+        self.fileExtensionService = fileExtensionService
         self.extensions = []
+        self.panelServiceType = panelServiceType
 
         for extensionName in extensionArray {
             self.extensions.append(ExtensionName(extensionName: extensionName))
@@ -22,11 +26,11 @@ class EditFileExtensionViewModel: ObservableObject {
         for extensionName in targetDeletedExtensionName {
             extensionNameArray.append(extensionName.extensionName)
         }
-        _ = FileExtensionService.setRegisteredExtension(extensionNameArray)
+        _ = self.fileExtensionService.setRegisteredExtension(extensionNameArray)
         self.refreshExtension()
     }
     func refreshExtension() {
-        let extensionArray = FileExtensionService.getRegisteredExtension()
+        let extensionArray = self.fileExtensionService.getRegisteredExtension()
         var extensionNames: [ExtensionName] = []
         for extensionName in extensionArray {
             extensionNames.append(ExtensionName(extensionName: extensionName))

@@ -1,7 +1,7 @@
 import AppKit
 import Combine
 import SwiftUI
-struct NSPanelService {
+struct NSPanelService: NSPanelServiceProtocol {
 
     @MainActor
     static func createPanel<ContentVM: NSPanelManagementViewModelProtocol>( viewModel: ContentVM, isfocused: Bool = false, x: Int = 600, y: Int = 400, width: Int = 300, height: Int = 200) {

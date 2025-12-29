@@ -11,9 +11,10 @@ struct FFU2_DaemonApp: App {
     init() {
         // PipeLineが解放されないように留めておく。
         self.editFilePipeLine = CFMessagePortToNotificationHandler(pipeLineDelegate: NotifyCreateFileView())
-        if !SecureBookMarkService.isBookMarkExists(){
+        let secureBookMarkService = secureBookMarkServiceFactory()
+        if !secureBookMarkService.isBookMarkExists(){
             // SecureBookMarkが存在しない場合は,ユーザー側からSecureBookmarkの保存要求が飛んでくる可能性があるため、インスタンスを作成する。
-            self.saveBookMarkNotification = DistributedNotificationHandler(delegate: FileSecureBookMark())
+            self.saveBookMarkNotification = DistributedNotificationHandler(delegate: FileSecureBookMark(secureBookMarkService: secureBookMarkService, nsOpenPanelService: NSOpenPanelService()))
         }
         _ = self.editFilePipeLine.launchMessagePort()
     }

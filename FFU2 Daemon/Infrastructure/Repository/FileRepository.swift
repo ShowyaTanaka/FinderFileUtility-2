@@ -3,8 +3,12 @@
 import Foundation
 
 struct FileRepository: FileIRepository {
+    let secureBookMarkService: SecureBookMarkServiceProtocol
+    init(secureBookMarkService: SecureBookMarkServiceProtocol) {
+        self.secureBookMarkService = secureBookMarkService
+    }
     func exists(path: URL) throws -> Bool {
-        guard let securityScopedURL = SecureBookMarkService.getSecureBookMarkUrl() else {
+        guard let securityScopedURL = self.secureBookMarkService.getSecureBookMarkUrl() else {
             throw FileError.notAccessible}
         if !securityScopedURL.startAccessingSecurityScopedResource() {
             throw FileError.notAccessible
@@ -14,7 +18,7 @@ struct FileRepository: FileIRepository {
     }
     func create(path: URL, data: Data?) throws -> Bool {
         guard let sanitizedPath = path.path().removingPercentEncoding else {throw FileError.invalidPath}
-        guard let securityScopedURL = SecureBookMarkService.getSecureBookMarkUrl() else {
+        guard let securityScopedURL = self.secureBookMarkService.getSecureBookMarkUrl() else {
             throw FileError.notAccessible
         }
         if !securityScopedURL.startAccessingSecurityScopedResource() {

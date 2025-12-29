@@ -7,16 +7,20 @@ class NotifyCreateFileView: NSObject, CFMessagePortToNotificationHandlerDelegate
      */
     var notificationName = Notification.Name("notifyEditFileName")
     var portName = "group.com.ShoyaTanaka.FFU2.editfile" as CFString
+    var nsPanelService: NSPanelServiceProtocol.Type
+    init(nsPanelService:NSPanelServiceProtocol.Type = NSPanelService.self){
+        self.nsPanelService = nsPanelService
+    }
 
     @objc func callback(notification: Notification) {
-        print("AAAAAA")
         guard let object = notification.object as? [String: Any] else {return}
         guard let path = object["path"] as? String else {return}
         guard let selectedExtension = object["selected_extension"] as? String else {return}
+        let fileNameService = fileNameServiceFactory()
 
-        let viewModel = CreateFileViewModel(currentDirURL: URL(fileURLWithPath: path), selectedExtension: selectedExtension)
+        let viewModel = CreateFileViewModel(currentDirURL: URL(fileURLWithPath: path), selectedExtension: selectedExtension, fileNameService: fileNameService, fileManagementService: FileManagementService(fileNameService: fileNameService),panelService: self.nsPanelService )
         DispatchQueue.main.async {
-            NSPanelService.createPanel(viewModel: viewModel, isfocused: true)
+            self.nsPanelService.createPanel(viewModel: viewModel, isfocused: false, x: 600, y: 400, width: 300, height: 200)
         }
         
 

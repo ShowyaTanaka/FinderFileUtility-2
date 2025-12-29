@@ -11,17 +11,18 @@ import FinderSync
 class FinderSync: FIFinderSync {
     private let keyForAvailableDirectory = "availableDirectory"
     var myFolderURL = URL(fileURLWithPath: "")
+    let userDefaultsModel: UserDefaultsModelProtocol
+    let fileExtensionService: FileExtensionServiceProtocol
 
     override init() {
         NSLog("FinderSync() launched from %@", Bundle.main.bundlePath as NSString)
-        if let userDefaults = UserDefaults(suiteName: "group.com.ShoyaTanaka.FFU2") {
-            if let directoryPath = userDefaults.string(forKey: self.keyForAvailableDirectory) {
-                self.myFolderURL = URL(fileURLWithPath: directoryPath)
-            }
+        self.userDefaultsModel = UserDefaultsModel()
+        if let directoryPath = self.userDefaultsModel.getStringValue(forKey: self.keyForAvailableDirectory) {
+            self.myFolderURL = URL(fileURLWithPath: directoryPath)
         }
+        self.fileExtensionService = FileExtensionService(userDefaultsModel: self.userDefaultsModel)
         super.init()
         NSLog("FinderSync() launched from %@", Bundle.main.bundlePath as NSString)
-
         // Set up the directory we are syncing.
         FIFinderSyncController.default().directoryURLs = [self.myFolderURL]
 
@@ -32,7 +33,7 @@ class FinderSync: FIFinderSync {
         let main = NSMenu()
         let submenu = NSMenu()
         let mainDropdown = NSMenuItem(title: "Create File", action: nil, keyEquivalent: "")
-        let extensionArray = FileExtensionService.getRegisteredExtension()
+        let extensionArray = self.fileExtensionService.getRegisteredExtension()
         main.addItem(mainDropdown)
         main.setSubmenu(submenu, for: mainDropdown)
 

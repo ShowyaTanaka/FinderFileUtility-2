@@ -6,15 +6,17 @@ import ServiceManagement
     var isEnableFinderExtension: Bool
     var allowedDirectory: String?
     var launchAtLogin = SMAppService.loginItem(identifier: "ShowyaTanaka.FinderFileUtility-2.FFU2-Daemon").status
+    let nsAlertService: NSAlertServiceProtocol.Type
     var isAllowedDirectory: Bool {
-        return SecureBookMarkService.isBookMarkExists()
+        return self.allowedDirectory != nil
     }
     let service = SMAppService.loginItem(identifier: "ShowyaTanaka.FinderFileUtility-2.FFU2-Daemon")
 
-    init() {
+    init(userDefaultsModel: UserDefaultsModel, nsAlertService: NSAlertServiceProtocol.Type) {
         self.isEnableFinderExtension = FIFinderSyncController.isExtensionEnabled
+        self.nsAlertService = nsAlertService
         print("isEnableFinderExtension: \(self.isEnableFinderExtension)")
-        self.allowedDirectory = SecureBookMarkService.getSecureBookMarkStringFullPath()
+        self.allowedDirectory = userDefaultsModel.getStringValue(forKey: UserDefaultsKey.bookMarkPathKey)
     }
 
     func callSaveSecureBookMark() {
@@ -37,7 +39,7 @@ import ServiceManagement
         do {
             try self.service.unregister()
         } catch {
-            NSAlertService.showAlert(title: "Error", message: "ログイン時起動の解除に失敗しました")
+            self.nsAlertService.showAlert(title: "Error", message: "ログイン時起動の解除に失敗しました")
         }
         self.launchAtLogin = self.service.status
     }
