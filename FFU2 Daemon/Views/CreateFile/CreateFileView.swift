@@ -5,12 +5,20 @@ import SwiftUI
  */
 
 struct CreateFileView: NSPanelManagementView {
+    
 
     @FocusState private var isTextFieldFocused: Bool
     @State private var selection: TextSelection?
     @ObservedObject var viewModel: CreateFileViewModel
+    var nsAlertService: NSAlertServiceProtocol.Type = NSAlertService.self
+    
     init(viewModel: CreateFileViewModel) {
         self.viewModel = viewModel
+    }
+    
+    init(viewModel: CreateFileViewModel, nsAlertService: NSAlertServiceProtocol.Type = NSAlertService.self) {
+        self.init(viewModel: viewModel)
+        self.nsAlertService = nsAlertService
     }
     var body: some View {
         VStack {
@@ -27,14 +35,12 @@ struct CreateFileView: NSPanelManagementView {
                     self.viewModel.closeWindow()
                 }
                 Button("作成") {
-                    let createFileStatus = self.viewModel.createFile()
-                    if !createFileStatus {
-                        let alert = NSAlert()
-                        alert.messageText = "ファイル作成に失敗しました。"
-                        alert.addButton(withTitle: "OK")
-                        _ = alert.runModal()
-                    } else {
+                    do {
+                        try self.viewModel.createFile()
                         self.viewModel.closeWindow()
+                    }
+                    catch let error {
+                        self.nsAlertService.showAlert(title: "エラー", message: "ファイルの作成に失敗しました。\(error)")
                     }
                 }.buttonStyle(.borderedProminent)
                 .tint(.blue).keyboardShortcut(.defaultAction)

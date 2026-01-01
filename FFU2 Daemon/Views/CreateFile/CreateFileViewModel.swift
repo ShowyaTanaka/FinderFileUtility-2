@@ -10,20 +10,23 @@ class CreateFileViewModel: ObservableObject, NSPanelManagementViewModelProtocol 
 
     var closeRequested = PassthroughSubject<Void, Never>()
     var panel: NSPanel?
+    var nsAlertService: NSAlertServiceProtocol.Type
     static let title = "新規ファイル作成"
 
     var currentDirURL: URL?
     @Published var fileName: String
-    init(currentDirURL: URL, selectedExtension: String, fileNameService: FileNameServiceProtocol, fileManagementService: FileManagementServiceProtocol, panelService: NSPanelServiceProtocol.Type) {
+    init(currentDirURL: URL, selectedExtension: String, fileNameService: FileNameServiceProtocol, fileManagementService: FileManagementServiceProtocol, panelService: NSPanelServiceProtocol.Type, nsAlertService: NSAlertServiceProtocol.Type = NSAlertService.self) {
         self.currentDirURL = currentDirURL
         self.fileManagementService = fileManagementService
         self.panelService = panelService
+        self.nsAlertService = nsAlertService
         self.fileName = fileNameService.getDefaultFileNameData()
         self.fileName += selectedExtension.starts(with: ".") ? selectedExtension : "." + selectedExtension
+
     }
-    func createFile() -> Bool {
-        guard let currentDirURLConfirm = self.currentDirURL else {return false}
-        return self.fileManagementService.createFile(fileName: self.fileName, currentDirURL: currentDirURLConfirm)
+    func createFile() throws{
+        guard let currentDirURLConfirm = self.currentDirURL else {return}
+        try self.fileManagementService.createFile(fileName: self.fileName, currentDirURL: currentDirURLConfirm)
     }
     func getFocusFileTextLength() -> Int {
         if self.fileName.contains(/[.]/) && !self.fileName.starts(with: ".") {

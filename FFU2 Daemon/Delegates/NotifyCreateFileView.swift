@@ -22,8 +22,6 @@ class NotifyCreateFileView: NSObject, CFMessagePortToNotificationHandlerDelegate
         DispatchQueue.main.async {
             self.nsPanelService.createPanel(viewModel: viewModel, isfocused: false, x: 600, y: 400, width: 300, height: 200)
         }
-        
-
     }
 
     var callBackSelector: Selector {
