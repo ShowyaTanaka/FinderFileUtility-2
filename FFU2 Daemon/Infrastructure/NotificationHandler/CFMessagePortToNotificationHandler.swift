@@ -94,7 +94,7 @@ class CFMessagePortToNotificationHandler {
          渡された情報を元に,情報を受け取った際にNotificationで通知するCFMessagePortを作成する関数。
          スレッドのライフタイムを外で管理するために,スレッドを返している。
          */
-        self.pipeLineThread.name = "Thread_"
+        self.pipeLineThread.name = UUID().uuidString.replacingOccurrences(of: "-", with: "")
         self.pipeLineThread.start()
         return true
     }

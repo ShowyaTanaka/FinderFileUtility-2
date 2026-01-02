@@ -8,7 +8,7 @@ struct FileExtensionService: FileExtensionServiceProtocol {
             return registeredArray
         } else {
             // UserDefaultsに何も登録されていない場合は,空を返す
-            self.userDefaultsModel.setValue(value: [], forKey: UserDefaultsKey.fileExtensionKey)
+            _ = self.userDefaultsModel.setValue(value: [], forKey: UserDefaultsKey.fileExtensionKey)
             return []
         }
     }

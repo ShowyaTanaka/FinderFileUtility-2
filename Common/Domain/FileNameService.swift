@@ -11,7 +11,7 @@ struct FileNameService: FileNameServiceProtocol {
     }
 
     func getDefaultFileNameData() -> String {
-        let defaultFileName = self.userDefaultsModel.getStringValue(forKey: "defaultFileName") ?? "新規ファイル"
+        let defaultFileName = self.userDefaultsModel.getStringValue(forKey: "defaultFileName") ?? "New File"
         // 初回起動時等でUserDefaultsに値がセットされていない場合は、既定値をセットして返す。
         // このとき、すでに値が設定されている場合も保存処理が走るが、特段書き換えられるわけではないため影響はない。
 
@@ -19,12 +19,16 @@ struct FileNameService: FileNameServiceProtocol {
         return defaultFileName
     }
     func renameFileName(fileName: String, index: Int) -> String {
-        if fileName.contains(/[.]/) && !fileName.starts(with: ".") {
-            let fileNameList = fileName.split(separator: ".")
-            return "\(fileNameList.dropLast().joined(separator: ""))のコピー\(index).\(fileNameList.last!)"
-        } else {
-            // その他の場合は,末尾に「のコピーn」とつける
+        guard
+            fileName.last != ".",
+            fileName.first != ".",
+            let lastDotIndex = fileName.lastIndex(of: ".")
+        else {
+            // ドットが含まれていない、または末尾がドットの場合
             return "\(fileName)のコピー\(index)"
         }
+        let fileNameBeforeExtension = fileName[..<lastDotIndex]
+        let extensionPart = fileName[fileName.index(after: lastDotIndex)...]
+        return "\(fileNameBeforeExtension)のコピー\(index).\(extensionPart)"
     }
 }

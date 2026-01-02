@@ -4,8 +4,8 @@ struct FileManagementService: FileManagementServiceProtocol {
     var fileRepository: FileIRepository
     let fileNameService: FileNameServiceProtocol
     
-    init(fileNameService: FileNameServiceProtocol) {
-        self.fileRepository = FileRepository(secureBookMarkService: SecureBookMarkService(userDefaultsModel: UserDefaultsModel()))
+    init(fileNameService: FileNameServiceProtocol, fileRepository: FileIRepository = fileRepositoryFactory()) {
+        self.fileRepository = fileRepository
         self.fileNameService = fileNameService
     }
     private func validateDuplicateFileName(fileName: String, directoryUrl: URL) throws -> Bool {
