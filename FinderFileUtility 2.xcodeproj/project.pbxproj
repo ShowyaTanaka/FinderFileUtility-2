@@ -113,6 +113,7 @@
 			membershipExceptions = (
 				Domain/FileNameService.swift,
 				Domain/NSAlertService.swift,
+				Domain/NSPanelController.swift,
 				Domain/NSPanelService.swift,
 				Factory/OnlyFFU2AndDaemonFactory.swift,
 				Infrastructure/DistributedNotificationHandler.swift,
@@ -127,6 +128,7 @@
 			membershipExceptions = (
 				Domain/FileNameService.swift,
 				Domain/NSAlertService.swift,
+				Domain/NSPanelController.swift,
 				Domain/NSPanelService.swift,
 				EnvironmentKey/NotificationKey.swift,
 				Factory/OnlyFFU2AndDaemonFactory.swift,
@@ -139,6 +141,7 @@
 				Protocols/Domain/NSPanelServiceProtocol.swift,
 				Protocols/Models/UserDefaultsModelProtocol.swift,
 				Protocols/NSPanelManagement.swift,
+				View/Element/CloseWindowButton.swift,
 			);
 			target = 53E5D24B2EF4473400BCA538 /* FFU2 Daemon */;
 		};

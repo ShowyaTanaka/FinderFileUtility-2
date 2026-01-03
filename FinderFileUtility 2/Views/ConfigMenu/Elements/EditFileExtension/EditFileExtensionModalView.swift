@@ -14,6 +14,13 @@ struct EditFileExtensionModalView: NSPanelManagementView {
             Spacer().frame(height: 0)
             HStack(spacing: 10) {
                 Spacer().frame(width: 100)
+                /*CloseWindowButton(title: "キャンセル")
+                CloseWindowButton(title: "追加") {
+                    return self.viewModel.save()
+                }.disabled(self.viewModel.fileExtension == "")
+                    .buttonStyle(.borderedProminent)
+                    .tint(self.viewModel.fileExtension == "" ? .gray : .blue)
+                    .opacity(self.viewModel.fileExtension == "" ? 0.6 : 1.0).keyboardShortcut(.defaultAction)*/
                 Button("キャンセル") {
                     self.viewModel.closeWindow()
                 }
@@ -23,9 +30,9 @@ struct EditFileExtensionModalView: NSPanelManagementView {
                         self.viewModel.closeWindow()
                     }
                 }.disabled(self.viewModel.fileExtension == "")
-                    .buttonStyle(.borderedProminent)
-                    .tint(self.viewModel.fileExtension == "" ? .gray : .blue)
-                    .opacity(self.viewModel.fileExtension == "" ? 0.6 : 1.0).keyboardShortcut(.defaultAction)
+                        .buttonStyle(.borderedProminent)
+                        .tint(self.viewModel.fileExtension == "" ? .gray : .blue)
+                        .opacity(self.viewModel.fileExtension == "" ? 0.6 : 1.0).keyboardShortcut(.defaultAction)
 
             }
         }.frame(width: 270, height: 120).onAppear {

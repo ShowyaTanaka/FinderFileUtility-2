@@ -39,10 +39,9 @@ class EditFileExtensionViewModel: ObservableObject {
     }
     @MainActor
     func openEditFileModal() {
-        panelServiceType.createPanel(viewModel: self.modalViewModel, isfocused: true,x: 0, y: 0, width: 300, height: 400)
-    }
-    deinit{
-        NSLog("EditFileExtensionViewModel deinited")
+        let viewModel = EditFileExtensionModalViewModel(editFileExtensionViewModel: self, fileExtensionService: self.fileExtensionService)
+        let view = EditFileExtensionModalView(viewModel: viewModel)
+        NSPanelController(viewModel: viewModel,view: view, isfocused: true, x: 0, y: 0, width: 300, height: 400)
     }
 
 }

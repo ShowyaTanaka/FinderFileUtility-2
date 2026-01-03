@@ -13,7 +13,9 @@ class FileNameConfigViewModel: ObservableObject {
     }
     @MainActor
     func openFileNameConfigModal() {
-        NSPanelService.createPanel(viewModel: self.modalViewModel, isfocused: true, width: 300, height: 400)
+        let viewModel = FileNameConfigModalViewModel(parentViewModel: self)
+        let view = FileNameConfigModalView(viewModel: viewModel)
+        NSPanelService.createPanel(view: view, viewModel: viewModel, isfocused: true, width: 300, height: 400)
     }
     func refreshFileNameForDisplay() {
         self.fileNameForDisplay = self.fileNameService.getDefaultFileNameData()

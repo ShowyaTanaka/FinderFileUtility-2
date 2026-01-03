@@ -25,9 +25,7 @@ struct CreateFileView: NSPanelManagementView {
                     selection = .init(range: self.viewModel.fileName.startIndex..<end)
                 }
             HStack(spacing: 10) {
-                Button("キャンセル") {
-                    self.viewModel.closeWindow()
-                }
+                CloseWindowButton(title: "キャンセル")
                 Button("作成") {
                     self.viewModel.createFile()
                 }.buttonStyle(.borderedProminent)

@@ -2,6 +2,8 @@ import Cocoa
 import Combine
 import Foundation
 class CreateFileViewModel: ObservableObject, NSPanelManagementViewModelProtocol {
+    weak var windowController: NSPanelController?
+    
     
     
     static let viewType = CreateFileView.self
@@ -23,14 +25,15 @@ class CreateFileViewModel: ObservableObject, NSPanelManagementViewModelProtocol 
         self.fileName += selectedExtension.starts(with: ".") ? selectedExtension : "." + selectedExtension
     }
     @MainActor
-    func createFile(){
-        guard let currentDirURLConfirm = self.currentDirURL else {return}
+    func createFile() -> Bool{
+        guard let currentDirURLConfirm = self.currentDirURL else {return true}
         do {
             try self.fileManagementService.createFile(fileName: self.fileName, currentDirURL: currentDirURLConfirm)
-            self.closeWindow()
+            return true
         }
         catch {
             self.nsAlertService.showAlert(title: "エラー", message: "ファイルの作成に失敗しました。\(error)")
+            return false
         }
     }
     func getFocusFileTextLength() -> Int {

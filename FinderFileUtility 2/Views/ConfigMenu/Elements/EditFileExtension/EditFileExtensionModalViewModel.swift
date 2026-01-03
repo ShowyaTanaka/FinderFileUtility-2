@@ -3,16 +3,17 @@ import Foundation
 import SwiftUI
 
 class EditFileExtensionModalViewModel: ObservableObject, NSPanelManagementViewModelProtocol {
+    var windowController: NSPanelController?
+    
 
     @Published var fileExtension: String = ""
     var errorDescription: String?
     @Published var saveComplete: Bool = false
     weak var parentViewModel: EditFileExtensionViewModel?
     static let viewType = EditFileExtensionModalView.self
-    weak var panel: NSPanel?
+    var panel: NSPanel?
     static let title = "拡張子を追加"
     let fileExtensionService: FileExtensionServiceProtocol
-    var panelService: NSPanelServiceProtocol.Type?
 
     private enum EditFileExtensionSaveStatus {
         case success
@@ -56,6 +57,9 @@ class EditFileExtensionModalViewModel: ObservableObject, NSPanelManagementViewMo
         alert.addButton(withTitle: "OK")
         _ = alert.runModal()
         return false
+    }
+    deinit {
+        print("EditFileExtensionModalViewModel deinit")
     }
 
 }

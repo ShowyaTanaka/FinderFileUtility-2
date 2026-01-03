@@ -3,7 +3,8 @@ import Foundation
 import SwiftUI
 
 class FileNameConfigModalViewModel: ObservableObject, NSPanelManagementViewModelProtocol {
-    weak var panel: NSPanel?
+    weak var windowController: NSPanelController?
+    
     weak var parentViewModel: FileNameConfigViewModel?
     static let viewType = FileNameConfigModalView.self
     let fileNameService: FileNameServiceProtocol
@@ -15,11 +16,11 @@ class FileNameConfigModalViewModel: ObservableObject, NSPanelManagementViewModel
         self.fileName = parentViewModel.fileNameForDisplay
         self.fileNameService = fileNameService
     }
-    func updateDefaultFileNameData() {
-        guard let parentVM = self.parentViewModel else { return }
+    func updateDefaultFileNameData() -> Bool {
+        guard let parentVM = self.parentViewModel else { return false }
         self.fileNameService.writeDefaultFileNameData(newFileName: self.fileName)
         parentVM.refreshFileNameForDisplay()
-        self.closeWindow()
+        return true
     }
     deinit {
         NSLog("Deinit FileNameConfigModalViewModel")

@@ -19,8 +19,9 @@ class NotifyCreateFileView: NSObject, CFMessagePortToNotificationHandlerDelegate
         let fileNameService = fileNameServiceFactory()
 
         let viewModel = CreateFileViewModel(currentDirURL: URL(fileURLWithPath: path), selectedExtension: selectedExtension, fileNameService: fileNameService, fileManagementService: FileManagementService(fileNameService: fileNameService))
+        let view = CreateFileView(viewModel: viewModel)
         DispatchQueue.main.async {
-            self.nsPanelService.createPanel(viewModel: viewModel, isfocused: false, x: 600, y: 400, width: 300, height: 200)
+            self.nsPanelService.createPanel(view: view,viewModel: viewModel, isfocused: false, x: 600, y: 400, width: 300, height: 200)
         }
     }
 

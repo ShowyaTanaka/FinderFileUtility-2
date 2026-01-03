@@ -14,16 +14,22 @@ struct FileNameConfigModalView: NSPanelManagementView {
             Spacer().frame(height: 0)
             HStack(spacing: 10) {
                 Spacer().frame(width: 100)
+                /*
+                CloseWindowButton(title: "キャンセル")
+                CloseWindowButton(title: "変更") {
+                    return self.viewModel.updateDefaultFileNameData()
+                }.buttonStyle(.borderedProminent)
+                .tint(.blue).keyboardShortcut(.defaultAction)
+                .disabled(viewModel.fileName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+*/
                 Button("キャンセル") {
-
                     self.viewModel.closeWindow()
                 }
                 Button("変更") {
                     self.viewModel.updateDefaultFileNameData()
                 }.buttonStyle(.borderedProminent)
-                .tint(.blue).keyboardShortcut(.defaultAction)
-                .disabled(viewModel.fileName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-
+                    .tint(.blue).keyboardShortcut(.defaultAction)
+                    .disabled(viewModel.fileName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
             }
         }.frame(width: 270, height: 120).onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
