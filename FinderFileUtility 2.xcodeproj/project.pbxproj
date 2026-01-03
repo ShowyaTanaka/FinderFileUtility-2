@@ -36,6 +36,13 @@
 			remoteGlobalIDString = 537712232CEDED4200F40E3B;
 			remoteInfo = "FFU2 Extension";
 		};
+		53A24E3A2F07C85D006C51C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 537711C22CEDECDC00F40E3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 53E5D24B2EF4473400BCA538;
+			remoteInfo = "FFU2 Daemon";
+		};
 		53E5D2922EF4EF4C00BCA538 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 537711C22CEDECDC00F40E3B /* Project object */;
@@ -85,6 +92,7 @@
 		537711DB2CEDECDD00F40E3B /* FinderFileUtility 2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FinderFileUtility 2Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		537711E52CEDECDD00F40E3B /* FinderFileUtility 2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FinderFileUtility 2UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		537712242CEDED4200F40E3B /* FFU2 Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "FFU2 Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		53A24E362F07C85D006C51C0 /* FFU2 DaemonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FFU2 DaemonTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		53C6B0E42EF6A47E0076A0F8 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		53E5D24C2EF4473400BCA538 /* FFU2 Daemon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FFU2 Daemon.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		789CC7607F9C0B8EF1438A79 /* Pods-FinderFileUtility 2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinderFileUtility 2.release.xcconfig"; path = "Target Support Files/Pods-FinderFileUtility 2/Pods-FinderFileUtility 2.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +168,11 @@
 			path = "FFU2 Extension";
 			sourceTree = "<group>";
 		};
+		53A24E372F07C85D006C51C0 /* FFU2 DaemonTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "FFU2 DaemonTests";
+			sourceTree = "<group>";
+		};
 		53E5D24D2EF4473400BCA538 /* FFU2 Daemon */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "FFU2 Daemon";
@@ -206,6 +219,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		53A24E332F07C85D006C51C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		53E5D2492EF4473400BCA538 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -226,6 +246,7 @@
 				537711E82CEDECDD00F40E3B /* FinderFileUtility 2UITests */,
 				537712252CEDED4200F40E3B /* FFU2 Extension */,
 				53E5D24D2EF4473400BCA538 /* FFU2 Daemon */,
+				53A24E372F07C85D006C51C0 /* FFU2 DaemonTests */,
 				53E5D2902EF4EF4C00BCA538 /* Frameworks */,
 				537711CB2CEDECDC00F40E3B /* Products */,
 				59DF4CFCB0831D6A2AB70EDB /* Pods */,
@@ -240,6 +261,7 @@
 				537711E52CEDECDD00F40E3B /* FinderFileUtility 2UITests.xctest */,
 				537712242CEDED4200F40E3B /* FFU2 Extension.appex */,
 				53E5D24C2EF4473400BCA538 /* FFU2 Daemon.app */,
+				53A24E362F07C85D006C51C0 /* FFU2 DaemonTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -354,6 +376,29 @@
 			productReference = 537712242CEDED4200F40E3B /* FFU2 Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		53A24E352F07C85D006C51C0 /* FFU2 DaemonTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53A24E3C2F07C85D006C51C0 /* Build configuration list for PBXNativeTarget "FFU2 DaemonTests" */;
+			buildPhases = (
+				53A24E322F07C85D006C51C0 /* Sources */,
+				53A24E332F07C85D006C51C0 /* Frameworks */,
+				53A24E342F07C85D006C51C0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				53A24E3B2F07C85D006C51C0 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				53A24E372F07C85D006C51C0 /* FFU2 DaemonTests */,
+			);
+			name = "FFU2 DaemonTests";
+			packageProductDependencies = (
+			);
+			productName = "FFU2 DaemonTests";
+			productReference = 53A24E362F07C85D006C51C0 /* FFU2 DaemonTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		53E5D24B2EF4473400BCA538 /* FFU2 Daemon */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 53E5D2542EF4473500BCA538 /* Build configuration list for PBXNativeTarget "FFU2 Daemon" */;
@@ -398,6 +443,11 @@
 					537712232CEDED4200F40E3B = {
 						CreatedOnToolsVersion = 16.1;
 					};
+					53A24E352F07C85D006C51C0 = {
+						CreatedOnToolsVersion = 26.2;
+						LastSwiftMigration = 2620;
+						TestTargetID = 53E5D24B2EF4473400BCA538;
+					};
 					53E5D24B2EF4473400BCA538 = {
 						CreatedOnToolsVersion = 26.2;
 					};
@@ -422,6 +472,7 @@
 				537711E42CEDECDD00F40E3B /* FinderFileUtility 2UITests */,
 				537712232CEDED4200F40E3B /* FFU2 Extension */,
 				53E5D24B2EF4473400BCA538 /* FFU2 Daemon */,
+				53A24E352F07C85D006C51C0 /* FFU2 DaemonTests */,
 			);
 		};
 /* End PBXProject section */
@@ -454,6 +505,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				53C6B0E52EF6A4870076A0F8 /* .swiftlint.yml in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53A24E342F07C85D006C51C0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +578,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		53A24E322F07C85D006C51C0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		53E5D2482EF4473400BCA538 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -544,6 +609,11 @@
 			isa = PBXTargetDependency;
 			target = 537712232CEDED4200F40E3B /* FFU2 Extension */;
 			targetProxy = 5377122A2CEDED4200F40E3B /* PBXContainerItemProxy */;
+		};
+		53A24E3B2F07C85D006C51C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 53E5D24B2EF4473400BCA538 /* FFU2 Daemon */;
+			targetProxy = 53A24E3A2F07C85D006C51C0 /* PBXContainerItemProxy */;
 		};
 		53E5D2932EF4EF4C00BCA538 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -924,6 +994,55 @@
 			};
 			name = Release;
 		};
+		53A24E3D2F07C85D006C51C0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HWETRKW89U;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ShowyaTanaka.FFU2-DaemonTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FFU2 Daemon.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FFU2 Daemon";
+			};
+			name = Debug;
+		};
+		53A24E3E2F07C85D006C51C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HWETRKW89U;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ShowyaTanaka.FFU2-DaemonTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FFU2 Daemon.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FFU2 Daemon";
+			};
+			name = Release;
+		};
 		53E5D2552EF4473500BCA538 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1064,6 +1183,15 @@
 			buildConfigurations = (
 				5377122F2CEDED4200F40E3B /* Debug */,
 				537712302CEDED4200F40E3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		53A24E3C2F07C85D006C51C0 /* Build configuration list for PBXNativeTarget "FFU2 DaemonTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53A24E3D2F07C85D006C51C0 /* Debug */,
+				53A24E3E2F07C85D006C51C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

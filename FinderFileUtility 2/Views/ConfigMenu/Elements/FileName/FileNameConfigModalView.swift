@@ -2,9 +2,9 @@ import SwiftUI
 
 struct FileNameConfigModalView: NSPanelManagementView {
     @FocusState var isFocused: Bool
-    @StateObject var viewModel: FileNameConfigModalViewModel
+    @ObservedObject var viewModel: FileNameConfigModalViewModel
     init(viewModel: FileNameConfigModalViewModel) {
-        _viewModel = StateObject(wrappedValue: viewModel)
+        _viewModel = ObservedObject(wrappedValue: viewModel)
     }
 
     var body: some View {
@@ -20,7 +20,6 @@ struct FileNameConfigModalView: NSPanelManagementView {
                 }
                 Button("変更") {
                     self.viewModel.updateDefaultFileNameData()
-                    self.viewModel.closeWindow()
                 }.buttonStyle(.borderedProminent)
                 .tint(.blue).keyboardShortcut(.defaultAction)
                 .disabled(viewModel.fileName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)

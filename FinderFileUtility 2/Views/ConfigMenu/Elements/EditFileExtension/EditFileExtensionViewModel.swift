@@ -8,7 +8,7 @@ class EditFileExtensionViewModel: ObservableObject {
     @Published var extensions: [ExtensionName]
     let fileExtensionService: FileExtensionServiceProtocol
     let panelServiceType: NSPanelServiceProtocol.Type
-    lazy var modalViewModel = EditFileExtensionModalViewModel(editFileExtensionViewModel: self, fileExtensionService: self.fileExtensionService, panelServiceType:self.panelServiceType)
+    lazy var modalViewModel = EditFileExtensionModalViewModel(editFileExtensionViewModel: self, fileExtensionService: self.fileExtensionService)
     init(fileExtensionService: FileExtensionServiceProtocol=fileExtensionServiceFactory(), panelServiceType: NSPanelServiceProtocol.Type) {
         let extensionArray = fileExtensionService.getRegisteredExtension()
         self.fileExtensionService = fileExtensionService
@@ -39,7 +39,10 @@ class EditFileExtensionViewModel: ObservableObject {
     }
     @MainActor
     func openEditFileModal() {
-        NSPanelService.createPanel(viewModel: self.modalViewModel, isfocused: true, width: 300, height: 400)
+        panelServiceType.createPanel(viewModel: self.modalViewModel, isfocused: true,x: 0, y: 0, width: 300, height: 400)
+    }
+    deinit{
+        NSLog("EditFileExtensionViewModel deinited")
     }
 
 }

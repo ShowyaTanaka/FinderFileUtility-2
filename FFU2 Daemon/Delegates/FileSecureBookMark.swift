@@ -36,7 +36,7 @@ class FileSecureBookMark: DistributedNotificationHandlerDelegate {
             let url = try self.nsOpenPanelService.getSecureBookMarkUrl()
             let bookMarkData = try self.nsOpenPanelService.getBookmarkData()
             let allowed_url = url.components(separatedBy: "/")
-            let home_url_array = NSHomeDirectory().components(separatedBy: "/")[0 ... 2]
+            let home_url_array = URL(fileURLWithPath:NSHomeDirectory()).path().components(separatedBy: "/")[0 ... 2]
 
             if allowed_url.prefix(3) != home_url_array {
                 // 現段階ではホームディレクトリ以外での書き込み動作は対象外であるため、他のディレクトリが指定された場合は弾く
@@ -45,8 +45,8 @@ class FileSecureBookMark: DistributedNotificationHandlerDelegate {
                 // allowed_urlの個数が3より多い場合、ホームディレクトリ下のなにかのフォルダを指定していることになるため、パーミッションとしては小さい
                 let userResult = self.nsAlertService.showAlertWithUserSelect(title: "権限が小さいです", message: "ホームディレクトリより下のフォルダが指定されました。一部のフォルダでは正常に動作しない可能性があります。よろしいですか？")
                 guard userResult else { return }
-                try self.secureBookMarkService.saveSecureBookMark(bookmark: bookMarkData)
             }
+            try self.secureBookMarkService.saveSecureBookMark(bookmark: bookMarkData)
         }
         catch {
             if case let error as SaveSecureBookMarkError = error {

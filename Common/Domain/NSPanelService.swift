@@ -17,6 +17,8 @@ struct NSPanelService: NSPanelServiceProtocol {
         newPanel.isFloatingPanel = true
         newPanel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
         newPanel.contentView = NSHostingView(rootView: view)
+        newPanel.isReleasedWhenClosed = true
+        viewModel.panelService = NSPanelService.self
         if isfocused {
             newPanel.level = .floating
             newPanel.makeKeyAndOrderFront(nil)
@@ -24,10 +26,10 @@ struct NSPanelService: NSPanelServiceProtocol {
             newPanel.orderFront(nil)
         }
         viewModel.panel = newPanel
-
     }
     static func closeWindow(panel: NSPanel) {
         panel.close()
+        NSLog("NSPanelService: closeWindow executed")
     }
 
 }
