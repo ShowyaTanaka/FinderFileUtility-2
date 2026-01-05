@@ -7,13 +7,13 @@ struct ExtensionName: Identifiable {
 class EditFileExtensionViewModel: ObservableObject {
     @Published var extensions: [ExtensionName]
     let fileExtensionService: FileExtensionServiceProtocol
-    let panelServiceType: NSPanelServiceProtocol.Type
+    let nsPanelControllerType: NSPanelController.Type
     lazy var modalViewModel = EditFileExtensionModalViewModel(editFileExtensionViewModel: self, fileExtensionService: self.fileExtensionService)
-    init(fileExtensionService: FileExtensionServiceProtocol=fileExtensionServiceFactory(), panelServiceType: NSPanelServiceProtocol.Type) {
+    init(fileExtensionService: FileExtensionServiceProtocol=fileExtensionServiceFactory(), nsPanelControllerType: NSPanelController.Type = NSPanelController.self) {
         let extensionArray = fileExtensionService.getRegisteredExtension()
         self.fileExtensionService = fileExtensionService
         self.extensions = []
-        self.panelServiceType = panelServiceType
+        self.nsPanelControllerType = nsPanelControllerType
 
         for extensionName in extensionArray {
             self.extensions.append(ExtensionName(extensionName: extensionName))
@@ -41,7 +41,7 @@ class EditFileExtensionViewModel: ObservableObject {
     func openEditFileModal() {
         let viewModel = EditFileExtensionModalViewModel(editFileExtensionViewModel: self, fileExtensionService: self.fileExtensionService)
         let view = EditFileExtensionModalView(viewModel: viewModel)
-        NSPanelController(viewModel: viewModel,view: view, isfocused: true, x: 0, y: 0, width: 300, height: 400)
+        self.nsPanelControllerType.init(viewModel: viewModel,view: view, isfocused: false, x: 600, y: 400, width: 300, height: 200)
     }
 
 }

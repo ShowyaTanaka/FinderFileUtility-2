@@ -114,11 +114,9 @@
 				Domain/FileNameService.swift,
 				Domain/NSAlertService.swift,
 				Domain/NSPanelController.swift,
-				Domain/NSPanelService.swift,
 				Factory/OnlyFFU2AndDaemonFactory.swift,
 				Infrastructure/DistributedNotificationHandler.swift,
 				Protocols/DistributedNotificationHandlerDelegate.swift,
-				Protocols/Domain/NSPanelServiceProtocol.swift,
 				Protocols/NSPanelManagement.swift,
 			);
 			target = 537712232CEDED4200F40E3B /* FFU2 Extension */;
@@ -129,7 +127,6 @@
 				Domain/FileNameService.swift,
 				Domain/NSAlertService.swift,
 				Domain/NSPanelController.swift,
-				Domain/NSPanelService.swift,
 				EnvironmentKey/NotificationKey.swift,
 				Factory/OnlyFFU2AndDaemonFactory.swift,
 				Infrastructure/DistributedNotificationHandler.swift,
@@ -138,7 +135,6 @@
 				Protocols/Domain/FileExtensionServiceProtocol.swift,
 				Protocols/Domain/FileNameServiceProtocol.swift,
 				Protocols/Domain/NSAlertServiceProtocol.swift,
-				Protocols/Domain/NSPanelServiceProtocol.swift,
 				Protocols/Models/UserDefaultsModelProtocol.swift,
 				Protocols/NSPanelManagement.swift,
 				View/Element/CloseWindowButton.swift,

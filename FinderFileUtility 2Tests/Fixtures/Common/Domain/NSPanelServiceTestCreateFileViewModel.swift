@@ -4,12 +4,11 @@ import Testing
 import Cocoa
 import Combine
 import Foundation
-class NSPanelServiceTestCreateFileViewModel: ObservableObject, NSPanelManagementViewModelProtocol {
-    
-    static let viewType = NSPanelServiceTestCreateFileView.self
-    var panelService: NSPanelServiceProtocol.Type? = nil
-    deinit { NSLog("TestClass deinit") }
-
-    weak var panel: NSPanel?
+class NSPanelServiceTestCreateFileViewModel: ObservableObject, NSPanelControllerViewModelProtocol {
+    var windowController: NSPanelController?
+    var isDeinit = false
+    deinit { NSLog("TestClass deinit")
+        isDeinit = true
+    }
     static let title = "新規ファイル作成"
 }

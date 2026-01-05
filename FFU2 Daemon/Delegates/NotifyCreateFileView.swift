@@ -7,9 +7,9 @@ class NotifyCreateFileView: NSObject, CFMessagePortToNotificationHandlerDelegate
      */
     var notificationName = Notification.Name("notifyEditFileName")
     var portName = "group.com.ShoyaTanaka.FFU2.editfile" as CFString
-    var nsPanelService: NSPanelServiceProtocol.Type
-    init(nsPanelService:NSPanelServiceProtocol.Type = NSPanelService.self){
-        self.nsPanelService = nsPanelService
+    var nsPanelControllerType: NSPanelController.Type
+    init(nsPanelControllerType: NSPanelController.Type = NSPanelController.self) {
+        self.nsPanelControllerType = nsPanelControllerType
     }
 
     @objc func callback(notification: Notification) {
@@ -20,9 +20,7 @@ class NotifyCreateFileView: NSObject, CFMessagePortToNotificationHandlerDelegate
 
         let viewModel = CreateFileViewModel(currentDirURL: URL(fileURLWithPath: path), selectedExtension: selectedExtension, fileNameService: fileNameService, fileManagementService: FileManagementService(fileNameService: fileNameService))
         let view = CreateFileView(viewModel: viewModel)
-        DispatchQueue.main.async {
-            self.nsPanelService.createPanel(view: view,viewModel: viewModel, isfocused: false, x: 600, y: 400, width: 300, height: 200)
-        }
+        self.nsPanelControllerType.init(viewModel: viewModel,view: view, isfocused: false, x: 600, y: 400, width: 300, height: 200)
     }
 
     var callBackSelector: Selector {

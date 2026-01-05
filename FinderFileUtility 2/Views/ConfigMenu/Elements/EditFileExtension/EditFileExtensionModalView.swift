@@ -1,5 +1,5 @@
 import SwiftUI
-struct EditFileExtensionModalView: NSPanelManagementView {
+struct EditFileExtensionModalView: View {
 
     @FocusState var isFocused: Bool
     @StateObject var viewModel: EditFileExtensionModalViewModel

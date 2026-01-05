@@ -2,7 +2,7 @@ import Combine
 import Foundation
 import SwiftUI
 
-class EditFileExtensionModalViewModel: ObservableObject, NSPanelManagementViewModelProtocol {
+class EditFileExtensionModalViewModel: ObservableObject, NSPanelControllerViewModelProtocol {
     var windowController: NSPanelController?
     
 
@@ -10,8 +10,6 @@ class EditFileExtensionModalViewModel: ObservableObject, NSPanelManagementViewMo
     var errorDescription: String?
     @Published var saveComplete: Bool = false
     weak var parentViewModel: EditFileExtensionViewModel?
-    static let viewType = EditFileExtensionModalView.self
-    var panel: NSPanel?
     static let title = "拡張子を追加"
     let fileExtensionService: FileExtensionServiceProtocol
 

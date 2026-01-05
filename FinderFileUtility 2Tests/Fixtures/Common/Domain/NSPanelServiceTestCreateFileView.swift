@@ -3,7 +3,7 @@ import Testing
 
 import SwiftUI
 
-struct NSPanelServiceTestCreateFileView: NSPanelManagementView {
+struct NSPanelServiceTestCreateFileView: View {
     @ObservedObject var viewModel: NSPanelServiceTestCreateFileViewModel
     
     init(viewModel: NSPanelServiceTestCreateFileViewModel) {

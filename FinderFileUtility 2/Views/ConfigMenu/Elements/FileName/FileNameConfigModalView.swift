@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct FileNameConfigModalView: NSPanelManagementView {
+struct FileNameConfigModalView: View {
     @FocusState var isFocused: Bool
     @ObservedObject var viewModel: FileNameConfigModalViewModel
     init(viewModel: FileNameConfigModalViewModel) {

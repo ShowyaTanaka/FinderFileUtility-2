@@ -1,14 +1,13 @@
 import Cocoa
 import Combine
 import Foundation
-class CreateFileViewModel: ObservableObject, NSPanelManagementViewModelProtocol {
-    weak var windowController: NSPanelController?
+class CreateFileViewModel: ObservableObject, NSPanelControllerViewModelProtocol {
+    var windowController: NSPanelController?
     
     
     
     static let viewType = CreateFileView.self
     let fileManagementService: FileManagementServiceProtocol
-    var panelService: NSPanelServiceProtocol.Type?
 
     var closeRequested = PassthroughSubject<Void, Never>()
     var panel: NSPanel?

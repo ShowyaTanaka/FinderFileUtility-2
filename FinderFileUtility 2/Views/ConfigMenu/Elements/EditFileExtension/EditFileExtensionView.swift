@@ -3,7 +3,7 @@ import Foundation
 import SwiftUI
 
 struct EditFileExtensionView: View {
-    @StateObject var viewModel = EditFileExtensionViewModel(panelServiceType: NSPanelService.self)
+    @StateObject var viewModel = EditFileExtensionViewModel()
     @State var refreshExtensionList: Bool = false
     @State var selectedExtension: ExtensionName.ID?
     var body: some View {
