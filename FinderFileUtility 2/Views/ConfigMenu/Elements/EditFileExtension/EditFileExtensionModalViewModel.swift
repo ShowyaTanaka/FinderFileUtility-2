@@ -8,10 +8,10 @@ class EditFileExtensionModalViewModel: ObservableObject, NSPanelControllerViewMo
 
     @Published var fileExtension: String = ""
     var errorDescription: String?
-    @Published var saveComplete: Bool = false
     weak var parentViewModel: EditFileExtensionViewModel?
     static let title = "拡張子を追加"
     let fileExtensionService: FileExtensionServiceProtocol
+    let nsAlertServiceType: NSAlertServiceProtocol.Type = NSAlertService.self
 
     private enum EditFileExtensionSaveStatus {
         case success
@@ -20,7 +20,7 @@ class EditFileExtensionModalViewModel: ObservableObject, NSPanelControllerViewMo
         case unknownError
     }
 
-    init(editFileExtensionViewModel: EditFileExtensionViewModel, fileExtensionService: FileExtensionServiceProtocol) {
+    init(editFileExtensionViewModel: EditFileExtensionViewModel, fileExtensionService: FileExtensionServiceProtocol, nsAlertService: NSAlertServiceProtocol.Type = NSAlertService.self) {
         self.parentViewModel = editFileExtensionViewModel
         self.fileExtensionService = fileExtensionService
     }
@@ -49,11 +49,7 @@ class EditFileExtensionModalViewModel: ObservableObject, NSPanelControllerViewMo
         case .unavailableName:
             self.errorDescription = "使用できない拡張子名です"
         }
-        let alert = NSAlert()
-        alert.messageText = "拡張子の保存に失敗しました"
-        alert.informativeText = self.errorDescription ?? "予期せぬエラーが発生しました"
-        alert.addButton(withTitle: "OK")
-        _ = alert.runModal()
+        self.nsAlertServiceType.showAlert(title: "拡張子の保存に失敗しました", message: self.errorDescription ?? "予期せぬエラーが発生しました")
         return false
     }
     deinit {

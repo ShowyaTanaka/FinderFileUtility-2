@@ -1,5 +1,6 @@
 import SwiftUI
 
+@MainActor
 final class NSPanelController: NSWindowController, NSWindowDelegate {
 
     init<ContentVM: NSPanelControllerViewModelProtocol, viewInstance: View>(viewModel: ContentVM,view: viewInstance, isfocused: Bool = false, x: Int = 600, y: Int = 400, width: Int = 300, height: Int = 200) {

@@ -1,16 +1,20 @@
 PODS:
   - SwiftLint (0.62.2)
+  - ViewInspector (0.10.3)
 
 DEPENDENCIES:
   - SwiftLint
+  - ViewInspector
 
 SPEC REPOS:
   trunk:
     - SwiftLint
+    - ViewInspector
 
 SPEC CHECKSUMS:
   SwiftLint: f84fc7d844e9cde0dc4f5013af608a269e317aba
+  ViewInspector: 41ca945fbd364118b48113a8cf2b9fb528f581e0
 
-PODFILE CHECKSUM: ab77bfcaffea0431fed3ad0e163040a386cb041b
+PODFILE CHECKSUM: 44040ab9f74d14c4e00dbbe1225e741f82021ed2
 
 COCOAPODS: 1.16.2
