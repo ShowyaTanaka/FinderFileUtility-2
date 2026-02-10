@@ -1,8 +1,5 @@
 struct FileExtensionService: FileExtensionServiceProtocol {
     let userDefaultsModel: UserDefaultsModelProtocol
-    init(userDefaultsModel: UserDefaultsModelProtocol) {
-        self.userDefaultsModel = userDefaultsModel
-    }
     func getRegisteredExtension() -> [String] {
         if let registeredArray = self.userDefaultsModel.getArrayValue(forKey: UserDefaultsKey.fileExtensionKey) as? [String] {
             return registeredArray

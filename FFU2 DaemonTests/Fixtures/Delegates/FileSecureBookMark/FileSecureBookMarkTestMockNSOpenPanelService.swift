@@ -1,6 +1,6 @@
-import Testing
 import Cocoa
 @testable import FFU2_Daemon
+import Testing
 
 class FileSecureBookMarkTestMockNSOpenPanelService: NSOpenPanelServiceProtocol {
     var runModalResult: NSApplication.ModalResponse = .OK
@@ -29,7 +29,7 @@ class FileSecureBookMarkTestMockNSOpenPanelService: NSOpenPanelServiceProtocol {
         }
         return homeDir
     }
-    
+
     func getSecureBookMarkUrl() throws -> String {
         self.getSecureBookMarkUrlCalledCount += 1
         if isRaisedErrorOnGetSecureBookMarkUrl {
@@ -38,11 +38,8 @@ class FileSecureBookMarkTestMockNSOpenPanelService: NSOpenPanelServiceProtocol {
         return secureBookMarkUrlToReturn.path()
     }
 
-    
     func runModal(allowsMultipleSelection: Bool, canChooseFiles: Bool, canChooseDirectories: Bool, directoryPath: String) -> NSApplication.ModalResponse {
         self.runModalCalledCount += 1
         return runModalResult
     }
 }
-
-

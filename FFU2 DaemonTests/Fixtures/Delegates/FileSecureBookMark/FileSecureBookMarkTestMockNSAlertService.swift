@@ -1,5 +1,5 @@
-import Testing
 @testable import FFU2_Daemon
+import Testing
 
 struct FileSecureBookMarkTestMockNSAlertService: NSAlertServiceProtocol {
 
@@ -28,4 +28,3 @@ struct FileSecureBookMarkTestMockNSAlertService: NSAlertServiceProtocol {
         userSelectResult = true
     }
 }
-    

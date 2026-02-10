@@ -1,8 +1,7 @@
-import Testing
-import Foundation
-@testable import FFU2_Daemon
 internal import AppKit
-
+@testable import FFU2_Daemon
+import Foundation
+import Testing
 
 @Suite
 @MainActor
@@ -14,13 +13,13 @@ struct FileSecureBookMarkTest {
         let secureBookMarkService = FileSecureBookMarkTestMockSecureBookMarkService()
         let nsOpenPanelService = FileSecureBookMarkTestMockNSOpenPanelService()
         nsOpenPanelService.runModalResult = .cancel
-        
+
         let fileSecureBookMark = FileSecureBookMark(
             nsAlertService: nsAlertService,
             secureBookMarkService: secureBookMarkService,
             nsOpenPanelService: nsOpenPanelService
         )
-        
+
         await fileSecureBookMark.saveSecureBookMark()
         #expect(nsOpenPanelService.runModalCalledCount == 1)
         #expect(nsAlertService.showAlertCalledCount == 0)
@@ -38,7 +37,7 @@ struct FileSecureBookMarkTest {
             secureBookMarkService: secureBookMarkService,
             nsOpenPanelService: nsOpenPanelService
         )
-        
+
         await fileSecureBookMark.saveSecureBookMark()
         #expect(nsOpenPanelService.runModalCalledCount == 1)
         #expect(nsAlertService.showAlertCalledCount == 1)
@@ -106,7 +105,7 @@ struct FileSecureBookMarkTest {
         #expect(nsAlertService.shownAlerts[0].message == "ホームディレクトリより下のフォルダが指定されました。一部のフォルダでは正常に動作しない可能性があります。よろしいですか？")
         #expect(secureBookMarkService.saveSecureBookMarkCalledNum == 1)
     }
-    
+
     @Test("ホームディレクトリ以下のフォルダを指定した場合、警告アラートが表示されること。また,キャンセルを選択した場合,ブックマークは保存されないこと")
     func testSaveSecureBookMark_HomeSubdirectoryWarning_Cancel() async {
         FileSecureBookMarkTestMockNSAlertService.reset()
@@ -129,7 +128,7 @@ struct FileSecureBookMarkTest {
         #expect(secureBookMarkService.saveSecureBookMarkCalledNum == 0)
         #expect(nsAlertService.showAlertCalledCount == 0)
     }
-    
+
     @Test("secureBookMarkService.saveSecureBookMarkが何らかのエラーを投げた場合、対応するアラートを表示すること")
     func testSaveSecureBookMark_throwSomething() async {
         FileSecureBookMarkTestMockNSAlertService.reset()

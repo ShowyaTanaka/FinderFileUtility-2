@@ -3,9 +3,7 @@ import Combine
 import Foundation
 class CreateFileViewModel: ObservableObject, NSPanelControllerViewModelProtocol {
     var windowController: NSPanelController?
-    
-    
-    
+
     static let viewType = CreateFileView.self
     let fileManagementService: FileManagementServiceProtocol
 
@@ -24,13 +22,12 @@ class CreateFileViewModel: ObservableObject, NSPanelControllerViewModelProtocol 
         self.fileName += selectedExtension.starts(with: ".") ? selectedExtension : "." + selectedExtension
     }
     @MainActor
-    func createFile() -> Bool{
+    func createFile() -> Bool {
         guard let currentDirURLConfirm = self.currentDirURL else {return true}
         do {
             try self.fileManagementService.createFile(fileName: self.fileName, currentDirURL: currentDirURLConfirm)
             return true
-        }
-        catch {
+        } catch {
             self.nsAlertService.showAlert(title: "エラー", message: "ファイルの作成に失敗しました。\(error)")
             return false
         }

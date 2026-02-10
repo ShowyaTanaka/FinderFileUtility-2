@@ -1,8 +1,6 @@
 import Cocoa
 import Foundation
 
-
-
 class FileSecureBookMark: DistributedNotificationHandlerDelegate {
     var notificationKey = NotificationKey.FFU2_DAEMON_SAVE_SECURITY_SCOPED_BOOKMARK_KEY
     let nsAlertService: NSAlertServiceProtocol.Type
@@ -11,7 +9,7 @@ class FileSecureBookMark: DistributedNotificationHandlerDelegate {
     deinit {
         NSLog("FileSecureBookMark deinited")
     }
-    init(nsAlertService: NSAlertServiceProtocol.Type=NSAlertService.self, secureBookMarkService: SecureBookMarkServiceProtocol, nsOpenPanelService: NSOpenPanelServiceProtocol){
+    init(nsAlertService: NSAlertServiceProtocol.Type = NSAlertService.self, secureBookMarkService: SecureBookMarkServiceProtocol, nsOpenPanelService: NSOpenPanelServiceProtocol) {
         self.nsAlertService = nsAlertService
         self.secureBookMarkService = secureBookMarkService
         self.nsOpenPanelService = nsOpenPanelService
@@ -26,8 +24,7 @@ class FileSecureBookMark: DistributedNotificationHandlerDelegate {
         let result = self.nsOpenPanelService.runModal(allowsMultipleSelection: false, canChooseFiles: false, canChooseDirectories: false, directoryPath: NSHomeDirectory())
         if result == .cancel {
             return
-        }
-        else if result != .OK {
+        } else if result != .OK {
             self.nsAlertService.showAlert(title: "エラー", message: "何らかのエラーが発生しました。再度実行してください。")
             return
         }
@@ -36,7 +33,7 @@ class FileSecureBookMark: DistributedNotificationHandlerDelegate {
             let url = try self.nsOpenPanelService.getSecureBookMarkUrl()
             let bookMarkData = try self.nsOpenPanelService.getBookmarkData()
             let allowed_url = url.components(separatedBy: "/")
-            let home_url_array = URL(fileURLWithPath:NSHomeDirectory()).path().components(separatedBy: "/")[0 ... 2]
+            let home_url_array = URL(fileURLWithPath: NSHomeDirectory()).path().components(separatedBy: "/")[0 ... 2]
 
             if allowed_url.prefix(3) != home_url_array {
                 // 現段階ではホームディレクトリ以外での書き込み動作は対象外であるため、他のディレクトリが指定された場合は弾く
@@ -47,8 +44,7 @@ class FileSecureBookMark: DistributedNotificationHandlerDelegate {
                 guard userResult else { return }
             }
             try self.secureBookMarkService.saveSecureBookMark(bookmark: bookMarkData)
-        }
-        catch {
+        } catch {
             if case let error as SaveSecureBookMarkError = error {
                 self.nsAlertService.showAlert(
                     title: error.title,

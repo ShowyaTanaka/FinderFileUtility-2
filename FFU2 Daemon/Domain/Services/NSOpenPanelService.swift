@@ -14,7 +14,7 @@ struct NSOpenPanelService: NSOpenPanelServiceProtocol {
         let result = panel.runModal()
         return result
     }
-    
+
     func getBookmarkData() throws -> Data {
         guard let url = panel.url else {throw NSError(domain: "nsPanelのURLが取得できません", code: 4, userInfo: nil)}
         guard let bookMarkData = try? url.bookmarkData(options: .withSecurityScope, includingResourceValuesForKeys: nil, relativeTo: nil) else {throw NSError(domain: "ブックマークデータの取得に失敗しました", code: 5, userInfo: nil)}

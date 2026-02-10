@@ -1,9 +1,5 @@
 struct FileNameService: FileNameServiceProtocol {
     let userDefaultsModel: UserDefaultsModelProtocol
-    
-    init(userDefaultsModel: UserDefaultsModelProtocol) {
-        self.userDefaultsModel = userDefaultsModel
-    }
 
     func writeDefaultFileNameData(newFileName: String) {
         // 空白文字列は許容する。nilで渡されたプロパティは更新対象としない。

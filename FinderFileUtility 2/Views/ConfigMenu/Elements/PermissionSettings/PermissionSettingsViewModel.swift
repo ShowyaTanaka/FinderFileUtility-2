@@ -47,4 +47,3 @@ import ServiceManagement
         self.launchAtLogin = self.service.status
     }
 }
-

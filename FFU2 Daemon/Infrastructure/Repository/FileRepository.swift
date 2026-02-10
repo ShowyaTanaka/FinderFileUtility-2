@@ -4,9 +4,6 @@ import Foundation
 
 struct FileRepository: FileIRepository {
     let secureBookMarkService: SecureBookMarkServiceProtocol
-    init(secureBookMarkService: SecureBookMarkServiceProtocol) {
-        self.secureBookMarkService = secureBookMarkService
-    }
     func exists(path: URL) throws -> Bool {
         guard let securityScopedURL = self.secureBookMarkService.getSecureBookMarkUrl() else {
             throw FileError.notAccessible}

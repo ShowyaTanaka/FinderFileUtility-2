@@ -1,5 +1,5 @@
 import Foundation
 
-protocol FileManagementServiceProtocol{
+protocol FileManagementServiceProtocol {
     func createFile(fileName: String, currentDirURL: URL) throws
 }

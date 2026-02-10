@@ -4,7 +4,6 @@ import SwiftUI
 
 class EditFileExtensionModalViewModel: ObservableObject, NSPanelControllerViewModelProtocol {
     var windowController: NSPanelController?
-    
 
     @Published var fileExtension: String = ""
     var errorDescription: String?

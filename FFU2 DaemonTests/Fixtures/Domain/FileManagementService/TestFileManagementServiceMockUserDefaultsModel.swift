@@ -1,6 +1,6 @@
-import Testing
-import Foundation
 @testable import FFU2_Daemon
+import Foundation
+import Testing
 
 class TestFileManagementServiceMockUserDefaultsModel: UserDefaultsModelProtocol {
     let suiteName = "group.com.ShoyaTanaka.FFU2"
@@ -46,4 +46,3 @@ class TestFileManagementServiceMockUserDefaultsModel: UserDefaultsModelProtocol 
     }
 
 }
-

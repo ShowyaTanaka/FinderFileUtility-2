@@ -1,10 +1,10 @@
-import Testing
-import Foundation
 @testable import FFU2_Daemon
+import Foundation
+import Testing
 
 class TestFileManagementServiceFileRepository: FileIRepository {
-    var existCount: Int? = nil
-    var createdFileName: String? = nil
+    var existCount: Int?
+    var createdFileName: String?
     func exists(path: URL) throws -> Bool {
         let fileName = path.lastPathComponent
         guard let count = existCount else {
@@ -22,7 +22,7 @@ class TestFileManagementServiceFileRepository: FileIRepository {
         NSLog("currentNumber: \(currentNumber), existCount: \(count)")
         return currentNumber < count
     }
-    
+
     func create(path: URL, data: Data?) throws -> Bool {
         let fileName = path.lastPathComponent
         self.createdFileName = fileName

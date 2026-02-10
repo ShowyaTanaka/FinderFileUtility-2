@@ -4,7 +4,7 @@ import SwiftUI
 
 class FileNameConfigModalViewModel: ObservableObject, NSPanelControllerViewModelProtocol {
     var windowController: NSPanelController?
-    
+
     weak var parentViewModel: FileNameConfigViewModel?
     let fileNameService: FileNameServiceProtocol
     @Published var fileName: String

@@ -1,5 +1,5 @@
-import Testing
 @testable import FinderFileUtility_2
+import Testing
 
 import Cocoa
 import Combine

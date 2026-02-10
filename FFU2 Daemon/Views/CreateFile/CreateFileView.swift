@@ -24,7 +24,7 @@ struct CreateFileView: View {
     init(viewModel: CreateFileViewModel) {
         self.viewModel = viewModel
     }
-    
+
     var body: some View {
         VStack {
             Text("ファイル名を入力してください。")
@@ -49,4 +49,3 @@ struct CreateFileView: View {
         }
     }
 }
-

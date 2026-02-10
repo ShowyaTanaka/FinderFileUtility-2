@@ -1,6 +1,6 @@
-import Testing
-import Foundation
 @testable import FinderFileUtility_2
+import Foundation
+import Testing
 
 class MockUserDefaultsModel: UserDefaultsModelProtocol {
     let suiteName = "group.com.ShoyaTanaka.FFU2"
@@ -46,4 +46,3 @@ class MockUserDefaultsModel: UserDefaultsModelProtocol {
     }
 
 }
-

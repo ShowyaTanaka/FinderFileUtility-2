@@ -23,7 +23,7 @@ enum SaveSecureBookMarkError: LocalizedError, Equatable {
     ///
     /// This is intended to be shown with `showAlertWithUserSelect(...)`.
     case smallerPermissionThanHomeDirectory
-    
+
     case someThingWrong
 
     var errorDescription: String? { message }

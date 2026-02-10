@@ -1,10 +1,10 @@
-import Testing
 @testable import FinderFileUtility_2
+import Testing
 
 @Suite
 @MainActor
 struct FileNameServiceTests {
-    static func setUp() -> (FileNameService, MockUserDefaultsModel){
+    static func setUp() -> (FileNameService, MockUserDefaultsModel) {
         let userDefaultsModel = MockUserDefaultsModel()
         let fileNameService = FileNameService(userDefaultsModel: userDefaultsModel)
         return (fileNameService, userDefaultsModel)
@@ -16,7 +16,7 @@ struct FileNameServiceTests {
         fileNameService.writeDefaultFileNameData(newFileName: "Test new file")
         #expect(userDefaultsModel.mockDefaults["defaultFileName"] as? String == "Test new file")
     }
-    
+
     @Test("空白文字列が与えられた場合,writeDefaultFileNameDataはその値をUserDefaultsに書き込む")
     func writeDefaultFileNameData_givenWhiteSpaceString_thenWriteToUserDefaults() {
         let (fileNameService, userDefaultsModel) = FileNameServiceTests.setUp()
@@ -78,5 +78,5 @@ struct FileNameServiceTests {
         let result = fileNameService.renameFileName(fileName: ".hoge", index: 1)
         #expect(result == ".hogeのコピー1")
     }
-    
+
 }
