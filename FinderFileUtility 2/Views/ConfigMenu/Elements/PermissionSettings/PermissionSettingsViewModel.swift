@@ -30,8 +30,11 @@ import ServiceManagement
 
         do {
             try self.service.register()
+        } catch let error as NSError {
+            let detail = "(code: \(error.code)) \(error.localizedDescription)"
+            NSAlertService.showAlert(title: "Error", message: "ログイン時起動の登録に失敗しました\n\(detail)")
         } catch {
-            NSAlertService.showAlert(title: "Error", message: "ログイン時起動の登録に失敗しました")
+            NSAlertService.showAlert(title: "Error", message: "ログイン時起動の登録に失敗しました\n\(error.localizedDescription)")
         }
         self.launchAtLogin = self.service.status
     }
@@ -44,3 +47,4 @@ import ServiceManagement
         self.launchAtLogin = self.service.status
     }
 }
+

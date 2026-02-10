@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5331967C2F3430A400F4E955 /* AGENTS.md in Sources */ = {isa = PBXBuildFile; fileRef = 5331967B2F34309C00F4E955 /* AGENTS.md */; };
-		5331967D2F3430A400F4E955 /* AGENTS.md in Sources */ = {isa = PBXBuildFile; fileRef = 5331967B2F34309C00F4E955 /* AGENTS.md */; };
 		5377122C2CEDED4200F40E3B /* FFU2 Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 537712242CEDED4200F40E3B /* FFU2 Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		53C6B0E52EF6A4870076A0F8 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 53C6B0E42EF6A47E0076A0F8 /* .swiftlint.yml */; };
 		53C6B0E62EF6A4870076A0F8 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 53C6B0E42EF6A47E0076A0F8 /* .swiftlint.yml */; };
@@ -586,7 +584,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5331967C2F3430A400F4E955 /* AGENTS.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,7 +605,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5331967D2F3430A400F4E955 /* AGENTS.md in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -852,6 +848,7 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"FinderFileUtility 2/Preview Content\"";
+				DEVELOPMENT_TEAM = HWETRKW89U;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
@@ -1140,6 +1137,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = HWETRKW89U;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
