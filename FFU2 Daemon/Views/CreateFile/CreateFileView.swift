@@ -20,8 +20,7 @@ struct CreateFileView: View {
     @FocusState private var isTextFieldFocused: Bool
     @State private var selection: TextSelection?
     @ObservedObject var viewModel: CreateFileViewModel
-    var nsAlertService: NSAlertServiceProtocol.Type = NSAlertService.self
-    
+
     init(viewModel: CreateFileViewModel) {
         self.viewModel = viewModel
     }

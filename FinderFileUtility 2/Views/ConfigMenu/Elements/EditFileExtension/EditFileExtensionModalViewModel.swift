@@ -11,7 +11,7 @@ class EditFileExtensionModalViewModel: ObservableObject, NSPanelControllerViewMo
     weak var parentViewModel: EditFileExtensionViewModel?
     static let title = "拡張子を追加"
     let fileExtensionService: FileExtensionServiceProtocol
-    let nsAlertServiceType: NSAlertServiceProtocol.Type = NSAlertService.self
+    let nsAlertServiceType: NSAlertServiceProtocol.Type
 
     private enum EditFileExtensionSaveStatus {
         case success
@@ -23,6 +23,7 @@ class EditFileExtensionModalViewModel: ObservableObject, NSPanelControllerViewMo
     init(editFileExtensionViewModel: EditFileExtensionViewModel, fileExtensionService: FileExtensionServiceProtocol, nsAlertService: NSAlertServiceProtocol.Type = NSAlertService.self) {
         self.parentViewModel = editFileExtensionViewModel
         self.fileExtensionService = fileExtensionService
+        self.nsAlertServiceType = nsAlertService
     }
 
     private func appendRegisteredExtension(_ newElement: String) -> EditFileExtensionSaveStatus {

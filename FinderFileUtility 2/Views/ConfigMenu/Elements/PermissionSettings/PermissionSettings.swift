@@ -2,7 +2,12 @@ import FinderSync
 import SwiftUI
 
 struct PermissionSettings: View {
-    @State var viewModel = PermissionSettingsViewModel(userDefaultsModel: UserDefaultsModel(), nsAlertService: NSAlertService.self)
+    @State private var viewModel: PermissionSettingsViewModel
+
+    init(userDefaultsModel: UserDefaultsModelProtocol = UserDefaultsModel(), nsAlertService: NSAlertServiceProtocol.Type = NSAlertService.self) {
+        _viewModel = State(initialValue: PermissionSettingsViewModel(userDefaultsModel: userDefaultsModel, nsAlertService: nsAlertService))
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             permissionSettingsElementViewGenerator(

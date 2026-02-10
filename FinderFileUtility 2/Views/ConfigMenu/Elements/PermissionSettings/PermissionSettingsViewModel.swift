@@ -12,7 +12,7 @@ import ServiceManagement
     }
     let service = SMAppService.loginItem(identifier: "ShowyaTanaka.FinderFileUtility-2.FFU2-Daemon")
 
-    init(userDefaultsModel: UserDefaultsModel, nsAlertService: NSAlertServiceProtocol.Type) {
+    init(userDefaultsModel: UserDefaultsModelProtocol, nsAlertService: NSAlertServiceProtocol.Type) {
         self.isEnableFinderExtension = FIFinderSyncController.isExtensionEnabled
         self.nsAlertService = nsAlertService
         print("isEnableFinderExtension: \(self.isEnableFinderExtension)")
@@ -32,9 +32,9 @@ import ServiceManagement
             try self.service.register()
         } catch let error as NSError {
             let detail = "(code: \(error.code)) \(error.localizedDescription)"
-            NSAlertService.showAlert(title: "Error", message: "ログイン時起動の登録に失敗しました\n\(detail)")
+            self.nsAlertService.showAlert(title: "Error", message: "ログイン時起動の登録に失敗しました\n\(detail)")
         } catch {
-            NSAlertService.showAlert(title: "Error", message: "ログイン時起動の登録に失敗しました\n\(error.localizedDescription)")
+            self.nsAlertService.showAlert(title: "Error", message: "ログイン時起動の登録に失敗しました\n\(error.localizedDescription)")
         }
         self.launchAtLogin = self.service.status
     }

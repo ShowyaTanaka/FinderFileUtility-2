@@ -7,7 +7,7 @@ class FileNameConfigViewModel: ObservableObject {
     let fileNameService: FileNameServiceProtocol
     let nsPanelControllerType: NSPanelController.Type
 
-    init(fileNameService: FileNameServiceProtocol = FileNameService(userDefaultsModel: UserDefaultsModel()), nsPanelControllerType: NSPanelController.Type = NSPanelController.self) {
+    init(fileNameService: FileNameServiceProtocol = fileNameServiceFactory(), nsPanelControllerType: NSPanelController.Type = NSPanelController.self) {
         let current_default_name_data: String = fileNameService.getDefaultFileNameData()
         self.fileNameForDisplay = current_default_name_data
         self.fileNameService = fileNameService
@@ -15,7 +15,7 @@ class FileNameConfigViewModel: ObservableObject {
     }
     @MainActor
     func openFileNameConfigModal() {
-        let viewModel = FileNameConfigModalViewModel(parentViewModel: self)
+        let viewModel = FileNameConfigModalViewModel(parentViewModel: self, fileNameService: self.fileNameService)
         let view = FileNameConfigModalView(viewModel: viewModel)
         self.nsPanelControllerType.init(viewModel: viewModel, view: view, isfocused: true, x: 600, y: 400, width: 300, height: 400)
     }
