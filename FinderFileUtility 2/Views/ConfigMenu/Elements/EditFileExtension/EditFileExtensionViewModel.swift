@@ -41,7 +41,7 @@ class EditFileExtensionViewModel: ObservableObject {
     func openEditFileModal() {
         let viewModel = EditFileExtensionModalViewModel(editFileExtensionViewModel: self, fileExtensionService: self.fileExtensionService)
         let view = EditFileExtensionModalView(viewModel: viewModel)
-        self.nsPanelControllerType.init(viewModel: viewModel, view: view, isfocused: false, x: 600, y: 400, width: 300, height: 200)
+        self.nsPanelControllerType.init(viewModel: viewModel, view: view, isfocused: true, x: 600, y: 400, width: 300, height: 200)
     }
 
 }

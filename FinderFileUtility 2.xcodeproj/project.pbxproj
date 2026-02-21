@@ -133,6 +133,7 @@
 				Domain/NSAlertService.swift,
 				Domain/NSPanelController.swift,
 				EnvironmentKey/NotificationKey.swift,
+				EnvironmentKey/UserDefaultsKey.swift,
 				Factory/OnlyFFU2AndDaemonFactory.swift,
 				Infrastructure/DistributedNotificationHandler.swift,
 				Models/UserDefaultsModel.swift,

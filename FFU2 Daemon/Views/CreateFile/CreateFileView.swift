@@ -38,7 +38,10 @@ struct CreateFileView: View {
             HStack(spacing: 10) {
                 CloseWindowButton(title: "キャンセル")
                 Button("作成") {
-                    self.viewModel.createFile()
+                    let status = self.viewModel.createFile()
+                    if status {
+                        self.viewModel.closeWindow()
+                    }
                 }.buttonStyle(.borderedProminent)
                 .tint(.blue).keyboardShortcut(.defaultAction)
             }

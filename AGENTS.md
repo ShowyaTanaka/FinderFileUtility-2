@@ -8,6 +8,7 @@
 - ツール類はMCPとSkillsで渡します.もしそれだけだと足りなさそうなら,私に指示を仰いでください.
 - 他のclassやstructのメソッドを呼び出す場合は,直接呼び出すのではなく依存性注入により実装を行ってください.その際に,protocolが定義されていない場合は`create_business_logic`のskillに従ってprotocolを実装してください.
 - ただし、AppleのFoundation / FinderSync / ServiceManagementなどの標準フレームワーク(SMAppService / FIFinderSyncController / DistributedNotificationCenter など)については、依存性注入の対象外として直接呼び出して構いません。
+- UserDefaultsのkey等,他のコンポーネントでも利用する可能性のある文字列は,Common/EnvironmentKey以下に
 
 ## 3. 技術スタック
 - Swift

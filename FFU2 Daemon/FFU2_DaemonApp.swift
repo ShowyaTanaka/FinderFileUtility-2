@@ -28,6 +28,7 @@ struct FFU2_DaemonApp: App {
         if !self.isRunningTests {
             _ = self.editFilePipeLine.launchMessagePort()
         }
+        UserDefaultsModel().setValue(value: secureBookMarkService.isBookMarkExists(), forKey: UserDefaultsKey.isSecureBookMarkValidKey)
     }
     var body: some Scene {
 
