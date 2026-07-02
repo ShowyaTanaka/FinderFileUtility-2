@@ -1187,7 +1187,7 @@
 				537711EE2CEDECDD00F40E3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		537711EF2CEDECDD00F40E3B /* Build configuration list for PBXNativeTarget "FinderFileUtility 2" */ = {
 			isa = XCConfigurationList;
@@ -1196,7 +1196,7 @@
 				537711F12CEDECDD00F40E3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		537711F22CEDECDD00F40E3B /* Build configuration list for PBXNativeTarget "FinderFileUtility 2Tests" */ = {
 			isa = XCConfigurationList;
@@ -1205,7 +1205,7 @@
 				537711F42CEDECDD00F40E3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		537711F52CEDECDD00F40E3B /* Build configuration list for PBXNativeTarget "FinderFileUtility 2UITests" */ = {
 			isa = XCConfigurationList;
@@ -1214,7 +1214,7 @@
 				537711F72CEDECDD00F40E3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		5377122E2CEDED4200F40E3B /* Build configuration list for PBXNativeTarget "FFU2 Extension" */ = {
 			isa = XCConfigurationList;
@@ -1223,7 +1223,7 @@
 				537712302CEDED4200F40E3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		53A24E3C2F07C85D006C51C0 /* Build configuration list for PBXNativeTarget "FFU2 DaemonTests" */ = {
 			isa = XCConfigurationList;
@@ -1232,7 +1232,7 @@
 				53A24E3E2F07C85D006C51C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		53E5D2542EF4473500BCA538 /* Build configuration list for PBXNativeTarget "FFU2 Daemon" */ = {
 			isa = XCConfigurationList;
@@ -1241,7 +1241,7 @@
 				53E5D2562EF4473500BCA538 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
