@@ -7,6 +7,10 @@ class FileSecureBookMarkTestMockNSOpenPanelService: NSOpenPanelServiceProtocol {
     var runModalCalledCount: Int = 0
     var getBookmarkDataCalledCount: Int = 0
     var getSecureBookMarkUrlCalledCount: Int = 0
+    var lastAllowsMultipleSelection: Bool?
+    var lastCanChooseFiles: Bool?
+    var lastCanChooseDirectories: Bool?
+    var lastDirectoryPath: String?
     var bookmarkDataToReturn: Data = Data()
     var secureBookMarkUrlToReturn: URL = URL(fileURLWithPath: "/home/hoge/")
     var isRaisedErrorOnGetBookmarkData: Bool = false
@@ -40,6 +44,10 @@ class FileSecureBookMarkTestMockNSOpenPanelService: NSOpenPanelServiceProtocol {
 
     func runModal(allowsMultipleSelection: Bool, canChooseFiles: Bool, canChooseDirectories: Bool, directoryPath: String) -> NSApplication.ModalResponse {
         self.runModalCalledCount += 1
+        self.lastAllowsMultipleSelection = allowsMultipleSelection
+        self.lastCanChooseFiles = canChooseFiles
+        self.lastCanChooseDirectories = canChooseDirectories
+        self.lastDirectoryPath = directoryPath
         return runModalResult
     }
 }

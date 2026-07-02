@@ -22,6 +22,10 @@ struct FileSecureBookMarkTest {
 
         await fileSecureBookMark.saveSecureBookMark()
         #expect(nsOpenPanelService.runModalCalledCount == 1)
+        #expect(nsOpenPanelService.lastAllowsMultipleSelection == false)
+        #expect(nsOpenPanelService.lastCanChooseFiles == false)
+        #expect(nsOpenPanelService.lastCanChooseDirectories == true)
+        #expect(nsOpenPanelService.lastDirectoryPath == NSHomeDirectory())
         #expect(nsAlertService.showAlertCalledCount == 0)
         #expect(secureBookMarkService.saveSecureBookMarkCalledNum == 0)
     }
@@ -40,6 +44,7 @@ struct FileSecureBookMarkTest {
 
         await fileSecureBookMark.saveSecureBookMark()
         #expect(nsOpenPanelService.runModalCalledCount == 1)
+        #expect(nsOpenPanelService.lastCanChooseDirectories == true)
         #expect(nsAlertService.showAlertCalledCount == 1)
         #expect(secureBookMarkService.saveSecureBookMarkCalledNum == 0)
         #expect(nsAlertService.shownAlerts[0].title == "エラー")
@@ -60,6 +65,7 @@ struct FileSecureBookMarkTest {
         )
         await fileSecureBookMark.saveSecureBookMark()
         #expect(nsOpenPanelService.runModalCalledCount == 1)
+        #expect(nsOpenPanelService.lastCanChooseDirectories == true)
         #expect(nsAlertService.showAlertCalledCount == 1)
         #expect(secureBookMarkService.saveSecureBookMarkCalledNum == 0)
         #expect(nsAlertService.shownAlerts[0].title == "サポートされていないディレクトリ")
@@ -80,6 +86,7 @@ struct FileSecureBookMarkTest {
         )
         await fileSecureBookMark.saveSecureBookMark()
         #expect(nsOpenPanelService.runModalCalledCount == 1)
+        #expect(nsOpenPanelService.lastCanChooseDirectories == true)
         #expect(nsAlertService.showAlertCalledCount == 0)
         #expect(nsAlertService.showAlertWithUserSelectCalledCount == 0)
         #expect(secureBookMarkService.saveSecureBookMarkCalledNum == 1)

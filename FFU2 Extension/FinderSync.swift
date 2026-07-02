@@ -9,7 +9,7 @@ import Cocoa
 import FinderSync
 
 class FinderSync: FIFinderSync {
-    private let keyForAvailableDirectory = "availableDirectory"
+    private let keyForAvailableDirectory = UserDefaultsKey.bookMarkPathKey
     var myFolderURL = URL(fileURLWithPath: "")
     let userDefaultsModel: UserDefaultsModelProtocol
     let fileExtensionService: FileExtensionServiceProtocol

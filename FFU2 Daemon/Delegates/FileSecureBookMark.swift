@@ -21,7 +21,13 @@ class FileSecureBookMark: DistributedNotificationHandlerDelegate {
          Finder拡張の新規ファイル作成機能にて、ファイルの書き込みに必要な権限を取得するための関数。
 
          */
-        let result = self.nsOpenPanelService.runModal(allowsMultipleSelection: false, canChooseFiles: false, canChooseDirectories: false, directoryPath: NSHomeDirectory())
+        let homeDirectoryURL = URL(fileURLWithPath: NSHomeDirectory())
+        let result = self.nsOpenPanelService.runModal(
+            allowsMultipleSelection: false,
+            canChooseFiles: false,
+            canChooseDirectories: true,
+            directoryPath: homeDirectoryURL.deletingLastPathComponent().path()
+        )
         if result == .cancel {
             return
         } else if result != .OK {

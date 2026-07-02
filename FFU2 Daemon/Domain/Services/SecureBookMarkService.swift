@@ -2,7 +2,7 @@ import Foundation
 
 struct SecureBookMarkService: SecureBookMarkServiceProtocol {
     private let keyForSecureBookmark = "secureBookMark"
-    private let keyForAvailableDirectory = "availableDirectory"
+    private let keyForAvailableDirectory = UserDefaultsKey.bookMarkPathKey
     private let userDefaultsModel: UserDefaultsModelProtocol
 
     init(userDefaultsModel: UserDefaultsModelProtocol) {
@@ -34,7 +34,12 @@ struct SecureBookMarkService: SecureBookMarkServiceProtocol {
     }
 
     func isBookMarkExists() -> Bool {
-        return self.userDefaultsModel.getDataValue(forKey: self.keyForSecureBookmark) != nil
+        let isValid = self.validateSecureBookMarkData(bookMarkData: self.userDefaultsModel.getDataValue(forKey: self.keyForSecureBookmark)) != nil
+        if !isValid {
+            self.userDefaultsModel.removeValue(forKey: self.keyForSecureBookmark)
+            self.userDefaultsModel.removeValue(forKey: self.keyForAvailableDirectory)
+        }
+        return isValid
     }
 
     func getSecureBookMarkUrl() -> URL? {

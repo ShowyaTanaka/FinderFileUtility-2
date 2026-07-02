@@ -10,7 +10,7 @@ struct NSOpenPanelService: NSOpenPanelServiceProtocol {
         panel.allowsMultipleSelection = allowsMultipleSelection
         panel.canChooseFiles = canChooseFiles
         panel.canChooseDirectories = canChooseDirectories
-        panel.directoryURL = URL(string: directoryPath)
+        panel.directoryURL = URL(fileURLWithPath: directoryPath)
         let result = panel.runModal()
         return result
     }
